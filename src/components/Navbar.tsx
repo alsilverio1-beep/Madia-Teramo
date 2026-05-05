@@ -19,8 +19,8 @@ export function Navbar() {
 
   const navLinks = [
     { title: 'Home', href: '/' },
-    { title: 'Il Menù', href: '/menu' },
     { title: 'Chi Siamo', href: '/#chi-siamo' },
+    { title: 'Il Menù', href: '/menu' },
     { title: 'Steak House', href: '/steakhouse' },
     { title: 'Eventi', href: '/#eventi' },
     { title: 'Terrazza', href: '/#terrazza' },
@@ -42,20 +42,36 @@ export function Navbar() {
   };
 
   return (
+    <div className="fixed top-0 left-0 w-full z-50">
+      {/* Top Header */}
+      <div className="bg-white border-b border-black/10 px-12 py-1.5 hidden lg:block">
+        <div className="max-w-7xl mx-auto flex justify-center items-center gap-6 text-madia-green text-[10px] uppercase tracking-[0.2em]">
+          <span className="flex items-center gap-2">
+            <MapPin size={11} />
+            Piazza Sant'Agostino 9/10, Teramo (TE)
+          </span>
+          <span className="text-madia-green/30">|</span>
+          <span className="flex items-center gap-2">
+            <Phone size={11} />
+            +39 0861 123456
+          </span>
+        </div>
+      </div>
+
     <nav
       className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-700',
-        isScrolled || isOpen
-          ? 'bg-madia-black/95 backdrop-blur-md border-b border-madia-gold/30 text-madia-white py-4'
-          : 'bg-transparent text-madia-white py-8'
+        'bg-madia-green border-b border-white/30 transition-all duration-700',
+        isScrolled || isOpen ? 'py-2' : 'py-4'
       )}
     >
       <div className="max-w-7xl mx-auto px-12 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2 group">
-          <span className="text-2xl md:text-2xl font-serif tracking-[0.3em] font-light text-madia-gold uppercase group-hover:opacity-80 transition-opacity">
-            Madia
-          </span>
+        <Link to="/" className="flex items-center group">
+          <img
+            src="/src/mtlogo-removebg-preview.png"
+            alt="Madia Teramo"
+            className="h-16 w-auto object-contain group-hover:opacity-80 transition-opacity"
+          />
         </Link>
 
         {/* Desktop Links */}
@@ -127,5 +143,6 @@ export function Navbar() {
         )}
       </AnimatePresence>
     </nav>
+    </div>
   );
 }

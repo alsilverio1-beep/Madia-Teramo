@@ -28,7 +28,7 @@ export function Footer() {
 
       <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-madia-white/5 flex flex-col md:flex-row justify-between items-center text-[9px] uppercase tracking-[0.3em] text-madia-white/30">
         <div className="flex gap-8">
-          <span>Piazza Orsini, Teramo (TE)</span>
+          <span>Piazza Sant'Agostino 9/10, Teramo (TE)</span>
           <span>T: +39 0861 123456</span>
         </div>
         <p className="mt-4 md:mt-0 text-madia-gold/60 italic">© {new Date().getFullYear()} Madia Restaurant. Eccellenza e Tradizione.</p>

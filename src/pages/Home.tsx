@@ -8,96 +8,112 @@ export function Home() {
       {/* 1. Hero Section & Carousel */}
       <section className="relative h-screen flex items-center bg-[#062a22] overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <motion.img
-            initial={{ scale: 1.1, opacity: 0.5 }}
-            animate={{ scale: 1, opacity: 0.4 }}
-            transition={{ duration: 15, repeat: Infinity, repeatType: 'reverse' }}
-            src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1000"
-            className="w-full h-full object-cover grayscale"
-            alt="Madia Interior"
-            referrerPolicy="no-referrer"
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+            src="/src/hero1.mp4"
           />
+          <div className="absolute inset-0 bg-black/50"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#062a22] via-transparent to-transparent opacity-80"></div>
         </div>
 
-        <div className="relative z-10 px-12 md:px-24 w-full">
+        <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6 pt-28">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="max-w-4xl"
+            className="max-w-3xl flex flex-col items-center gap-6"
           >
-            <span className="text-madia-gold text-[10px] uppercase tracking-[0.6em] font-bold mb-8 block">
-              Esclusività & Eccellenza
-            </span>
-            <h1 className="text-6xl md:text-9xl font-serif text-madia-white mb-8 font-light leading-[0.9]">
-              L'Essenza <br /> <span className="italic relative">del Gusto</span>
+            <h1 className="text-6xl md:text-8xl font-serif text-madia-white font-light leading-[0.9]">
+              Benvenuti <br /> <span className="italic">da Madia</span>
             </h1>
-            <p className="text-madia-white/70 max-w-md text-sm md:text-base font-sans italic mb-10 leading-relaxed">
-              Un'esperienza culinaria nel cuore di Teramo, dove la tradizione incontra l'innovazione della frollatura d'autore.
+            <p className="text-madia-white/80 max-w-md text-sm md:text-base font-sans italic leading-relaxed">
+              Ci sono gesti semplici che raccontano tutto!<br />Un piatto condiviso, una risata sincera, il piacere di assaporare insieme!
             </p>
-            <div className="flex items-center gap-6">
-              <button className="bg-madia-gold text-madia-green px-12 py-4 hover:bg-white hover:text-madia-green transition-all duration-700 font-bold uppercase tracking-[0.2em] text-[10px]">
-                Prenota il tuo tavolo
-              </button>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-[1px] bg-madia-gold"></div>
-                <div className="w-6 h-[1px] bg-madia-gold/30"></div>
-                <div className="w-6 h-[1px] bg-madia-gold/30"></div>
-              </div>
-            </div>
+            <button className="bg-madia-gold text-madia-green px-12 py-4 hover:bg-white hover:text-madia-green transition-all duration-700 font-bold uppercase tracking-[0.2em] text-[10px]">
+              Prenota il tuo tavolo
+            </button>
           </motion.div>
         </div>
       </section>
 
       {/* 2. Chi Siamo Section */}
-      <section id="chi-siamo" className="section-padding bg-madia-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-center">
-          <div className="lg:col-span-12 mb-12 text-center">
-             <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-4 block">Il Racconto</span>
-             <h2 className="text-5xl md:text-7xl text-madia-green font-serif lowercase italic">chi siamo</h2>
-          </div>
-          <div className="lg:col-span-5 space-y-8">
-            <p className="text-xl md:text-2xl text-madia-green/90 font-serif leading-relaxed italic">
-              "Madia non è solo un ristorante, è il racconto di una passione familiare guidata dalla ricerca della perfezione."
-            </p>
-            <div className="space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
-              <p>
-                Nel cuore pulsante del centro storico, a due passi da Piazza Orsini, nasce Madia. Un progetto volto a riscoprire i sapori autentici 
-                della terra d'Abruzzo, elevandoli attraverso tecniche moderne e ricerca continua.
-              </p>
-              <p>
-                Il nostro Chef guida una brigata dedicata all'eccellenza, dove ogni ingrediente è selezionato con cura maniacale dai migliori produttori locali.
-              </p>
+      <section id="chi-siamo" className="pt-10 pb-20 px-6 bg-madia-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="lg:col-span-5 space-y-8">
+              <div className="pl-8">
+                <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-4 block">Chi Siamo</span>
+                <h2 className="text-5xl md:text-7xl text-madia-green font-serif lowercase italic">il ristorante</h2>
+              </div>
+              <div className="space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
+                <p>
+                  Madia è il ristorante in Piazza Sant'Agostino 9/10, nel cuore del centro storico di Teramo. Un luogo dove tradizione abruzzese e cucina contemporanea si incontrano, con un'offerta gastronomica completa: dal pranzo alla cena, e un menù dedicato all'aperitivo ogni giorno dalle 18 alle 20.
+                </p>
+                <p>
+                  Rinomata per le sue <strong>pizze artigianali</strong> e per l'eccellenza della <strong>Steak House</strong>, Madia propone carni selezionate e frollate con cura, pensate per chi cerca qualità autentica a Teramo. Ogni ingrediente proviene dal territorio, ogni piatto è un invito a scoprire il meglio dell'Abruzzo.
+                </p>
+                <p>
+                  Il nostro menù cambia seguendo le stagioni e i ritmi della terra abruzzese. La mattina il team seleziona le materie prime dai produttori locali, i contadini del Gran Sasso e gli allevatori della provincia di Teramo, per garantire freschezza e autenticità in ogni piatto servito.
+                </p>
+                <p>
+                  La <strong>Steak House di Madia</strong> è oggi un punto di riferimento per gli amanti della <strong>carne a Teramo</strong> e in tutto l'Abruzzo. Le nostre frollature, curate direttamente dallo chef, esaltano il sapore naturale di razze bovine pregiate, servite alla brace con contorni stagionali e salse artigianali.
+                </p>
+                <p>
+                  Le <strong>pizze di Madia</strong> sono preparate con impasto a lunga lievitazione, farine selezionate e ingredienti del territorio. Che tu scelga una classica margherita o una creazione dello chef, ogni pizza è il risultato di un processo artigianale attento e rispettoso della tradizione napoletana rivisitata in chiave abruzzese.
+                </p>
+                <p>
+                  Cerchi un <strong>ristorante a Teramo</strong> per una cena romantica, un pranzo di lavoro o una serata con amici? Da Madia trovi un ambiente curato, un servizio attento e una cucina che non delude. Prenota il tuo tavolo e lasciati sorprendere.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 pl-8 pt-4">
+                <Link
+                  to="/menu"
+                  className="border-2 border-madia-gold bg-madia-green text-madia-white px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-green/80 transition-all duration-500 text-center"
+                >
+                  🍽️ Consulta il menù
+                </Link>
+                <a
+                  href="#"
+                  className="border-2 border-madia-gold bg-madia-green text-madia-white px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-green/80 transition-all duration-500 text-center"
+                >
+                  🗓️ Prenota un tavolo
+                </a>
+              </div>
             </div>
-          </div>
-          <div className="lg:col-span-7 relative">
-            <div className="aspect-[16/10] overflow-hidden thin-border p-4 bg-white/50 backdrop-blur-sm">
-              <img
-                src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1200"
-                className="w-full h-full object-cover grayscale transition-all duration-1000 hover:grayscale-0"
-                alt="Chef"
-                referrerPolicy="no-referrer"
-              />
+            <div className="lg:col-span-7 relative self-stretch">
+              <div className="absolute inset-0 overflow-hidden thin-border p-4 bg-white/50 backdrop-blur-sm">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                  src="/src/chisiamo1.mp4"
+                />
+              </div>
+              <div className="absolute -top-8 -left-8 w-24 h-24 border-t border-l border-madia-gold -z-10"></div>
+              <div className="absolute -bottom-8 -right-8 w-24 h-24 border-b border-r border-madia-gold -z-10"></div>
             </div>
-            <div className="absolute -top-8 -left-8 w-24 h-24 border-t border-l border-madia-gold -z-10"></div>
-            <div className="absolute -bottom-8 -right-8 w-24 h-24 border-b border-r border-madia-gold -z-10"></div>
           </div>
         </div>
       </section>
 
       {/* 3. Steak House (Polished Preview) */}
-      <section className="bg-madia-green py-32 px-6 relative overflow-hidden border-y border-madia-gold/10">
+      <section className="bg-madia-white pt-10 pb-20 px-6 relative overflow-hidden border-y border-madia-gold/10">
         <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-madia-gold/30 to-transparent"></div>
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
            <div className="space-y-8 order-2 lg:order-1">
              <span className="text-madia-gold text-[10px] uppercase tracking-[0.4em] font-bold">Steak Selection</span>
-             <h2 className="text-5xl md:text-6xl text-madia-white font-serif font-light leading-tight">Eccellenza in <br /> <span className="italic">frollatura</span></h2>
-             <p className="text-madia-white/70 max-w-md text-sm font-sans leading-relaxed">
+             <h2 className="text-5xl md:text-6xl text-madia-green font-serif font-light leading-tight">Eccellenza in <br /> <span className="italic">frollatura</span></h2>
+             <p className="text-madia-black/70 max-w-md text-sm font-sans leading-relaxed">
                Dalle migliori razze bovine alle tecniche di dry-aging più avanzate. Ogni taglio è un'opera d'arte maturata nel tempo.
              </p>
              <Link to="/steakhouse" className="inline-flex items-center gap-4 group">
-               <div className="w-12 h-12 rounded-full border border-madia-gold/30 flex items-center justify-center text-madia-gold group-hover:bg-madia-gold group-hover:text-madia-green transition-all duration-500">
+               <div className="w-12 h-12 rounded-full border border-madia-gold/60 flex items-center justify-center text-madia-gold group-hover:bg-madia-gold group-hover:text-madia-white transition-all duration-500">
                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                </div>
                <span className="text-[10px] uppercase tracking-[0.3em] text-madia-gold font-bold">Scopri di più</span>
@@ -185,7 +201,7 @@ export function Home() {
             
             <div className="space-y-10 pt-4">
               {[
-                { label: 'Indirizzo', value: 'Piazza Orsini, Teramo (TE)', icon: MapPin },
+                { label: 'Indirizzo', value: "Piazza Sant'Agostino 9/10, Teramo (TE)", icon: MapPin },
                 { label: 'Telefono', value: '+39 0861 123456', icon: Phone },
                 { label: 'Email', value: 'info@madiateramo.it', icon: Mail },
               ].map((item) => (
