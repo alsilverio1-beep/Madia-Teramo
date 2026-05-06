@@ -5,10 +5,13 @@ import { Menu } from './pages/Menu';
 import { Steakhouse } from './pages/Steakhouse';
 import { EventsQuote } from './pages/EventsQuote';
 import { TerraceDetails } from './pages/TerraceDetails';
+import { Prenota } from './pages/Prenota';
+import { ScrollToTop } from './components/ScrollToTop';
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -16,6 +19,7 @@ export default function App() {
           <Route path="/steakhouse" element={<Steakhouse />} />
           <Route path="/preventivo-eventi" element={<EventsQuote />} />
           <Route path="/scopri-terrazza" element={<TerraceDetails />} />
+          <Route path="/prenota" element={<Prenota />} />
         </Routes>
       </Layout>
     </BrowserRouter>
