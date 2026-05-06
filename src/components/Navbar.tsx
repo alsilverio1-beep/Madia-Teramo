@@ -61,7 +61,7 @@ export function Navbar() {
     <nav
       className={cn(
         'bg-madia-green border-b border-white/30 transition-all duration-700',
-        isScrolled || isOpen ? 'py-2' : 'py-4'
+        isScrolled || isOpen ? 'py-1' : 'py-2'
       )}
     >
       <div className="max-w-7xl mx-auto px-12 flex justify-between items-center">
@@ -70,7 +70,7 @@ export function Navbar() {
           <img
             src="/src/mtlogo-removebg-preview.png"
             alt="Madia Teramo"
-            className="h-16 w-auto object-contain group-hover:opacity-80 transition-opacity"
+            className="h-11 w-auto object-contain group-hover:opacity-80 transition-opacity"
           />
         </Link>
 

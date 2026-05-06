@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin } from 'lucide-react';
+import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin, Facebook } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export function Home() {
@@ -27,12 +27,29 @@ export function Home() {
             transition={{ duration: 1 }}
             className="max-w-3xl flex flex-col items-center gap-6"
           >
-            <h1 className="text-6xl md:text-8xl font-serif text-madia-white font-light leading-[0.9]">
+            <h1
+              className="text-6xl md:text-8xl font-serif text-madia-white font-light leading-[0.9]"
+              style={{
+                WebkitTextStroke: "0.5px #b8943a",
+                textShadow: `
+                  2px 2px 0 rgba(0,0,0,0.3),
+                  4px 4px 0 rgba(0,0,0,0.25),
+                  6px 6px 0 rgba(0,0,0,0.2),
+                  8px 8px 0 rgba(0,0,0,0.15),
+                  10px 10px 0 rgba(0,0,0,0.1),
+                  12px 12px 20px rgba(0,0,0,0.4)
+                `,
+              }}
+            >
               Benvenuti <br /> <span className="italic">da Madia</span>
             </h1>
-            <p className="text-madia-white/80 max-w-md text-sm md:text-base font-sans italic leading-relaxed">
-              Ci sono gesti semplici che raccontano tutto!<br />Un piatto condiviso, una risata sincera, il piacere di assaporare insieme!
-            </p>
+            <div className="flex flex-col items-center gap-3 max-w-xs">
+              <div className="w-16 h-px bg-madia-gold opacity-70"></div>
+              <p className="text-madia-white/85 text-xs md:text-sm font-serif italic leading-loose tracking-widest text-center">
+                Ci sono gesti semplici che raccontano tutto.<br />Un piatto condiviso, una risata sincera,<br />il piacere di assaporare insieme.
+              </p>
+              <div className="w-16 h-px bg-madia-gold opacity-70"></div>
+            </div>
             <button className="bg-madia-gold text-madia-green px-12 py-4 hover:bg-white hover:text-madia-green transition-all duration-700 font-bold uppercase tracking-[0.2em] text-[10px]">
               Prenota il tuo tavolo
             </button>
@@ -41,8 +58,8 @@ export function Home() {
       </section>
 
       {/* 2. Chi Siamo Section */}
-      <section id="chi-siamo" className="pt-10 pb-20 px-6 bg-madia-white">
-        <div className="max-w-7xl mx-auto">
+      <section id="chi-siamo" className="pt-10 pb-20 px-6 bg-madia-green">
+        <div className="max-w-7xl mx-auto border-2 border-madia-green p-8 md:p-12 bg-madia-white">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-5 space-y-8">
               <div className="pl-8">
@@ -103,42 +120,59 @@ export function Home() {
       </section>
 
       {/* 3. Steak House (Polished Preview) */}
-      <section className="bg-madia-white pt-10 pb-20 px-6 relative overflow-hidden border-y border-madia-gold/10">
-        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-madia-gold/30 to-transparent"></div>
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-           <div className="space-y-8 order-2 lg:order-1">
-             <span className="text-madia-gold text-[10px] uppercase tracking-[0.4em] font-bold">Steak Selection</span>
-             <h2 className="text-5xl md:text-6xl text-madia-green font-serif font-light leading-tight">Eccellenza in <br /> <span className="italic">frollatura</span></h2>
-             <p className="text-madia-black/70 max-w-md text-sm font-sans leading-relaxed">
-               Dalle migliori razze bovine alle tecniche di dry-aging più avanzate. Ogni taglio è un'opera d'arte maturata nel tempo.
-             </p>
-             <Link to="/steakhouse" className="inline-flex items-center gap-4 group">
+      <section className="bg-madia-white pt-10 pb-20 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto bg-madia-green p-8 md:p-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+           <div className="grid grid-cols-2 gap-4">
+             <div className="aspect-[4/5] thin-border p-2 bg-white/5">
+                <img src="/src/grill1.jpg" className="w-full h-full object-cover" alt="Grill" />
+             </div>
+             <div className="aspect-[4/5] thin-border p-2 bg-white/5 mt-12">
+                <img src="/src/grill2.jpg" className="w-full h-full object-cover" alt="Grill" />
+             </div>
+             <div className="aspect-[4/5] thin-border p-2 bg-white/5 mt-4">
+                <img src="/src/grill3.jpg" className="w-full h-full object-cover" alt="Grill" />
+             </div>
+           </div>
+           <div className="flex flex-col gap-8">
+             <div>
+               <span className="text-madia-gold text-[10px] uppercase tracking-[0.4em] font-bold block mb-4">Steak Selection</span>
+               <h2 className="text-5xl md:text-6xl text-madia-white font-serif font-light leading-tight">Eccellenza in <br /> <span className="italic">frollatura</span></h2>
+             </div>
+             <div className="space-y-6 text-madia-white/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
+               <p>
+                 La <strong style={{fontWeight:'inherit'}}><a href="/steakhouse" style={{fontWeight:'inherit'}}>Steak House di Madia</a></strong> è un viaggio nella cultura della carne di qualità. Selezioniamo razze bovine pregiate, dalle Marchigiane alle Chianine, fino ai tagli internazionali di Angus e Wagyu, per garantire ad ogni ospite un'esperienza autentica e memorabile.
+               </p>
+               <p>
+                 Il cuore della nostra cucina è la <strong style={{fontWeight:'inherit'}}>frollatura dry-aging</strong>: un processo lento e controllato che intensifica i sapori, ammorbidisce le fibre e trasforma ogni taglio in qualcosa di straordinario. Le nostre celle di frollatura sono monitorate quotidianamente dallo chef per assicurare la perfezione ad ogni stadio.
+               </p>
+               <p>
+                 Alla brace lavoriamo con legna selezionata, a temperature precise, per ottenere quella crosticina esterna e quella morbidezza interna che rendono una <strong style={{fontWeight:'inherit'}}>bistecca a Teramo</strong> un momento indimenticabile. Ogni taglio è servito con contorni stagionali e salse artigianali preparate in cucina.
+               </p>
+               <p>
+                 Che tu scelga una <strong style={{fontWeight:'inherit'}}>fiorentina</strong>, una costata o un taglio del giorno consigliato dallo chef, da Madia trovi sempre qualità certificata, filiera corta e passione per il dettaglio.
+               </p>
+             </div>
+             <Link to="/steakhouse" className="inline-flex items-center gap-4 group pl-8">
                <div className="w-12 h-12 rounded-full border border-madia-gold/60 flex items-center justify-center text-madia-gold group-hover:bg-madia-gold group-hover:text-madia-white transition-all duration-500">
                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                </div>
                <span className="text-[10px] uppercase tracking-[0.3em] text-madia-gold font-bold">Scopri di più</span>
              </Link>
            </div>
-           <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">
-             <div className="aspect-[4/5] thin-border p-2 bg-white/5">
-                <img src="https://images.unsplash.com/photo-1546241072-48010ad2862c?auto=format&fit=crop&q=80&w=600" className="w-full h-full object-cover grayscale brightness-75" alt="Meat" referrerPolicy="no-referrer" />
-             </div>
-             <div className="aspect-[4/5] thin-border p-2 bg-white/5 mt-12">
-                <img src="https://images.unsplash.com/photo-1594041680534-e8c8cdebd679?auto=format&fit=crop&q=80&w=600" className="w-full h-full object-cover grayscale brightness-75" alt="Meat aging" referrerPolicy="no-referrer" />
-             </div>
-           </div>
+          </div>
         </div>
       </section>
 
       {/* 4. Eventi Section */}
-      <section id="eventi" className="py-32 bg-white px-12">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-24 items-center">
+      <section id="eventi" className="pt-10 pb-20 px-6 bg-madia-green">
+        <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/2 relative">
-             <div className="aspect-square bg-madia-green/5 absolute -inset-8 -z-10 rotate-3"></div>
-             <img 
-               src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800" 
-               className="w-full h-full object-cover thin-border shadow-2xl" 
-               alt="Events" 
+             <img
+               src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800"
+               className="w-full h-full object-cover thin-border"
+               alt="Events"
                referrerPolicy="no-referrer"
              />
           </div>
@@ -162,43 +196,50 @@ export function Home() {
                Richiedi un preventivo
             </Link>
           </div>
+          </div>
         </div>
       </section>
 
       {/* 5. Terrazza Section */}
-      <section id="terrazza" className="bg-[#0a0a0a] py-32 px-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-           <img 
-             src="https://images.unsplash.com/photo-1517505311024-42f09907f152?auto=format&fit=crop&q=80&w=1200" 
-             className="w-full h-full object-cover" 
-             alt="Terrace" 
-             referrerPolicy="no-referrer"
-           />
-        </div>
-        <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center space-y-10">
-          <span className="text-madia-gold text-[10px] uppercase tracking-[0.6em] font-bold">New Dimension</span>
-          <h2 className="text-6xl md:text-8xl text-madia-white font-serif font-light leading-none">Terrazza Orsini</h2>
-          <p className="text-madia-white/50 max-w-xl text-sm md:text-base font-sans font-light italic">
-            Visuale a 360° sulla piazza storica di Teramo. Un'esperienza sospesa tra il cielo e la cattedrale.
-          </p>
-          <div className="flex flex-col items-center gap-6">
-            <Link to="/scopri-terrazza" className="text-[10px] uppercase tracking-[0.4em] text-madia-gold border-b border-madia-gold/40 pb-2 hover:border-madia-gold transition-colors">
-              Scopri l'Orizzonte
-            </Link>
-            <div className="w-[1px] h-20 bg-gradient-to-b from-madia-gold/60 to-transparent"></div>
+      <section id="terrazza" className="bg-madia-white pt-10 pb-20 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto bg-madia-green p-8 md:p-12 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <img
+              src="https://images.unsplash.com/photo-1517505311024-42f09907f152?auto=format&fit=crop&q=80&w=1200"
+              className="w-full h-full object-cover"
+              alt="Terrace"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="relative z-10 flex flex-col items-center text-center space-y-10 py-12">
+            <span className="text-madia-gold text-[10px] uppercase tracking-[0.6em] font-bold">New Dimension</span>
+            <h2 className="text-6xl md:text-8xl text-madia-white font-serif font-light leading-none">Terrazza Orsini</h2>
+            <p className="text-madia-white/60 max-w-xl text-sm md:text-base font-sans font-light italic">
+              Visuale a 360° sulla piazza storica di Teramo. Un'esperienza sospesa tra il cielo e la cattedrale.
+            </p>
+            <div className="flex flex-col items-center gap-6">
+              <Link to="/scopri-terrazza" className="text-[10px] uppercase tracking-[0.4em] text-madia-gold border-b border-madia-gold/40 pb-2 hover:border-madia-gold transition-colors">
+                Scopri l'Orizzonte
+              </Link>
+              <div className="w-[1px] h-20 bg-gradient-to-b from-madia-gold/60 to-transparent"></div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* 6. Contatti Section */}
-      <section id="contatti" className="section-padding bg-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-24">
-          <div className="lg:col-span-5 space-y-12">
+      <section id="contatti" className="pt-10 pb-20 px-6 bg-madia-green">
+        <div className="max-w-7xl mx-auto p-8 md:p-12">
+          <div className="mb-10 text-center">
+            <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">Vieni a trovarci</span>
+            <h2 className="text-5xl md:text-6xl text-madia-white font-serif lowercase italic">siamo qui per te</h2>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div className="lg:col-span-5 border-2 border-madia-gold p-12 space-y-12 bg-[#F8F4EC]">
             <div>
               <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">Mettersi in Contatto</span>
               <h2 className="text-5xl text-madia-green font-serif lowercase italic">contatti</h2>
             </div>
-            
             <div className="space-y-10 pt-4">
               {[
                 { label: 'Indirizzo', value: "Piazza Sant'Agostino 9/10, Teramo (TE)", icon: MapPin },
@@ -216,21 +257,38 @@ export function Home() {
                 </div>
               ))}
             </div>
+
+            <div className="pt-4">
+              <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-madia-black/30 mb-4">Seguici sui social</p>
+              <div className="flex items-center gap-4">
+                <a href="#" className="w-10 h-10 border border-madia-gold/20 flex items-center justify-center text-madia-gold hover:bg-madia-gold hover:text-white transition-all duration-500">
+                  <Facebook size={16} />
+                </a>
+                <a href="#" className="w-10 h-10 border border-madia-gold/20 flex items-center justify-center text-madia-gold hover:bg-madia-gold hover:text-white transition-all duration-500">
+                  <Instagram size={16} />
+                </a>
+                <a href="#" className="w-10 h-10 border border-madia-gold/20 flex items-center justify-center text-madia-gold hover:bg-madia-gold hover:text-white transition-all duration-500">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.43 5.976 5.976 0 0 0 4.075-1.6L12 19.705l1.922-2.09a5.972 5.972 0 0 0 4.072 1.598 6 6 0 0 0 6-5.998 5.982 5.982 0 0 0-1.957-4.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM12 6.255c1.531 0 3.063.303 4.504.903C13.943 8.138 12 10.43 12 13.1c0-2.671-1.942-4.962-4.504-5.942A11.72 11.72 0 0 1 12 6.256zM6.002 9.157a4.059 4.059 0 1 1 0 8.118 4.059 4.059 0 0 1 0-8.118zm11.992.002a4.057 4.057 0 1 1 .003 8.115 4.057 4.057 0 0 1-.003-8.115zm-11.992 1.93a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256zm11.992 0a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
 
-          <div className="lg:col-span-7 bg-madia-green text-white p-12 shadow-2xl relative">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 pointer-events-none"></div>
-            <h3 className="text-2xl font-serif mb-10 text-madia-gold">Inviaci un Messaggio</h3>
+          <div className="lg:col-span-7 border-2 border-madia-gold p-12 relative bg-[#F8F4EC]">
+            <h3 className="text-2xl font-serif mb-10 text-madia-green">Inviaci un Messaggio</h3>
             <form className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <input type="text" className="bg-transparent border-b border-white/20 py-3 text-sm focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30" placeholder="Nome" />
-                <input type="text" className="bg-transparent border-b border-white/20 py-3 text-sm focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30" placeholder="Email" />
+                <input type="text" className="bg-transparent border-b border-madia-green/20 py-3 text-sm text-madia-black focus:outline-none focus:border-madia-gold transition-colors placeholder:text-madia-black/30" placeholder="Nome" />
+                <input type="text" className="bg-transparent border-b border-madia-green/20 py-3 text-sm text-madia-black focus:outline-none focus:border-madia-gold transition-colors placeholder:text-madia-black/30" placeholder="Email" />
               </div>
-              <textarea className="bg-transparent border-b border-white/20 py-3 text-sm w-full h-32 focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30 resize-none" placeholder="Il tuo messaggio"></textarea>
-              <button type="submit" className="px-12 py-4 bg-madia-gold text-madia-green uppercase tracking-[0.3em] font-bold text-[10px] hover:bg-white transition-all duration-500">
+              <textarea className="bg-transparent border-b border-madia-green/20 py-3 text-sm text-madia-black w-full h-32 focus:outline-none focus:border-madia-gold transition-colors placeholder:text-madia-black/30 resize-none" placeholder="Il tuo messaggio"></textarea>
+              <button type="submit" className="px-12 py-4 bg-madia-green text-madia-white uppercase tracking-[0.3em] font-bold text-[10px] hover:bg-madia-gold hover:text-madia-green transition-all duration-500">
                 Invia Richiesta
               </button>
             </form>
+          </div>
           </div>
         </div>
       </section>
