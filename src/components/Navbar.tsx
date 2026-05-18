@@ -1,21 +1,44 @@
 import { useState, useEffect, MouseEvent } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Phone, MapPin } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { useBooking } from '../context/BookingContext';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeHash, setActiveHash] = useState('');
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Reset hash quando si cambia pagina
+  useEffect(() => {
+    if (location.pathname !== '/') setActiveHash('');
+  }, [location.pathname]);
+
+  // IntersectionObserver per le sezioni della home
+  useEffect(() => {
+    if (location.pathname !== '/') return;
+    const ids = ['chi-siamo', 'eventi', 'contatti'];
+    const observers: IntersectionObserver[] = [];
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveHash(`#${id}`); },
+        { threshold: 0.3 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach(o => o.disconnect());
+  }, [location.pathname]);
 
   const navLinks = [
     { title: 'Home', href: '/' },
@@ -23,20 +46,27 @@ export function Navbar() {
     { title: 'Il Menù', href: '/menu' },
     { title: 'Steak House', href: '/steakhouse' },
     { title: 'Eventi', href: '/#eventi' },
-    { title: 'Terrazza', href: '/#terrazza' },
     { title: 'Contatti', href: '/#contatti' },
   ];
 
-  const isActive = (path: string) => {
-    return location.pathname === path;
+  const { openBooking } = useBooking();
+  const navigate = useNavigate();
+
+  const isActive = (href: string) => {
+    const path = location.pathname.replace(/\/$/, '') || '/';
+    if (href === '/') return path === '/' && activeHash === '';
+    if (href.startsWith('/#')) return path === '/' && activeHash === href.slice(1);
+    return path === href.replace(/\/$/, '');
   };
 
   const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('/#')) {
+      e.preventDefault();
       const id = href.split('#')[1];
       if (location.pathname === '/') {
-        e.preventDefault();
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        navigate('/', { state: { scrollTo: id } });
       }
     }
   };
@@ -65,14 +95,22 @@ export function Navbar() {
       )}
     >
       <div className="max-w-7xl mx-auto px-12 flex justify-between items-center">
-        {/* Logo */}
-        <Link to="/" className="flex items-center group">
-          <img
-            src="/src/mtlogo-removebg-preview.png"
-            alt="Madia Teramo"
-            className="h-11 w-auto object-contain group-hover:opacity-80 transition-opacity"
-          />
-        </Link>
+        {/* Logo + separator + tagline */}
+        <div className="flex items-center gap-4">
+          <Link to="/" className="flex items-center group">
+            <img
+              src="/src/mtlogo-removebg-preview.png"
+              alt="Madia Teramo"
+              className="h-11 w-auto object-contain group-hover:opacity-80 transition-opacity"
+            />
+          </Link>
+          <div className="hidden lg:block w-px h-8 bg-white/30" />
+          <div className="hidden lg:flex flex-col gap-0.5">
+            <span className="text-[8px] uppercase tracking-[0.3em] text-madia-white/60 leading-none">Restaurant</span>
+            <span className="text-[8px] uppercase tracking-[0.3em] text-madia-white/60 leading-none">Cocktails</span>
+            <span className="text-[8px] uppercase tracking-[0.3em] text-madia-white/60 leading-none">Grill</span>
+          </div>
+        </div>
 
         {/* Desktop Links */}
         <div className="hidden lg:flex items-center gap-10">
@@ -89,12 +127,12 @@ export function Navbar() {
               {link.title}
             </Link>
           ))}
-          <Link
-            to="/prenota"
+          <button
+            onClick={openBooking}
             className="px-8 py-2.5 border border-madia-gold/60 text-madia-gold hover:bg-madia-gold hover:text-madia-black transition-all duration-500 text-[10px] uppercase tracking-[0.2em] font-bold"
           >
             Prenota
-          </Link>
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -128,13 +166,12 @@ export function Navbar() {
                 {link.title}
               </Link>
             ))}
-            <Link
-              to="/prenota"
-              onClick={() => setIsOpen(false)}
+            <button
+              onClick={() => { setIsOpen(false); openBooking(); }}
               className="px-8 py-3 border border-madia-gold text-madia-gold rounded-none uppercase tracking-widest font-bold"
             >
               Prenota il tuo tavolo
-            </Link>
+            </button>
             <div className="flex space-x-6 text-madia-white/60">
               <Phone size={20} />
               <MapPin size={20} />

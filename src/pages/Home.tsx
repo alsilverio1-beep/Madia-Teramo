@@ -1,8 +1,22 @@
+import { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin, Facebook } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useBooking } from '../context/BookingContext';
 
 export function Home() {
+  const { openBooking } = useBooking();
+  const location = useLocation();
+
+  useEffect(() => {
+    const scrollTo = (location.state as any)?.scrollTo;
+    if (scrollTo) {
+      setTimeout(() => {
+        document.getElementById(scrollTo)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, []);
+
   return (
     <div className="overflow-hidden">
       {/* 1. Hero Section & Carousel */}
@@ -20,37 +34,30 @@ export function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#062a22] via-transparent to-transparent opacity-80"></div>
         </div>
 
-        <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6 pt-28">
+        <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="max-w-3xl flex flex-col items-center gap-6"
+            className="max-w-3xl flex flex-col items-center gap-5 mt-16"
           >
-            <h1
-              className="text-6xl md:text-8xl font-serif text-madia-white font-light leading-[0.9]"
-              style={{
-                WebkitTextStroke: "0.5px #b8943a",
-                textShadow: `
-                  2px 2px 0 rgba(0,0,0,0.3),
-                  4px 4px 0 rgba(0,0,0,0.25),
-                  6px 6px 0 rgba(0,0,0,0.2),
-                  8px 8px 0 rgba(0,0,0,0.15),
-                  10px 10px 0 rgba(0,0,0,0.1),
-                  12px 12px 20px rgba(0,0,0,0.4)
-                `,
-              }}
-            >
-              Benvenuti <br /> <span className="italic">da Madia</span>
-            </h1>
-            <div className="flex flex-col items-center gap-3 max-w-xs">
-              <div className="w-16 h-px bg-madia-gold opacity-70"></div>
-              <p className="text-madia-white/85 text-xs md:text-sm font-serif italic leading-loose tracking-widest text-center">
-                Ci sono gesti semplici che raccontano tutto.<br />Un piatto condiviso, una risata sincera,<br />il piacere di assaporare insieme.
-              </p>
-              <div className="w-16 h-px bg-madia-gold opacity-70"></div>
+            <img
+              src="/src/mtlogo-removebg-preview.png"
+              alt="Madia Teramo"
+              className="h-24 md:h-36 w-auto object-contain drop-shadow-2xl"
+            />
+            <div className="flex items-center gap-3 text-madia-white/50 text-[9px] uppercase tracking-[0.4em]">
+              <span>Restaurant</span>
+              <span className="text-madia-gold">·</span>
+              <span>Cocktails</span>
+              <span className="text-madia-gold">·</span>
+              <span>Grill</span>
             </div>
-            <button className="bg-madia-gold text-madia-green px-12 py-4 hover:bg-white hover:text-madia-green transition-all duration-700 font-bold uppercase tracking-[0.2em] text-[10px]">
+            <p className="text-madia-white/85 text-xs md:text-sm font-serif italic leading-loose tracking-widest text-center max-w-xs">
+              Ci sono gesti semplici che raccontano tutto.<br />Un piatto condiviso, una risata sincera,<br />il piacere di assaporare insieme.
+            </p>
+            <div className="w-16 h-px bg-madia-gold opacity-70"></div>
+            <button onClick={openBooking} className="border border-madia-gold text-madia-gold bg-madia-gold/15 px-8 py-4 hover:bg-madia-gold hover:text-madia-green transition-all duration-700 font-bold uppercase tracking-[0.2em] text-[10px]">
               Prenota il tuo tavolo
             </button>
           </motion.div>
@@ -59,101 +66,115 @@ export function Home() {
 
       {/* 2. Chi Siamo Section */}
       <section id="chi-siamo" className="pt-10 pb-20 px-6 bg-madia-green">
-        <div className="max-w-7xl mx-auto border-2 border-madia-green p-8 md:p-12 bg-madia-white">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-            <div className="lg:col-span-5 space-y-8">
-              <div className="pl-8">
-                <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-4 block">Chi Siamo</span>
-                <h2 className="text-5xl md:text-7xl text-madia-green font-serif lowercase italic">il ristorante</h2>
+        <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12 space-y-20">
+
+          {/* Block 1: media sinistra — testo destra */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+            <div className="flex flex-col justify-between gap-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="aspect-[4/5] thin-border p-2">
+                  <video autoPlay muted loop playsInline className="w-full h-full object-cover" src="/src/chisiamo1.mp4" />
+                </div>
+                <div className="aspect-[4/5] thin-border p-2 mt-12">
+                  <img src="/src/chef1.jpg" className="w-full h-full object-cover" alt="Lo chef di Madia Teramo" />
+                </div>
               </div>
-              <div className="space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
-                <p>
-                  Madia è il ristorante in Piazza Sant'Agostino 9/10, nel cuore del centro storico di Teramo. Un luogo dove tradizione abruzzese e cucina contemporanea si incontrano, con un'offerta gastronomica completa: dal pranzo alla cena, e un menù dedicato all'aperitivo ogni giorno dalle 18 alle 20.
-                </p>
-                <p>
-                  Rinomata per le sue <strong>pizze artigianali</strong> e per l'eccellenza della <strong>Steak House</strong>, Madia propone carni selezionate e frollate con cura, pensate per chi cerca qualità autentica a Teramo. Ogni ingrediente proviene dal territorio, ogni piatto è un invito a scoprire il meglio dell'Abruzzo.
-                </p>
-                <p>
-                  Il nostro menù cambia seguendo le stagioni e i ritmi della terra abruzzese. La mattina il team seleziona le materie prime dai produttori locali, i contadini del Gran Sasso e gli allevatori della provincia di Teramo, per garantire freschezza e autenticità in ogni piatto servito.
-                </p>
-                <p>
-                  La <strong>Steak House di Madia</strong> è oggi un punto di riferimento per gli amanti della <strong>carne a Teramo</strong> e in tutto l'Abruzzo. Le nostre frollature, curate direttamente dallo chef, esaltano il sapore naturale di razze bovine pregiate, servite alla brace con contorni stagionali e salse artigianali.
-                </p>
-                <p>
-                  Le <strong>pizze di Madia</strong> sono preparate con impasto a lunga lievitazione, farine selezionate e ingredienti del territorio. Che tu scelga una classica margherita o una creazione dello chef, ogni pizza è il risultato di un processo artigianale attento e rispettoso della tradizione napoletana rivisitata in chiave abruzzese.
-                </p>
-                <p>
-                  Cerchi un <strong>ristorante a Teramo</strong> per una cena romantica, un pranzo di lavoro o una serata con amici? Da Madia trovi un ambiente curato, un servizio attento e una cucina che non delude. Prenota il tuo tavolo e lasciati sorprendere.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 pl-8 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/menu"
                   className="border-2 border-madia-gold bg-madia-green text-madia-white px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-green/80 transition-all duration-500 text-center"
                 >
                   🍽️ Consulta il menù
                 </Link>
-                <a
-                  href="#"
+                <button
+                  onClick={openBooking}
                   className="border-2 border-madia-gold bg-madia-green text-madia-white px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-green/80 transition-all duration-500 text-center"
                 >
                   🗓️ Prenota un tavolo
-                </a>
+                </button>
               </div>
             </div>
-            <div className="lg:col-span-7 relative self-stretch">
-              <div className="absolute inset-0 overflow-hidden thin-border p-4 bg-white/50 backdrop-blur-sm">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover"
-                  src="/src/chisiamo1.mp4"
-                />
+            <div className="space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
+              <div className="mb-8">
+                <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-4 block">Chi Siamo</span>
+                <h2 className="text-5xl md:text-7xl text-madia-green font-serif lowercase italic">il ristorante</h2>
               </div>
-              <div className="absolute -top-8 -left-8 w-24 h-24 border-t border-l border-madia-gold -z-10"></div>
-              <div className="absolute -bottom-8 -right-8 w-24 h-24 border-b border-r border-madia-gold -z-10"></div>
+              <p>
+                Madia è il ristorante in Piazza Sant'Agostino 9/10, nel cuore del centro storico di Teramo. Un luogo dove tradizione abruzzese e cucina contemporanea si incontrano, con un'offerta gastronomica completa: dal pranzo alla cena, e un menù dedicato all'aperitivo ogni giorno dalle 18 alle 20.
+              </p>
+              <p>
+                Rinomata per le sue <strong style={{fontWeight:'inherit'}}>pizze artigianali</strong> e per l'eccellenza della <strong style={{fontWeight:'inherit'}}>Steak House</strong>, Madia propone carni selezionate e frollate con cura, pensate per chi cerca qualità autentica a Teramo. Ogni ingrediente proviene dal territorio, ogni piatto è un invito a scoprire il meglio dell'Abruzzo.
+              </p>
+              <p>
+                Il nostro menù cambia seguendo le stagioni e i ritmi della terra abruzzese. La mattina il team seleziona le materie prime dai produttori locali, i contadini del Gran Sasso e gli allevatori della provincia di Teramo, per garantire freschezza e autenticità in ogni piatto servito.
+              </p>
             </div>
           </div>
+
+          {/* Block 2: testo sinistra — media destra */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div className="space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
+              <p>
+                La <strong style={{fontWeight:'inherit'}}>Steak House di Madia</strong> è oggi un punto di riferimento per gli amanti della <strong style={{fontWeight:'inherit'}}>carne a Teramo</strong> e in tutto l'Abruzzo. Le nostre frollature, curate direttamente dallo chef, esaltano il sapore naturale di razze bovine pregiate, servite alla brace con contorni stagionali e salse artigianali.
+              </p>
+              <p>
+                Le <strong style={{fontWeight:'inherit'}}>pizze di Madia</strong> sono preparate con impasto a lunga lievitazione, farine selezionate e ingredienti del territorio. Che tu scelga una classica margherita o una creazione dello chef, ogni pizza è il risultato di un processo artigianale attento e rispettoso della tradizione napoletana rivisitata in chiave abruzzese.
+              </p>
+              <p>
+                Cerchi un <strong style={{fontWeight:'inherit'}}>ristorante a Teramo</strong> per una cena romantica, un pranzo di lavoro o una serata con amici? Da Madia trovi un ambiente curato, un servizio attento e una cucina che non delude. Prenota il tuo tavolo e lasciati sorprendere.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="aspect-[4/5] thin-border p-2 mt-8">
+                <img src="/src/chisiamo2.jpg" className="w-full h-full object-cover" alt="Ristorante Madia Teramo" />
+              </div>
+              <div className="aspect-[4/5] thin-border p-2">
+                <img src="/src/chisiamo3.jpg" className="w-full h-full object-cover" alt="Cucina Madia Teramo" />
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
       {/* 3. Steak House (Polished Preview) */}
       <section className="bg-madia-white pt-10 pb-20 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto bg-madia-green p-8 md:p-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-           <div className="grid grid-cols-2 gap-4">
-             <div className="aspect-[4/5] thin-border p-2 bg-white/5">
-                <img src="/src/grill1.jpg" className="w-full h-full object-cover" alt="Grill" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
+           <div className="grid grid-cols-[2fr_1fr] gap-4 h-full">
+             <div className="thin-border p-2 bg-white/5 h-full">
+               <img src="/src/grill1.jpg" className="w-full h-full object-cover" alt="Grill" />
              </div>
-             <div className="aspect-[4/5] thin-border p-2 bg-white/5 mt-12">
-                <img src="/src/grill2.jpg" className="w-full h-full object-cover" alt="Grill" />
-             </div>
-             <div className="aspect-[4/5] thin-border p-2 bg-white/5 mt-4">
-                <img src="/src/grill3.jpg" className="w-full h-full object-cover" alt="Grill" />
+             <div className="flex flex-col gap-4 h-full">
+               <div className="thin-border p-2 bg-white/5 flex-1">
+                 <img src="/src/grill2.jpg" className="w-full h-full object-cover" alt="Grill" />
+               </div>
+               <div className="thin-border p-2 bg-white/5 flex-1">
+                 <img src="/src/grill3.jpg" className="w-full h-full object-cover" alt="Grill" />
+               </div>
              </div>
            </div>
-           <div className="flex flex-col gap-8">
+           <div className="flex flex-col gap-8 -mt-2">
              <div>
                <span className="text-madia-gold text-[10px] uppercase tracking-[0.4em] font-bold block mb-4">Steak Selection</span>
                <h2 className="text-5xl md:text-6xl text-madia-white font-serif font-light leading-tight">Eccellenza in <br /> <span className="italic">frollatura</span></h2>
              </div>
-             <div className="space-y-6 text-madia-white/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
-               <p>
-                 La <strong style={{fontWeight:'inherit'}}><a href="/steakhouse" style={{fontWeight:'inherit'}}>Steak House di Madia</a></strong> è un viaggio nella cultura della carne di qualità. Selezioniamo razze bovine pregiate, dalle Marchigiane alle Chianine, fino ai tagli internazionali di Angus e Wagyu, per garantire ad ogni ospite un'esperienza autentica e memorabile.
-               </p>
-               <p>
-                 Il cuore della nostra cucina è la <strong style={{fontWeight:'inherit'}}>frollatura dry-aging</strong>: un processo lento e controllato che intensifica i sapori, ammorbidisce le fibre e trasforma ogni taglio in qualcosa di straordinario. Le nostre celle di frollatura sono monitorate quotidianamente dallo chef per assicurare la perfezione ad ogni stadio.
-               </p>
-               <p>
-                 Alla brace lavoriamo con legna selezionata, a temperature precise, per ottenere quella crosticina esterna e quella morbidezza interna che rendono una <strong style={{fontWeight:'inherit'}}>bistecca a Teramo</strong> un momento indimenticabile. Ogni taglio è servito con contorni stagionali e salse artigianali preparate in cucina.
-               </p>
-               <p>
-                 Che tu scelga una <strong style={{fontWeight:'inherit'}}>fiorentina</strong>, una costata o un taglio del giorno consigliato dallo chef, da Madia trovi sempre qualità certificata, filiera corta e passione per il dettaglio.
-               </p>
-             </div>
-             <Link to="/steakhouse" className="inline-flex items-center gap-4 group pl-8">
+             <div className="border-l border-madia-gold/30 pl-8 flex flex-col gap-8">
+               <div className="space-y-6 text-madia-white/70 font-sans text-sm leading-relaxed">
+                 <p>
+                   La <strong style={{fontWeight:'inherit'}}><a href="/steakhouse" style={{fontWeight:'inherit'}}>Steak House di Madia</a></strong> è un viaggio nella cultura della carne di qualità. Selezioniamo razze bovine pregiate, dalle Marchigiane alle Chianine, fino ai tagli internazionali di Angus e Wagyu, per garantire ad ogni ospite un'esperienza autentica e memorabile.
+                 </p>
+                 <p>
+                   Il cuore della nostra cucina è la <strong style={{fontWeight:'inherit'}}>frollatura dry-aging</strong>: un processo lento e controllato che intensifica i sapori, ammorbidisce le fibre e trasforma ogni taglio in qualcosa di straordinario. Le nostre celle di frollatura sono monitorate quotidianamente dallo chef per assicurare la perfezione ad ogni stadio.
+                 </p>
+                 <p>
+                   Alla brace lavoriamo con legna selezionata, a temperature precise, per ottenere quella crosticina esterna e quella morbidezza interna che rendono una <strong style={{fontWeight:'inherit'}}>bistecca a Teramo</strong> un momento indimenticabile. Ogni taglio è servito con contorni stagionali e salse artigianali preparate in cucina.
+                 </p>
+                 <p>
+                   Che tu scelga una <strong style={{fontWeight:'inherit'}}>fiorentina</strong>, una costata o un taglio del giorno consigliato dallo chef, da Madia trovi sempre qualità certificata, filiera corta e passione per il dettaglio.
+                 </p>
+               </div>
+               <Link to="/steakhouse" className="inline-flex items-center gap-4 group">
                <div className="w-12 h-12 rounded-full border border-madia-gold/60 flex items-center justify-center text-madia-gold group-hover:bg-madia-gold group-hover:text-madia-white transition-all duration-500">
                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                </div>
@@ -161,6 +182,7 @@ export function Home() {
              </Link>
            </div>
           </div>
+        </div>
         </div>
       </section>
 
@@ -200,34 +222,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* 5. Terrazza Section */}
-      <section id="terrazza" className="bg-madia-white pt-10 pb-20 px-6 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto bg-madia-green p-8 md:p-12 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <img
-              src="https://images.unsplash.com/photo-1517505311024-42f09907f152?auto=format&fit=crop&q=80&w=1200"
-              className="w-full h-full object-cover"
-              alt="Terrace"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          <div className="relative z-10 flex flex-col items-center text-center space-y-10 py-12">
-            <span className="text-madia-gold text-[10px] uppercase tracking-[0.6em] font-bold">New Dimension</span>
-            <h2 className="text-6xl md:text-8xl text-madia-white font-serif font-light leading-none">Terrazza Orsini</h2>
-            <p className="text-madia-white/60 max-w-xl text-sm md:text-base font-sans font-light italic">
-              Visuale a 360° sulla piazza storica di Teramo. Un'esperienza sospesa tra il cielo e la cattedrale.
-            </p>
-            <div className="flex flex-col items-center gap-6">
-              <Link to="/scopri-terrazza" className="text-[10px] uppercase tracking-[0.4em] text-madia-gold border-b border-madia-gold/40 pb-2 hover:border-madia-gold transition-colors">
-                Scopri l'Orizzonte
-              </Link>
-              <div className="w-[1px] h-20 bg-gradient-to-b from-madia-gold/60 to-transparent"></div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* 6. Contatti Section */}
+      {/* 7. Contatti Section */}
       <section id="contatti" className="pt-10 pb-20 px-6 bg-madia-green">
         <div className="max-w-7xl mx-auto p-8 md:p-12">
           <div className="mb-10 text-center">
@@ -272,6 +268,15 @@ export function Home() {
                     <path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.43 5.976 5.976 0 0 0 4.075-1.6L12 19.705l1.922-2.09a5.972 5.972 0 0 0 4.072 1.598 6 6 0 0 0 6-5.998 5.982 5.982 0 0 0-1.957-4.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM12 6.255c1.531 0 3.063.303 4.504.903C13.943 8.138 12 10.43 12 13.1c0-2.671-1.942-4.962-4.504-5.942A11.72 11.72 0 0 1 12 6.256zM6.002 9.157a4.059 4.059 0 1 1 0 8.118 4.059 4.059 0 0 1 0-8.118zm11.992.002a4.057 4.057 0 1 1 .003 8.115 4.057 4.057 0 0 1-.003-8.115zm-11.992 1.93a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256zm11.992 0a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256z"/>
                   </svg>
                 </a>
+              </div>
+            </div>
+            <div className="pt-4 border-t border-madia-black/5 flex items-center gap-3">
+              <p className="text-[9px] uppercase tracking-[0.3em] font-bold text-madia-black/20">Disponibile</p>
+              <div className="opacity-50">
+                <svg width="36" height="15" viewBox="0 0 48 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="48" height="20" rx="4" fill="#0072bc"/>
+                  <text x="50%" y="14" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="13" fill="white" letterSpacing="0.5">sky</text>
+                </svg>
               </div>
             </div>
           </div>
