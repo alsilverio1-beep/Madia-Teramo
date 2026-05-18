@@ -28,7 +28,7 @@ export function Home() {
             loop
             playsInline
             className="w-full h-full object-cover"
-            src="/src/hero1.mp4"
+            src="/hero1.mp4"
           />
           <div className="absolute inset-0 bg-black/50"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#062a22] via-transparent to-transparent opacity-80"></div>
@@ -42,7 +42,7 @@ export function Home() {
             className="max-w-3xl flex flex-col items-center gap-5 mt-16"
           >
             <img
-              src="/src/mtlogo-removebg-preview.png"
+              src="/mtlogo-removebg-preview.png"
               alt="Madia Teramo"
               className="h-24 md:h-36 w-auto object-contain drop-shadow-2xl"
             />
@@ -73,10 +73,10 @@ export function Home() {
             <div className="flex flex-col justify-between gap-6">
               <div className="grid grid-cols-2 gap-4">
                 <div className="aspect-[4/5] thin-border p-2">
-                  <video autoPlay muted loop playsInline className="w-full h-full object-cover" src="/src/chisiamo1.mp4" />
+                  <video autoPlay muted loop playsInline className="w-full h-full object-cover" src="/chisiamo1.mp4" />
                 </div>
                 <div className="aspect-[4/5] thin-border p-2 mt-12">
-                  <img src="/src/chef1.jpg" className="w-full h-full object-cover" alt="Lo chef di Madia Teramo" />
+                  <img src="/chef1.jpg" className="w-full h-full object-cover" alt="Lo chef di Madia Teramo" />
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -126,10 +126,10 @@ export function Home() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="aspect-[4/5] thin-border p-2 mt-8">
-                <img src="/src/chisiamo2.jpg" className="w-full h-full object-cover" alt="Ristorante Madia Teramo" />
+                <img src="/chisiamo2.jpg" className="w-full h-full object-cover" alt="Ristorante Madia Teramo" />
               </div>
               <div className="aspect-[4/5] thin-border p-2">
-                <img src="/src/chisiamo3.jpg" className="w-full h-full object-cover" alt="Cucina Madia Teramo" />
+                <img src="/chisiamo3.jpg" className="w-full h-full object-cover" alt="Cucina Madia Teramo" />
               </div>
             </div>
           </div>
@@ -143,14 +143,14 @@ export function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
            <div className="grid grid-cols-[2fr_1fr] gap-4 h-full">
              <div className="thin-border p-2 bg-white/5 h-full">
-               <img src="/src/grill1.jpg" className="w-full h-full object-cover" alt="Grill" />
+               <img src="/grill1.jpg" className="w-full h-full object-cover" alt="Grill" />
              </div>
              <div className="flex flex-col gap-4 h-full">
                <div className="thin-border p-2 bg-white/5 flex-1">
-                 <img src="/src/grill2.jpg" className="w-full h-full object-cover" alt="Grill" />
+                 <img src="/grill2.jpg" className="w-full h-full object-cover" alt="Grill" />
                </div>
                <div className="thin-border p-2 bg-white/5 flex-1">
-                 <img src="/src/grill3.jpg" className="w-full h-full object-cover" alt="Grill" />
+                 <img src="/grill3.jpg" className="w-full h-full object-cover" alt="Grill" />
                </div>
              </div>
            </div>

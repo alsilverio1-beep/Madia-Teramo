@@ -56,7 +56,7 @@ export function Steakhouse() {
                   loop
                   playsInline
                   className="w-full h-auto block"
-                  src="/src/carne1.mp4"
+                  src="/carne1.mp4"
                 />
               </div>
             </div>

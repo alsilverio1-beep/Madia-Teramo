@@ -99,7 +99,7 @@ export function Navbar() {
         <div className="flex items-center gap-4">
           <Link to="/" className="flex items-center group">
             <img
-              src="/src/mtlogo-removebg-preview.png"
+              src="/mtlogo-removebg-preview.png"
               alt="Madia Teramo"
               className="h-11 w-auto object-contain group-hover:opacity-80 transition-opacity"
             />

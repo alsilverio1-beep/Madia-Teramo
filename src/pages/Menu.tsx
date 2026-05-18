@@ -113,7 +113,7 @@ export function Menu() {
                 </>
               ) : (
                 <img
-                  src="/src/chef1.jpg"
+                  src="/chef1.jpg"
                   alt="Lo Chef di Madia"
                   className="w-full h-full object-cover"
                 />
