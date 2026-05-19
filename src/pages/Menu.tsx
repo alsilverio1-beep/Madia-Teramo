@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useBooking } from '../context/BookingContext';
 import { menuData } from '../data/menu';
@@ -8,20 +9,32 @@ import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 const allImages = import.meta.glob('/src/carosellomenu/*', { eager: true, as: 'url' });
 const carouselImages = Object.values(allImages) as string[];
 
-type Section = 'aperitivo' | 'pranzo' | 'cena' | 'pizze' | 'drink';
+type Section = 'aperitivo' | 'pranzo' | 'cena' | 'carne' | 'drink';
 
 const sections: { id: Section; label: string; subtitle: string }[] = [
   { id: 'aperitivo', label: 'Aperitivo', subtitle: 'Ogni giorno dalle 18:00 alle 20:00' },
   { id: 'pranzo',   label: 'Pranzo',    subtitle: 'Lunedì – Sabato, 12:00 – 15:00' },
   { id: 'cena',     label: 'Cena',      subtitle: 'Ogni sera, 19:30 – 23:00' },
-  { id: 'pizze',    label: 'Pizze',     subtitle: 'Disponibili a pranzo e cena' },
+  { id: 'carne',    label: 'Carne',     subtitle: 'Selezione di tagli frollati alla brace' },
   { id: 'drink',    label: 'Drink',     subtitle: 'Cocktails, birre e vini al calice' },
 ];
 
 export function Menu() {
-  const [activeSection, setActiveSection] = useState<Section>('pranzo');
+  const [searchParams] = useSearchParams();
+  const initialSection = (searchParams.get('section') as Section) ?? 'pranzo';
+  const [activeSection, setActiveSection] = useState<Section>(
+    sections.some(s => s.id === initialSection) ? initialSection : 'pranzo'
+  );
   const { openBooking } = useBooking();
   const [currentImg, setCurrentImg] = useState(0);
+
+  useEffect(() => {
+    if (searchParams.get('section')) {
+      setTimeout(() => {
+        document.getElementById('menu-content')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, []);
 
   useEffect(() => {
     if (carouselImages.length < 2) return;
@@ -41,9 +54,9 @@ export function Menu() {
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="pt-32 pb-5 px-6 bg-madia-green">
         <div className="max-w-7xl mx-auto p-8 md:p-12 bg-madia-white">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-stretch">
             {/* Text */}
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-6 flex flex-col">
               <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">
                 Carta Gastronomica
               </span>
@@ -54,16 +67,24 @@ export function Menu() {
               <p className="text-madia-black/60 font-sans text-sm leading-relaxed mb-8">
                 Il <strong style={{fontWeight:'inherit'}}>ristorante Madia di Teramo</strong> propone una carta gastronomica che cambia con le stagioni, nel cuore del centro storico. Dalla <strong style={{fontWeight:'inherit'}}>pizza artigianale</strong> con impasto a 48 ore alle <strong style={{fontWeight:'inherit'}}>carni frollate selezionate</strong>, dai primi piatti della tradizione abruzzese ai cocktail dell'aperitivo: ogni proposta nasce dal rispetto per la materia prima e per il territorio del Gran Sasso.
               </p>
-              <button
-                onClick={openBooking}
-                className="inline-block border border-madia-gold text-madia-gold bg-madia-gold/10 px-8 py-4 hover:bg-madia-gold hover:text-madia-green transition-all duration-500 text-[10px] uppercase tracking-[0.2em] font-bold"
-              >
-                Prenota il tuo tavolo
-              </button>
+              <div className="mt-auto pt-6 border-t border-madia-gold/20">
+                <button onClick={openBooking} className="group flex items-end gap-3">
+                  <div className="text-left">
+                    <span className="block text-[8px] uppercase tracking-[0.5em] text-madia-gold mb-1.5">Riserva il tuo posto</span>
+                    <span className="block font-serif italic text-madia-green text-xl leading-none group-hover:text-madia-gold transition-colors duration-300">
+                      Prenota il tuo tavolo
+                    </span>
+                  </div>
+                  <span className="flex items-center gap-0.5 mb-0.5">
+                    <span className="block w-6 h-px bg-madia-gold group-hover:w-10 transition-all duration-500" />
+                    <span className="block w-1.5 h-1.5 rotate-45 border-t border-r border-madia-gold -ml-1.5" />
+                  </span>
+                </button>
+              </div>
             </div>
             {/* Carousel */}
-            <div className="lg:col-span-7 thin-border p-2">
-              <div className="relative aspect-[3/2] overflow-hidden">
+            <div className="lg:col-span-6 thin-border p-2 h-full">
+              <div className="relative h-full min-h-[320px] overflow-hidden">
               {carouselImages.length > 0 ? (
                 <>
                   <AnimatePresence mode="wait">
@@ -121,6 +142,7 @@ export function Menu() {
             </div>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -129,7 +151,7 @@ export function Menu() {
           <div className="bg-madia-white">
 
           {/* ── Sticky filter inside white box ───────────────── */}
-          <div className="sticky top-[76px] z-30 bg-madia-white px-8 md:px-12 pt-8 pb-0">
+          <div id="menu-content" className="sticky top-[76px] z-30 bg-madia-white px-8 md:px-12 pt-8 pb-0">
             <div className="flex justify-center gap-16 md:gap-24">
               {sections.map((s) => (
                 <button

@@ -30,7 +30,7 @@ export function Home() {
             className="w-full h-full object-cover"
             src="/hero1.mp4"
           />
-          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="absolute inset-0 0"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#062a22] via-transparent to-transparent opacity-80"></div>
         </div>
 
@@ -47,11 +47,11 @@ export function Home() {
               className="h-24 md:h-36 w-auto object-contain drop-shadow-2xl"
             />
             <div className="flex items-center gap-3 text-madia-white/50 text-[9px] uppercase tracking-[0.4em]">
-              <span>Restaurant</span>
+              <span>Ristorante</span>
               <span className="text-madia-gold">·</span>
-              <span>Cocktails</span>
+              <span>Pizzeria</span>
               <span className="text-madia-gold">·</span>
-              <span>Grill</span>
+              <span>Drink</span>
             </div>
             <p className="text-madia-white/85 text-xs md:text-sm font-serif italic leading-loose tracking-widest text-center max-w-xs">
               Ci sono gesti semplici che raccontano tutto.<br />Un piatto condiviso, una risata sincera,<br />il piacere di assaporare insieme.
@@ -137,30 +137,102 @@ export function Home() {
         </div>
       </section>
 
-      {/* 3. Steak House (Polished Preview) */}
-      <section className="bg-madia-white pt-10 pb-20 px-6 relative overflow-hidden">
+      {/* 3. Pizzeria Section */}
+      <section id="pizzeria" className="bg-madia-white pt-10 pb-20 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto bg-madia-green p-8 md:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
+
+            {/* Testo sinistra */}
+            <div className="flex flex-col text-madia-white/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
+              <div className="mb-8">
+                <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-4 block">Pizzeria</span>
+                <h2 className="text-5xl md:text-7xl text-madia-white font-serif lowercase italic">il nostro padellino</h2>
+              </div>
+              <div className="space-y-6">
+              <p>
+                La parola <strong style={{fontWeight:'inherit'}}>"Madia"</strong> si riferisce tradizionalmente al contenitore di legno per la lavorazione della farina e la preparazione dell'impasto — simbolo di panificazione artigianale e convivialità. È da qui che nasce la nostra filosofia della pizza.
+              </p>
+              <p>
+                Il nostro <strong style={{fontWeight:'inherit'}}>Pizza Padellino</strong> è un percorso evolutivo: impasto idratato all'<strong style={{fontWeight:'inherit'}}>85%</strong> con farine 100% italiane macinate a pietra. Lavoriamo in <strong style={{fontWeight:'inherit'}}>"biga"</strong>, un pre-fermento di 18 ore a 16 gradi, per ottenere un prodotto profumato e friabile allo stesso tempo.
+              </p>
+              <p>
+                Utilizziamo solo <strong style={{fontWeight:'inherit'}}>farine di alta qualità</strong> provenienti da mulini artigianali con metodi tradizionali: farine integrali, di cereali e semi-integrali, ricche di nutrienti. La lievitazione è naturale con <strong style={{fontWeight:'inherit'}}>lievito fresco</strong>, per una morbidezza e una fragranza ineguagliabili.
+              </p>
+              <p className="text-madia-white/50 text-xs italic">
+                *Possibilità di richiedere il Padellino per <strong style={{fontWeight:'inherit'}}>intolleranti al glutine</strong> (sovrapprezzo di 3€)
+              </p>
+              </div>
+              <div className="mt-auto pt-6 flex flex-col sm:flex-row gap-4">
+                <Link
+                  to="/menu-pizza"
+                  className="border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center"
+                >
+                  🍽️ Consulta il menù pizza
+                </Link>
+                <button
+                  onClick={openBooking}
+                  className="border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center"
+                >
+                  🗓️ Prenota un tavolo
+                </button>
+              </div>
+            </div>
+
+            {/* Media destra */}
+            <div className="grid grid-cols-[1fr_2fr] gap-4 h-full">
+              <div className="flex flex-col gap-4 h-full">
+                <div className="thin-border p-2 flex-1">
+                  <img
+                    src="/carosellomenu/SnapInsta.to_656174364_18006384617850586_565458671926232155_n.jpg"
+                    className="w-full h-full object-cover"
+                    alt="Impasto pizza Madia"
+                  />
+                </div>
+                <div className="thin-border p-2 flex-1">
+                  <img
+                    src="/carosellomenu/SnapInsta.to_673833218_18009802070850586_7908104023682527934_n.jpg"
+                    className="w-full h-full object-cover"
+                    alt="Farine artigianali Madia Teramo"
+                  />
+                </div>
+              </div>
+              <div className="thin-border p-2 h-full">
+                <img
+                  src="/carosellomenu/SnapInsta.to_670633682_18008912618850586_7096193815917506183_n.jpg"
+                  className="w-full h-full object-cover"
+                  alt="Pizza Padellino Madia Teramo"
+                />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Steak House (Polished Preview) */}
+      <section id="steakhouse" className="bg-madia-green pt-10 pb-20 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
            <div className="grid grid-cols-[2fr_1fr] gap-4 h-full">
-             <div className="thin-border p-2 bg-white/5 h-full">
+             <div className="thin-border p-2  h-full">
                <img src="/grill1.jpg" className="w-full h-full object-cover" alt="Grill" />
              </div>
              <div className="flex flex-col gap-4 h-full">
-               <div className="thin-border p-2 bg-white/5 flex-1">
+               <div className="thin-border p-2  flex-1">
                  <img src="/grill2.jpg" className="w-full h-full object-cover" alt="Grill" />
                </div>
-               <div className="thin-border p-2 bg-white/5 flex-1">
+               <div className="thin-border p-2  flex-1">
                  <img src="/grill3.jpg" className="w-full h-full object-cover" alt="Grill" />
                </div>
              </div>
            </div>
-           <div className="flex flex-col gap-8 -mt-2">
-             <div>
-               <span className="text-madia-gold text-[10px] uppercase tracking-[0.4em] font-bold block mb-4">Steak Selection</span>
-               <h2 className="text-5xl md:text-6xl text-madia-white font-serif font-light leading-tight">Eccellenza in <br /> <span className="italic">frollatura</span></h2>
-             </div>
+           <div className="flex flex-col">
              <div className="border-l border-madia-gold/30 pl-8 flex flex-col gap-8">
-               <div className="space-y-6 text-madia-white/70 font-sans text-sm leading-relaxed">
+               <div className="mb-2">
+                 <span className="text-madia-gold text-[10px] uppercase tracking-[0.4em] font-bold block mb-4">Steak Selection</span>
+                 <h2 className="text-5xl md:text-6xl text-madia-green font-serif font-light leading-tight">Eccellenza in <br /> <span className="italic">frollatura</span></h2>
+               </div>
+               <div className="space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed">
                  <p>
                    La <strong style={{fontWeight:'inherit'}}><a href="/steakhouse" style={{fontWeight:'inherit'}}>Steak House di Madia</a></strong> è un viaggio nella cultura della carne di qualità. Selezioniamo razze bovine pregiate, dalle Marchigiane alle Chianine, fino ai tagli internazionali di Angus e Wagyu, per garantire ad ogni ospite un'esperienza autentica e memorabile.
                  </p>
@@ -174,7 +246,7 @@ export function Home() {
                    Che tu scelga una <strong style={{fontWeight:'inherit'}}>fiorentina</strong>, una costata o un taglio del giorno consigliato dallo chef, da Madia trovi sempre qualità certificata, filiera corta e passione per il dettaglio.
                  </p>
                </div>
-               <Link to="/steakhouse" className="inline-flex items-center gap-4 group">
+               <Link to="/menu?section=carne" className="inline-flex items-center gap-4 group">
                <div className="w-12 h-12 rounded-full border border-madia-gold/60 flex items-center justify-center text-madia-gold group-hover:bg-madia-gold group-hover:text-madia-white transition-all duration-500">
                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                </div>
@@ -186,9 +258,9 @@ export function Home() {
         </div>
       </section>
 
-      {/* 4. Eventi Section */}
-      <section id="eventi" className="pt-10 pb-20 px-6 bg-madia-green">
-        <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12">
+      {/* 5. Eventi Section */}
+      <section id="eventi" className="pt-10 pb-20 px-6 bg-madia-white">
+        <div className="max-w-7xl mx-auto bg-madia-green p-8 md:p-12">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/2 relative">
              <img
@@ -200,21 +272,21 @@ export function Home() {
           </div>
           <div className="lg:w-1/2 space-y-8">
             <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold">Momenti Unici</span>
-            <h2 className="text-5xl text-madia-green font-serif lowercase italic">eventi privati</h2>
-            <p className="text-madia-black/60 font-sans text-sm leading-relaxed max-w-md">
+            <h2 className="text-5xl text-madia-white font-serif lowercase italic">eventi privati</h2>
+            <p className="text-madia-white/70 font-sans text-sm leading-relaxed max-w-md">
               Dalla laurea ai compleanni, rendi i tuoi momenti indimenticabili nelle nostre sale esclusive. Curiamo ogni dettaglio per riflettere il tuo stile.
             </p>
             <div className="grid grid-cols-2 gap-8 py-4">
               <div>
-                <h4 className="text-[10px] uppercase tracking-widest font-bold mb-2 border-b border-black/5 pb-2">Business</h4>
-                <p className="text-[11px] text-black/50">Cene aziendali e meeting in un contesto raffinato.</p>
+                <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2 border-b border-white/10 pb-2">Business</h4>
+                <p className="text-[11px] text-madia-white/50">Cene aziendali e meeting in un contesto raffinato.</p>
               </div>
               <div>
-                <h4 className="text-[10px] uppercase tracking-widest font-bold mb-2 border-b border-black/5 pb-2">Private</h4>
-                <p className="text-[11px] text-black/50">Celebrazioni intime e feste indimenticabili.</p>
+                <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2 border-b border-white/10 pb-2">Private</h4>
+                <p className="text-[11px] text-madia-white/50">Celebrazioni intime e feste indimenticabili.</p>
               </div>
             </div>
-            <Link to="/preventivo-eventi" className="inline-block px-12 py-4 border border-madia-green text-madia-green uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-madia-green hover:text-white transition-all duration-500">
+            <Link to="/preventivo-eventi" className="inline-block px-12 py-4 border border-madia-white text-madia-white uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-madia-white hover:text-madia-green transition-all duration-500">
                Richiedi un preventivo
             </Link>
           </div>

@@ -3,7 +3,7 @@ export interface MenuItem {
   name: string;
   description: string;
   price: number;
-  section: 'aperitivo' | 'pranzo' | 'cena' | 'pizze' | 'drink';
+  section: 'aperitivo' | 'pranzo' | 'cena' | 'pizze' | 'drink' | 'carne';
   subcategory: string;
   isSpecialty?: boolean;
 }
@@ -82,6 +82,20 @@ export const menuData: MenuItem[] = [
   { id: 'dr-v1', section: 'drink', subcategory: 'Vini al Calice', name: 'Montepulciano d\'Abruzzo DOC', description: 'Rosso strutturato, note di ciliegia e spezie.', price: 6 },
   { id: 'dr-v2', section: 'drink', subcategory: 'Vini al Calice', name: 'Trebbiano d\'Abruzzo DOC', description: 'Bianco secco, fresco e minerale.', price: 5 },
   { id: 'dr-v3', section: 'drink', subcategory: 'Vini al Calice', name: 'Cerasuolo d\'Abruzzo DOC', description: 'Rosato fruttato, ideale per l\'aperitivo.', price: 5 },
+
+  // ── CARNE ──────────────────────────────────────────────────
+  { id: 'ca-t1', section: 'carne', subcategory: 'Tagli alla Brace', name: 'Fiorentina di Chianina', description: 'Chianina IGP, frollatura 45 giorni, cotta alla brace di legna — al kg. Prezzo indicativo per 800g.', price: 70, isSpecialty: true },
+  { id: 'ca-t2', section: 'carne', subcategory: 'Tagli alla Brace', name: 'Ribeye Sashi AAA', description: 'Taglio pregiato con marezzatura straordinaria, frollatura minima 60 giorni. Servito con jus di carne.', price: 55, isSpecialty: true },
+  { id: 'ca-t3', section: 'carne', subcategory: 'Tagli alla Brace', name: 'Costata di Angus Black', description: 'Black Angus australiano, frollatura 30 giorni, servita con burro alle erbe e sale Maldon.', price: 38 },
+  { id: 'ca-t4', section: 'carne', subcategory: 'Tagli alla Brace', name: 'Tomahawk di Rubia Gallega', description: 'Costata con osso lungo, Rubia Gallega spagnola, frollatura 50 giorni, per due persone.', price: 90, isSpecialty: true },
+  { id: 'ca-t5', section: 'carne', subcategory: 'Tagli alla Brace', name: 'Filetto di Marchigiana', description: 'Filetto di razza Marchigiana, frollatura 21 giorni, con salsa al vino rosso e rosmarino.', price: 34 },
+  { id: 'ca-a1', section: 'carne', subcategory: 'Antipasti di Carne', name: 'Tartare di Fassona', description: 'Fassona piemontese battuta al coltello, senape di Digione, capperi di Pantelleria e uova di quaglia.', price: 20, isSpecialty: true },
+  { id: 'ca-a2', section: 'carne', subcategory: 'Antipasti di Carne', name: 'Battuta di Rubia Gallega', description: 'Battuta al coltello di frollatura 40 giorni, tuorlo d\'uovo bio, tartufo nero estivo e cialda di parmigiano 36 mesi.', price: 18 },
+  { id: 'ca-a3', section: 'carne', subcategory: 'Antipasti di Carne', name: 'Mini Arrosticini alla Brace', description: 'Arrosticini di pecora dei Monti della Laga, serviti con pane casereccio e salsa verde.', price: 14 },
+  { id: 'ca-co1', section: 'carne', subcategory: 'Contorni', name: 'Patate al Burro e Timo', description: 'Patate novelle al forno con burro di malga e timo fresco.', price: 7 },
+  { id: 'ca-co2', section: 'carne', subcategory: 'Contorni', name: 'Verdure Grigliate di Stagione', description: 'Selezione di verdure di stagione grigliate con olio EVO e sale Maldon.', price: 7 },
+  { id: 'ca-co3', section: 'carne', subcategory: 'Contorni', name: 'Funghi Trifolati', description: 'Misto di funghi porcini e champignon trifolati con aglio e prezzemolo.', price: 9 },
+  { id: 'ca-co4', section: 'carne', subcategory: 'Contorni', name: 'Spinaci all\'Aglio', description: 'Spinaci freschi ripassati in padella con aglio, olio EVO e peperoncino.', price: 6 },
 
   // ── PIZZE ──────────────────────────────────────────────────
   { id: 'pz-r1', section: 'pizze', subcategory: 'Rosse', name: 'Margherita', description: 'Pomodoro San Marzano, fior di latte di Agerola, basilico fresco e olio EVO.', price: 10 },

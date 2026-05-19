@@ -1,0 +1,188 @@
+import { menuData } from '../data/menu';
+import { useBooking } from '../context/BookingContext';
+import { Star } from 'lucide-react';
+
+const pizzaItems = menuData.filter(i => i.section === 'pizze');
+const subcategories = [...new Set(pizzaItems.map(i => i.subcategory))];
+
+const padelloItems = [
+  { id: 'pd-1', name: 'Margherita Padellino', description: 'Pomodoro San Marzano, fior di latte di Agerola, basilico fresco e olio EVO.', price: 12 },
+  { id: 'pd-2', name: 'Crudo e Stracciatella', description: 'Base bianca, stracciatella pugliese, prosciutto crudo di Norcia, rucola e glassa di aceto balsamico.', price: 16, isSpecialty: true },
+  { id: 'pd-3', name: 'Diavola Croccante', description: 'Pomodoro San Marzano, fior di latte, salame piccante calabrese, nduja e miele di castagno.', price: 14 },
+  { id: 'pd-4', name: 'Funghi e Tartufo', description: 'Base bianca, funghi porcini trifolati, provola affumicata, scaglie di tartufo nero e olio al tartufo.', price: 18, isSpecialty: true },
+  { id: 'pd-5', name: 'Amatriciana Madia', description: 'Pomodoro San Marzano, guanciale croccante, pecorino Romano DOP e peperoncino.', price: 15 },
+  { id: 'pd-6', name: 'Zucca e Salsiccia', description: 'Base bianca, crema di zucca, salsiccia artigianale, scamorza affumicata e semi di zucca tostati.', price: 14 },
+];
+
+export function MenuPizza() {
+  const { openBooking } = useBooking();
+
+  return (
+    <div className="min-h-screen bg-madia-white">
+
+      {/* Hero */}
+      <section className="pt-32 pb-5 px-6 bg-madia-green">
+        <div className="max-w-7xl mx-auto p-8 md:p-12 bg-madia-white">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-stretch">
+            <div className="lg:col-span-6 flex flex-col">
+              <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">
+                Pizzeria
+              </span>
+              <h1 className="text-5xl md:text-7xl text-madia-green font-serif italic mb-6">
+                le nostre proposte
+              </h1>
+              <div className="w-16 h-px bg-madia-gold/40 mb-6" />
+              <p className="text-madia-black/60 font-sans text-sm leading-relaxed mb-4">
+                La nostra carta delle pizze nasce da una ricerca continua su impasti, farine e abbinamenti. Il <strong style={{fontWeight:'inherit'}}>Padellino</strong> è la nostra proposta distintiva: una base croccante fuori e morbida dentro, frutto di un processo artigianale attento. Accanto ad esso trovi le <strong style={{fontWeight:'inherit'}}>Classiche</strong>, nelle versioni Rosse e Bianche, e le <strong style={{fontWeight:'inherit'}}>Speciali</strong> dello chef, con ingredienti selezionati e abbinamenti fuori dall'ordinario. Una proposta per ogni gusto, tutta con la stessa cura.
+              </p>
+              <p className="text-madia-black/40 font-sans text-xs italic leading-relaxed mb-8">
+                *Possibilità di richiedere il Padellino per intolleranti al glutine (sovrapprezzo di 3€)
+              </p>
+              <div className="mt-auto pt-6 border-t border-madia-gold/20">
+                <button onClick={openBooking} className="group flex items-end gap-3">
+                  <div className="text-left">
+                    <span className="block text-[8px] uppercase tracking-[0.5em] text-madia-gold mb-1.5">Riserva il tuo posto</span>
+                    <span className="block font-serif italic text-madia-green text-xl leading-none group-hover:text-madia-gold transition-colors duration-300">
+                      Prenota il tuo tavolo
+                    </span>
+                  </div>
+                  <span className="flex items-center gap-0.5 mb-0.5">
+                    <span className="block w-6 h-px bg-madia-gold group-hover:w-10 transition-all duration-500" />
+                    <span className="block w-1.5 h-1.5 rotate-45 border-t border-r border-madia-gold -ml-1.5" />
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div className="lg:col-span-6 thin-border p-2 h-full">
+              <div className="relative h-full min-h-[320px] overflow-hidden">
+                <img
+                  src="/carosellomenu/SnapInsta.to_670633682_18008912618850586_7096193815917506183_n.jpg"
+                  alt="Pizza Padellino Madia Teramo"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Menu */}
+      <div className="bg-madia-green px-6 pt-5 pb-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-madia-white p-8 md:p-12">
+
+            {/* Il Padellino */}
+            <div className="mb-16">
+              <div className="flex items-center gap-6 mb-10">
+                <div className="flex-1 h-px bg-madia-gold/20" />
+                <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-madia-gold">Il Padellino</span>
+                <div className="flex-1 h-px bg-madia-gold/20" />
+              </div>
+              <div className="max-w-2xl mx-auto text-center space-y-4">
+                <p className="text-madia-black/70 font-sans text-sm leading-relaxed">
+                  Percorso evolutivo per la pizza. Impasto idratato all'<strong style={{fontWeight:'inherit'}}>85%</strong> usando farine 100% italiane macinate a pietra. Lavoriamo in <strong style={{fontWeight:'inherit'}}>"biga"</strong>, un pre-fermento di 18 ore a 16 gradi, per rendere il prodotto profumato e friabile contemporaneamente.
+                </p>
+                <p className="text-madia-black/40 font-sans text-xs italic">
+                  *Possibilità di richiedere il Padellino per <strong style={{fontWeight:'inherit'}}>intolleranti al glutine</strong> (sovrapprezzo di 3€)
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mt-10">
+                {padelloItems.map(item => (
+                  <div key={item.id} className="grid grid-cols-[1fr_auto] gap-8 group">
+                    <div>
+                      <div className="flex items-center gap-3 mb-1.5">
+                        <h3 className="font-serif text-madia-green text-lg leading-snug group-hover:text-madia-gold transition-colors duration-300">
+                          {item.name}
+                        </h3>
+                        {item.isSpecialty && (
+                          <span className="flex items-center gap-1 text-[8px] uppercase tracking-widest font-black text-madia-gold border border-madia-gold/40 px-2 py-0.5">
+                            <Star size={8} fill="currentColor" /> Chef
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[11px] text-madia-black/70 font-sans italic leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                    <div className="flex justify-end items-start pt-0.5">
+                      <span className="font-serif text-madia-green text-base whitespace-nowrap">€ {item.price}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Subcategories */}
+            <div className="space-y-16">
+              {subcategories.map(sub => {
+                const items = pizzaItems.filter(i => i.subcategory === sub);
+                return (
+                  <div key={sub}>
+                    <div className="flex items-center gap-6 mb-10">
+                      <div className="flex-1 h-px bg-madia-gold/20" />
+                      <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-madia-gold">
+                        {sub}
+                      </span>
+                      <div className="flex-1 h-px bg-madia-gold/20" />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                      {items.map(item => (
+                        <div key={item.id} className="grid grid-cols-[1fr_auto] gap-8 group">
+                          <div>
+                            <div className="flex items-center gap-3 mb-1.5">
+                              <h3 className="font-serif text-madia-green text-lg leading-snug group-hover:text-madia-gold transition-colors duration-300">
+                                {item.name}
+                              </h3>
+                              {item.isSpecialty && (
+                                <span className="flex items-center gap-1 text-[8px] uppercase tracking-widest font-black text-madia-gold border border-madia-gold/40 px-2 py-0.5">
+                                  <Star size={8} fill="currentColor" /> Chef
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-[11px] text-madia-black/70 font-sans italic leading-relaxed">
+                              {item.description}
+                            </p>
+                          </div>
+                          <div className="flex justify-end items-start pt-0.5">
+                            <span className="font-serif text-madia-green text-base whitespace-nowrap">
+                              € {item.price}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Coperto */}
+            <div className="mt-16">
+              <div className="flex items-center gap-6 mb-10">
+                <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-madia-gold">Coperto</span>
+                <div className="flex-1 h-px bg-madia-gold/20" />
+              </div>
+              <div className="flex justify-between items-baseline gap-4">
+                <div>
+                  <h3 className="font-serif text-madia-green text-lg leading-snug mb-1.5">Coperto</h3>
+                  <p className="text-[11px] text-madia-black/70 font-sans italic leading-relaxed">Per persona.</p>
+                </div>
+                <span className="font-serif text-madia-green text-base whitespace-nowrap">€ 3,00</span>
+              </div>
+            </div>
+
+            {/* Footer note */}
+            <div className="mt-16 pt-8 border-t border-black/5 text-center">
+              <p className="text-[10px] uppercase tracking-[0.4em] text-madia-black/30 max-w-2xl mx-auto leading-loose">
+                In caso di allergie o intolleranze alimentari, vi invitiamo a consultare il nostro personale di sala.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
