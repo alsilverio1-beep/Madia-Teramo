@@ -263,33 +263,43 @@ export function Home() {
       {/* 5. Eventi Section */}
       <section id="eventi" className="pt-10 pb-20 px-6 bg-madia-white">
         <div className="max-w-7xl mx-auto bg-madia-green p-8 md:p-12">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
-          <div className="lg:w-1/2 relative">
+          <div className="flex flex-col lg:flex-row gap-16 items-stretch">
+          <div className="lg:w-1/2 relative overflow-hidden thin-border min-h-[300px]">
              <img
-               src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800"
-               className="w-full h-full object-cover thin-border"
-               alt="Events"
-               referrerPolicy="no-referrer"
+               src="/eventi1.jpg"
+               className="absolute inset-0 w-full h-full object-cover"
+               alt="Eventi privati a Teramo - La Madia"
              />
           </div>
           <div className="lg:w-1/2 space-y-8">
-            <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold">Momenti Unici</span>
+            <span className="block text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold leading-none">Momenti Unici</span>
             <h2 className="text-5xl text-madia-white font-serif lowercase italic">eventi privati</h2>
             <p className="text-madia-white/70 font-sans text-sm leading-relaxed max-w-md">
-              Dalla laurea ai compleanni, rendi i tuoi momenti indimenticabili nelle nostre sale esclusive. Curiamo ogni dettaglio per riflettere il tuo stile.
+              <strong className="font-[inherit]">Madia</strong> è il ristorante ideale a Teramo per organizzare{' '}
+              <strong className="font-[inherit]">eventi privati</strong> su misura. Grazie ai suoi ampi spazi accoglie{' '}
+              <strong className="font-[inherit]">cene aziendali</strong>,{' '}
+              <strong className="font-[inherit]">compleanni</strong> e celebrazioni con un{' '}
+              <strong className="font-[inherit]">menù dedicato</strong> studiato insieme a voi, in un'atmosfera esclusiva e riservata.
             </p>
-            <div className="grid grid-cols-2 gap-8 py-4">
-              <div>
-                <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2 border-b border-white/10 pb-2">Business</h4>
-                <p className="text-[11px] text-madia-white/50">Cene aziendali e meeting in un contesto raffinato.</p>
-              </div>
-              <div>
-                <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2 border-b border-white/10 pb-2">Private</h4>
-                <p className="text-[11px] text-madia-white/50">Celebrazioni intime e feste indimenticabili.</p>
+            <div className="border-t border-white/10 pt-6">
+              <p className="text-[9px] uppercase tracking-[0.4em] text-madia-white/30 mb-5 font-bold">I nostri ambienti</p>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="border-l border-madia-gold/40 pl-4">
+                  <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2">Sala Principale</h4>
+                  <p className="text-[11px] text-madia-white/40 leading-relaxed">Il cuore del ristorante, per gruppi e occasioni speciali.</p>
+                </div>
+                <div className="border-l border-madia-gold/40 pl-4">
+                  <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2">Piano Superiore</h4>
+                  <p className="text-[11px] text-madia-white/40 leading-relaxed">Sala riservata al primo piano, totalmente privata.</p>
+                </div>
+                <div className="border-l border-madia-gold/40 pl-4">
+                  <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2">Dehors Esterno</h4>
+                  <p className="text-[11px] text-madia-white/40 leading-relaxed">Dehors su Piazza Sant'Agostino, aperto in stagione.</p>
+                </div>
               </div>
             </div>
-            <button onClick={() => setQuoteOpen(true)} className="inline-block px-12 py-4 border border-madia-white text-madia-white uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-madia-white hover:text-madia-green transition-all duration-500">
-               Richiedi un preventivo
+            <button onClick={() => setQuoteOpen(true)} className="border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center">
+              📋 Richiedi un preventivo
             </button>
           </div>
           </div>
