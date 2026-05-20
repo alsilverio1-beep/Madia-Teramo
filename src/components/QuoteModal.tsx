@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X } from 'lucide-react';
 
@@ -8,6 +8,8 @@ interface QuoteModalProps {
 }
 
 export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
+  const [consent, setConsent] = useState(false);
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -55,33 +57,43 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               <form className="space-y-7">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
                   <div className="space-y-2">
-                    <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-madia-green/40">Nominativo</label>
+                    <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-madia-green/40">Nome Completo <span className="text-madia-gold">*</span></label>
                     <input
                       type="text"
-                      className="w-full bg-transparent border-b border-madia-green/20 py-2 focus:outline-none focus:border-madia-gold transition-colors font-serif text-base text-madia-green placeholder:text-madia-green/20"
+                      required
+                      className="w-full bg-transparent border-b border-madia-green/20 py-2 focus:outline-none focus:border-madia-gold transition-colors font-sans text-sm text-madia-green placeholder:text-madia-green/20"
                       placeholder="Es. Mario Rossi"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-madia-green/40">Email</label>
+                    <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-madia-green/40">Email <span className="text-madia-gold">*</span></label>
                     <input
                       type="email"
-                      className="w-full bg-transparent border-b border-madia-green/20 py-2 focus:outline-none focus:border-madia-gold transition-colors font-serif text-base text-madia-green placeholder:text-madia-green/20"
+                      required
+                      className="w-full bg-transparent border-b border-madia-green/20 py-2 focus:outline-none focus:border-madia-gold transition-colors font-sans text-sm text-madia-green placeholder:text-madia-green/20"
                       placeholder="mario@email.it"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-madia-green/40">Telefono</label>
+                    <input
+                      type="tel"
+                      className="w-full bg-transparent border-b border-madia-green/20 py-2 focus:outline-none focus:border-madia-gold transition-colors font-sans text-sm text-madia-green placeholder:text-madia-green/20"
+                      placeholder="Es. +39 345 000 0000"
                     />
                   </div>
                   <div className="space-y-2">
                     <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-madia-green/40">Data Evento</label>
                     <input
                       type="date"
-                      className="w-full bg-transparent border-b border-madia-green/20 py-2 focus:outline-none focus:border-madia-gold transition-colors font-serif text-base text-madia-green"
+                      className="w-full bg-transparent border-b border-madia-green/20 py-2 focus:outline-none focus:border-madia-gold transition-colors font-sans text-sm text-madia-green"
                     />
                   </div>
                   <div className="space-y-2">
                     <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-madia-green/40">N° Invitati</label>
                     <input
                       type="number"
-                      className="w-full bg-transparent border-b border-madia-green/20 py-2 focus:outline-none focus:border-madia-gold transition-colors font-serif text-base text-madia-green placeholder:text-madia-green/20"
+                      className="w-full bg-transparent border-b border-madia-green/20 py-2 focus:outline-none focus:border-madia-gold transition-colors font-sans text-sm text-madia-green placeholder:text-madia-green/20"
                       placeholder="Es. 30"
                     />
                   </div>
@@ -89,7 +101,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
                 <div className="space-y-2">
                   <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-madia-green/40">Tipologia Evento</label>
-                  <select className="w-full bg-transparent border-b border-madia-green/20 py-2 focus:outline-none focus:border-madia-gold transition-colors font-serif text-base text-madia-green appearance-none cursor-pointer">
+                  <select className="w-full bg-transparent border-b border-madia-green/20 py-2 focus:outline-none focus:border-madia-gold transition-colors font-sans text-sm text-madia-green appearance-none cursor-pointer">
                     <option>Compleanno</option>
                     <option>Laurea</option>
                     <option>Anniversario</option>
@@ -101,18 +113,36 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                 <div className="space-y-2">
                   <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-madia-green/40">Note</label>
                   <textarea
-                    className="w-full bg-transparent border-b border-madia-green/20 py-2 focus:outline-none focus:border-madia-gold transition-colors font-serif text-base text-madia-green h-20 resize-none placeholder:text-madia-green/20"
+                    className="w-full bg-transparent border-b border-madia-green/20 py-2 focus:outline-none focus:border-madia-gold transition-colors font-sans text-sm text-madia-green h-20 resize-none placeholder:text-madia-green/20"
                     placeholder="Raccontaci il tuo evento..."
                   />
                 </div>
 
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    className="w-full bg-madia-green text-madia-white py-4 uppercase tracking-[0.3em] font-bold text-[10px] hover:bg-madia-gold hover:text-madia-green transition-all duration-300"
-                  >
-                    Invia Richiesta
-                  </button>
+                <div className="space-y-4 pt-2">
+                  <label className="flex items-start gap-3 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      checked={consent}
+                      onChange={(e) => setConsent(e.target.checked)}
+                      className="mt-0.5 accent-madia-gold w-4 h-4 shrink-0 cursor-pointer"
+                    />
+                    <span className="text-[10px] text-madia-green/50 leading-relaxed group-hover:text-madia-green/70 transition-colors">
+                      Ho letto l'<a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-madia-gold transition-colors">Informativa sulla Privacy</a> e acconsento al trattamento dei miei dati personali ai sensi del GDPR (Reg. UE 2016/679). <span className="text-madia-gold">*</span>
+                    </span>
+                  </label>
+
+                  <p className="text-[9px] font-sans text-madia-green/30 text-center">
+                    <span className="text-madia-gold">*</span> Campi obbligatori
+                  </p>
+                  <div className="flex justify-center">
+                    <button
+                      type="submit"
+                      disabled={!consent}
+                      className="px-12 py-4 bg-madia-green text-madia-white uppercase tracking-[0.3em] font-bold text-[10px] hover:bg-madia-gold hover:text-madia-green transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-madia-green disabled:hover:text-madia-white"
+                    >
+                      Invia Richiesta
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>

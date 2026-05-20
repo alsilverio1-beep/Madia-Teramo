@@ -4,6 +4,7 @@ import { cn } from '../lib/utils';
 
 export function FloatingButtons() {
   const [visible, setVisible] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 300);
@@ -11,8 +12,18 @@ export function FloatingButtons() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setModalOpen(document.body.style.overflow === 'hidden');
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ['style'] });
+    return () => observer.disconnect();
+  }, []);
+
+  if (modalOpen) return null;
+
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-3">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-0.5">
       {/* Scroll to top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

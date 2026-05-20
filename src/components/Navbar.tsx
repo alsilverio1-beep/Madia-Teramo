@@ -103,7 +103,7 @@ export function Navbar() {
           <span className="text-madia-green/30">|</span>
           <span className="flex items-center gap-2">
             <Phone size={11} />
-            +39 0861 123456
+            +39 377 333 4838
           </span>
         </div>
       </div>

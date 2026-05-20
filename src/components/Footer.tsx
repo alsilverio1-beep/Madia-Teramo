@@ -1,37 +1,60 @@
-import { Instagram, Facebook, Phone, Mail, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Facebook, Instagram } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-madia-black text-madia-white py-12 px-12 border-t border-madia-gold/20">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-        <div className="text-xl font-serif tracking-[0.3em] text-madia-gold uppercase">Madia</div>
-        
-        <div className="flex flex-wrap justify-center gap-8 text-[10px] uppercase tracking-[0.2em] text-madia-white/50">
-          <Link to="/" className="hover:text-madia-gold transition-colors">Home</Link>
-          <Link to="/menu" className="hover:text-madia-gold transition-colors">Menù</Link>
-          <a href="#chi-siamo" className="hover:text-madia-gold transition-colors">Chi Siamo</a>
-          <Link to="/steakhouse" className="hover:text-madia-gold transition-colors">Steak House</Link>
-          <a href="#eventi" className="hover:text-madia-gold transition-colors">Eventi</a>
-          <a href="#contatti" className="hover:text-madia-gold transition-colors">Contatti</a>
+    <footer className="bg-madia-black text-madia-white px-12 pt-8 pb-8 border-t border-madia-gold/20">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Main row: logo left — nav center — social right */}
+        <div className="flex justify-between items-center pb-6">
+          <img src="/mtlogo-removebg-preview.png" alt="Madia Teramo" className="h-16 w-auto object-contain" />
+
+          <div className="flex flex-wrap justify-center gap-6">
+            {[
+              { label: 'Home', to: '/' },
+              { label: 'Ristorante', to: '/#chi-siamo' },
+              { label: 'Pizzeria', to: '/#pizzeria' },
+              { label: 'Steak House', to: '/steakhouse' },
+              { label: 'Eventi', to: '/#eventi' },
+              { label: 'Lavora con Noi', to: '/lavora-con-noi' },
+            ].map(({ label, to }) => (
+              <Link key={label} to={to} className="text-[9px] uppercase tracking-[0.2em] text-madia-white/50 hover:text-madia-gold transition-colors duration-300">
+                {label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-5">
+            <a href="#" className="text-madia-gold/60 hover:text-madia-gold transition-colors duration-300">
+              <Facebook size={18} />
+            </a>
+            <a href="#" className="text-madia-gold/60 hover:text-madia-gold transition-colors duration-300">
+              <Instagram size={18} />
+            </a>
+            <a href="#" className="text-madia-gold/60 hover:text-madia-gold transition-colors duration-300">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.43 5.976 5.976 0 0 0 4.075-1.6L12 19.705l1.922-2.09a5.972 5.972 0 0 0 4.072 1.598 6 6 0 0 0 6-5.998 5.982 5.982 0 0 0-1.957-4.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM12 6.255c1.531 0 3.063.303 4.504.903C13.943 8.138 12 10.43 12 13.1c0-2.671-1.942-4.962-4.504-5.942A11.72 11.72 0 0 1 12 6.256zM6.002 9.157a4.059 4.059 0 1 1 0 8.118 4.059 4.059 0 0 1 0-8.118zm11.992.002a4.057 4.057 0 1 1 .003 8.115 4.057 4.057 0 0 1-.003-8.115zm-11.992 1.93a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256zm11.992 0a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256z"/>
+              </svg>
+            </a>
+          </div>
         </div>
 
-        <div className="flex gap-4">
-          <a href="#" className="w-8 h-8 flex items-center justify-center border border-madia-white/10 text-madia-gold hover:border-madia-gold transition-colors">
-            <Instagram size={14} />
-          </a>
-          <a href="#" className="w-8 h-8 flex items-center justify-center border border-madia-white/10 text-madia-gold hover:border-madia-gold transition-colors">
-            <Facebook size={14} />
-          </a>
-        </div>
-      </div>
+        {/* Divider */}
+        <div className="border-t border-madia-gold/20" />
 
-      <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-madia-white/5 flex flex-col md:flex-row justify-between items-center text-[9px] uppercase tracking-[0.3em] text-madia-white/30">
-        <div className="flex gap-8">
-          <span>Piazza Sant'Agostino 9/10, Teramo (TE)</span>
-          <span>T: +39 0861 123456</span>
+        {/* Bottom bar */}
+        <div className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] text-madia-white/30">
+          <p className="uppercase tracking-[0.2em] text-[8px]">
+            © {new Date().getFullYear()} Madia Teramo S.r.l. · Tutti i diritti sono riservati · P.IVA 02199950672 · REA 216820 · PEC madiateramosrl@pec.it
+          </p>
+          <div className="flex items-center gap-3 uppercase tracking-[0.2em] text-[8px] shrink-0">
+            <Link to="/privacy" className="hover:text-madia-gold transition-colors duration-300">Privacy Policy</Link>
+            <span>·</span>
+            <Link to="/cookie" className="hover:text-madia-gold transition-colors duration-300">Cookie Policy</Link>
+          </div>
         </div>
-        <p className="mt-4 md:mt-0 text-madia-gold/60 italic">© {new Date().getFullYear()} Madia Restaurant. Eccellenza e Tradizione.</p>
+
       </div>
     </footer>
   );

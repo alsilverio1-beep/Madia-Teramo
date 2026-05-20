@@ -1,6 +1,45 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin, Facebook } from 'lucide-react';
+import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin, Facebook, Clock, Star } from 'lucide-react';
+
+const googleReviews = [
+  {
+    name: 'Giulia Marchetti',
+    date: 'marzo 2025',
+    rating: 5,
+    text: 'Un\'esperienza indimenticabile. Il padellino è semplicemente straordinario — croccante fuori, morbido dentro, con un impasto che si scioglie in bocca. Il servizio è impeccabile, il locale curato nei minimi dettagli. Torneremo sicuramente per una serata speciale.',
+  },
+  {
+    name: 'Marco Ferretti',
+    date: 'febbraio 2025',
+    rating: 5,
+    text: 'La Steak House di Madia è un\'altra categoria. Ho ordinato una fiorentina frollata 45 giorni e non esagero nel dire che è la bistecca migliore che abbia mai mangiato a Teramo. Personale preparato, appassionato e professionale. Consiglio a tutti gli amanti della carne.',
+  },
+  {
+    name: 'Valentina Rossi',
+    date: 'gennaio 2025',
+    rating: 5,
+    text: 'Abbiamo organizzato qui il nostro anniversario di matrimonio. Il team ha curato ogni dettaglio — dal menù personalizzato all\'atmosfera romantica. Un locale che sa davvero come rendere speciale ogni occasione. Consigliato a chiunque cerchi qualità vera a Teramo.',
+  },
+  {
+    name: 'Luca Bianchi',
+    date: 'dicembre 2024',
+    rating: 5,
+    text: 'Pizza nel padellino di un livello eccezionale. Impasto perfetto, ingredienti freschi e di qualità superiore. Ho provato la Crudo e Stracciatella e la Funghi e Tartufo: entrambe da applauso. Ambiente elegante, accogliente e personale gentilissimo.',
+  },
+  {
+    name: 'Sara De Angelis',
+    date: 'novembre 2024',
+    rating: 5,
+    text: 'Abbiamo scelto Madia per una cena aziendale con trenta persone e siamo rimasti tutti piacevolmente sorpresi dalla qualità del cibo e dal servizio professionale. Il piano superiore riservato è perfetto per questo tipo di eventi. Già prenotati per la prossima occasione.',
+  },
+  {
+    name: 'Antonio Conti',
+    date: 'ottobre 2024',
+    rating: 5,
+    text: 'Ottima cucina, ambiente raffinato e staff gentilissimo. Ho festeggiato qui il mio compleanno con tutta la famiglia — è stata una serata davvero perfetta. I dolci fatti in casa sono da non perdere assolutamente. Un posto speciale nel cuore di Teramo.',
+  },
+];
 import { Link, useLocation } from 'react-router-dom';
 import { useBooking } from '../context/BookingContext';
 import { QuoteModal } from '../components/QuoteModal';
@@ -9,6 +48,44 @@ export function Home() {
   const { openBooking } = useBooking();
   const location = useLocation();
   const [quoteOpen, setQuoteOpen] = useState(false);
+  const [contactConsent, setContactConsent] = useState(false);
+  const [reviewCurrent, setReviewCurrent] = useState(0);
+  const [reviewPaused, setReviewPaused] = useState(false);
+  const [reviewNoTransition, setReviewNoTransition] = useState(false);
+  const [reviewExpanded, setReviewExpanded] = useState<Set<number>>(new Set());
+
+  const toggleReviewExpanded = (idx: number) => {
+    setReviewExpanded(prev => {
+      const next = new Set(prev);
+      if (next.has(idx)) next.delete(idx); else next.add(idx);
+      return next;
+    });
+  };
+
+  // Auto-advance carosello
+  useEffect(() => {
+    if (reviewPaused) return;
+    const interval = setInterval(() => {
+      setReviewCurrent(c => c + 1);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [reviewPaused]);
+
+  // Loop seamless: dopo la transizione, reset istantaneo senza salto
+  useEffect(() => {
+    if (reviewCurrent < googleReviews.length) return;
+    const t = setTimeout(() => {
+      setReviewNoTransition(true);
+      setReviewCurrent(c => c - googleReviews.length);
+    }, 700);
+    return () => clearTimeout(t);
+  }, [reviewCurrent]);
+
+  useEffect(() => {
+    if (!reviewNoTransition) return;
+    const raf = requestAnimationFrame(() => setReviewNoTransition(false));
+    return () => cancelAnimationFrame(raf);
+  }, [reviewNoTransition]);
 
   useEffect(() => {
     const scrollTo = (location.state as any)?.scrollTo;
@@ -183,26 +260,26 @@ export function Home() {
             {/* Media destra */}
             <div className="grid grid-cols-[1fr_2fr] gap-4 h-full">
               <div className="flex flex-col gap-4 h-full">
-                <div className="thin-border p-2 flex-1">
-                  <img
-                    src="/carosellomenu/SnapInsta.to_656174364_18006384617850586_565458671926232155_n.jpg"
+                <div className="thin-border p-2 flex-1 overflow-hidden">
+                  <video
+                    src="/pizzeria/videopizza1.mp4"
+                    autoPlay muted loop playsInline
                     className="w-full h-full object-cover"
-                    alt="Impasto pizza Madia"
                   />
                 </div>
-                <div className="thin-border p-2 flex-1">
-                  <img
-                    src="/carosellomenu/SnapInsta.to_673833218_18009802070850586_7908104023682527934_n.jpg"
+                <div className="thin-border p-2 flex-1 overflow-hidden">
+                  <video
+                    src="/pizzeria/videopizza2.mp4"
+                    autoPlay muted loop playsInline
                     className="w-full h-full object-cover"
-                    alt="Farine artigianali Madia Teramo"
                   />
                 </div>
               </div>
-              <div className="thin-border p-2 h-full">
-                <img
-                  src="/carosellomenu/SnapInsta.to_670633682_18008912618850586_7096193815917506183_n.jpg"
+              <div className="thin-border p-2 h-full overflow-hidden">
+                <video
+                  src="/pizzeria/videopizza3.mp4"
+                  autoPlay muted loop playsInline
                   className="w-full h-full object-cover"
-                  alt="Pizza Padellino Madia Teramo"
                 />
               </div>
             </div>
@@ -232,7 +309,7 @@ export function Home() {
              <div className="border-l border-madia-gold/30 pl-8 flex flex-col gap-8">
                <div className="mb-2">
                  <span className="text-madia-gold text-[10px] uppercase tracking-[0.4em] font-bold block mb-4">Steak Selection</span>
-                 <h2 className="text-5xl md:text-6xl text-madia-green font-serif font-light leading-tight">Eccellenza in <br /> <span className="italic">frollatura</span></h2>
+                 <h2 className="text-5xl md:text-6xl text-madia-green font-serif font-light leading-tight">eccellenza in <br /> <span className="italic">frollatura</span></h2>
                </div>
                <div className="space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed">
                  <p>
@@ -264,16 +341,11 @@ export function Home() {
       <section id="eventi" className="pt-10 pb-20 px-6 bg-madia-white">
         <div className="max-w-7xl mx-auto bg-madia-green p-8 md:p-12">
           <div className="flex flex-col lg:flex-row gap-16 items-stretch">
-          <div className="lg:w-1/2 relative overflow-hidden thin-border min-h-[300px]">
-             <img
-               src="/eventi1.jpg"
-               className="absolute inset-0 w-full h-full object-cover"
-               alt="Eventi privati a Teramo - La Madia"
-             />
-          </div>
           <div className="lg:w-1/2 space-y-8">
-            <span className="block text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold leading-none">Momenti Unici</span>
-            <h2 className="text-5xl text-madia-white font-serif lowercase italic">eventi privati</h2>
+            <div>
+              <span className="block text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold leading-none mb-4">Momenti Unici</span>
+              <h2 className="text-5xl text-madia-white font-serif lowercase italic">eventi privati</h2>
+            </div>
             <p className="text-madia-white/70 font-sans text-sm leading-relaxed max-w-md">
               <strong className="font-[inherit]">Madia</strong> è il ristorante ideale a Teramo per organizzare{' '}
               <strong className="font-[inherit]">eventi privati</strong> su misura. Grazie ai suoi ampi spazi accoglie{' '}
@@ -302,82 +374,257 @@ export function Home() {
               📋 Richiedi un preventivo
             </button>
           </div>
+          <div className="lg:w-1/2 thin-border p-2">
+            <div className="relative overflow-hidden min-h-[300px] h-full">
+              <img
+                src="/eventi1.jpg"
+                className="absolute inset-0 w-full h-full object-cover"
+                alt="Eventi privati a Teramo - La Madia"
+              />
+            </div>
+          </div>
           </div>
         </div>
       </section>
 
 
+      {/* 6. Recensioni Google */}
+      <section className="pt-10 pb-20 px-6 bg-madia-green">
+        <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12">
+
+          {/* Header */}
+          <div className="mb-12 text-center">
+            <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">Google Reviews</span>
+            <h2 className="text-5xl md:text-6xl text-madia-green font-serif lowercase italic mb-8">cosa dicono di noi</h2>
+            <div className="flex items-center justify-center gap-6">
+              {/* Google G colorata */}
+              <svg viewBox="0 0 48 48" width="44" height="44">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                <path fill="none" d="M0 0h48v48H0z"/>
+              </svg>
+              <div className="flex items-baseline gap-3">
+                <span className="text-5xl font-serif text-madia-green leading-none">4,6</span>
+                <div className="flex flex-col items-start gap-1.5">
+                  <div className="flex gap-1">
+                    {[1,2,3,4,5].map(s => <Star key={s} size={16} fill="currentColor" className="text-madia-gold" />)}
+                  </div>
+                  <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-madia-black/30">175 recensioni su Google</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Carousel */}
+          {(() => {
+            const extended = [...googleReviews, ...googleReviews.slice(0, 3)];
+            const trackPct = (extended.length / 3) * 100; // 300%
+            const stepPct  = 100 / extended.length;       // 11.11% per step
+
+            return (
+              <div
+                className="overflow-hidden cursor-pointer select-none"
+                onClick={() => setReviewPaused(p => !p)}
+                title={reviewPaused ? 'Clicca per riprendere' : 'Clicca per mettere in pausa'}
+              >
+                <div
+                  className={reviewNoTransition ? 'flex' : 'flex transition-transform duration-700 ease-in-out'}
+                  style={{
+                    width: `${trackPct}%`,
+                    transform: `translateX(-${reviewCurrent * stepPct}%)`,
+                  }}
+                >
+                  {extended.map((review, i) => {
+                    const isExpanded = reviewExpanded.has(i % googleReviews.length);
+                    return (
+                      <div
+                        key={i}
+                        style={{ width: `${100 / extended.length}%` }}
+                        className="px-3 flex-shrink-0"
+                      >
+                        <div className="border border-madia-gold/20 p-6 space-y-4 hover:border-madia-gold/40 transition-colors flex flex-col h-full">
+                          {/* Stars */}
+                          <div className="flex gap-0.5">
+                            {Array.from({ length: review.rating }).map((_, s) => (
+                              <Star key={s} size={12} fill="currentColor" className="text-madia-gold" />
+                            ))}
+                          </div>
+
+                          {/* Testo */}
+                          <div className="flex-1">
+                            <p className={`text-sm font-sans text-madia-black/70 leading-relaxed ${!isExpanded ? 'line-clamp-3' : ''}`}>
+                              {review.text}
+                            </p>
+                            <button
+                              onClick={(e) => { e.stopPropagation(); toggleReviewExpanded(i % googleReviews.length); }}
+                              className="mt-2 text-[9px] uppercase tracking-[0.25em] font-bold text-madia-gold hover:text-madia-green transition-colors"
+                            >
+                              {isExpanded ? 'Leggi di meno' : 'Leggi di più'}
+                            </button>
+                          </div>
+
+                          {/* Autore */}
+                          <div className="pt-3 border-t border-madia-gold/10 flex items-center justify-between">
+                            <div>
+                              <p className="text-[11px] font-bold text-madia-green uppercase tracking-wide">{review.name}</p>
+                              <p className="text-[10px] text-madia-black/30 font-sans mt-0.5">{review.date}</p>
+                            </div>
+                            <svg viewBox="0 0 24 24" width="16" height="16" className="opacity-25 shrink-0">
+                              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {reviewPaused && (
+                  <p className="mt-5 text-center text-[9px] uppercase tracking-[0.3em] font-bold text-madia-gold/50">
+                    Carosello in pausa — clicca per riprendere
+                  </p>
+                )}
+              </div>
+            );
+          })()}
+
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-8">
+            {googleReviews.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => { setReviewCurrent(i); setReviewFade(true); }}
+                className={`h-1.5 rounded-full transition-all duration-300 ${i === reviewCurrent ? 'bg-madia-gold w-4' : 'bg-madia-gold/20 w-1.5'}`}
+              />
+            ))}
+          </div>
+
+        </div>
+      </section>
+
       {/* 7. Contatti Section */}
       <section id="contatti" className="pt-10 pb-20 px-6 bg-madia-green">
-        <div className="max-w-7xl mx-auto p-8 md:p-12">
+        <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12">
           <div className="mb-10 text-center">
             <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">Vieni a trovarci</span>
-            <h2 className="text-5xl md:text-6xl text-madia-white font-serif lowercase italic">siamo qui per te</h2>
+            <h2 className="text-5xl md:text-6xl text-madia-green font-serif lowercase italic">siamo qui per te</h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          <div className="lg:col-span-5 border-2 border-madia-gold p-12 space-y-12 bg-[#F8F4EC]">
-            <div>
-              <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">Mettersi in Contatto</span>
-              <h2 className="text-5xl text-madia-green font-serif lowercase italic">contatti</h2>
-            </div>
-            <div className="space-y-10 pt-4">
+          <div className="lg:col-span-5 border-2 border-madia-gold p-12 space-y-6 bg-madia-green rounded-2xl">
+            <div className="space-y-8">
               {[
-                { label: 'Indirizzo', value: "Piazza Sant'Agostino 9/10, Teramo (TE)", icon: MapPin },
-                { label: 'Telefono', value: '+39 0861 123456', icon: Phone },
-                { label: 'Email', value: 'info@madiateramo.it', icon: Mail },
+                { value: "Piazza Sant'Agostino 9/10, Teramo (TE)", icon: MapPin },
+                { value: '+39 377 333 4838', icon: Phone },
+                { value: 'info@madiateramo.it', icon: Mail },
               ].map((item) => (
-                <div key={item.label} className="flex items-start gap-6 group">
-                  <div className="w-10 h-10 border border-madia-gold/20 flex items-center justify-center text-madia-gold group-hover:bg-madia-gold group-hover:text-white transition-all duration-500">
-                    <item.icon size={16} />
-                  </div>
-                  <div>
-                    <h4 className="text-[10px] uppercase tracking-[0.2em] font-bold text-madia-black/30 mb-1">{item.label}</h4>
-                    <p className="text-lg font-serif text-madia-green">{item.value}</p>
-                  </div>
+                <div key={item.value} className="flex items-center gap-4">
+                  <item.icon size={24} className="text-madia-gold shrink-0" />
+                  <p className="text-sm font-sans text-madia-white">{item.value}</p>
                 </div>
               ))}
+
+              <div className="flex items-start gap-4 pt-2">
+                <Clock size={24} className="text-madia-gold shrink-0 mt-0.5" />
+                <div className="text-sm font-sans text-madia-white space-y-1">
+                  {[
+                    { day: 'Lun – Sab', hours: '12:30–14:30, 18:00–23:00' },
+                    { day: 'Domenica', hours: '18:00–23:00' },
+                  ].map(({ day, hours }) => (
+                    <div key={day} className="flex gap-3">
+                      <span className="text-white/40 w-24 shrink-0">{day}</span>
+                      <span>{hours}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            <div className="pt-4">
-              <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-madia-black/30 mb-4">Seguici sui social</p>
-              <div className="flex items-center gap-4">
-                <a href="#" className="w-10 h-10 border border-madia-gold/20 flex items-center justify-center text-madia-gold hover:bg-madia-gold hover:text-white transition-all duration-500">
-                  <Facebook size={16} />
+            <div className="pt-2">
+              <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/30 mb-4">Seguici sui social</p>
+              <div className="flex items-center gap-5">
+                <a href="#" className="text-madia-gold hover:text-white transition-colors duration-300">
+                  <Facebook size={24} />
                 </a>
-                <a href="#" className="w-10 h-10 border border-madia-gold/20 flex items-center justify-center text-madia-gold hover:bg-madia-gold hover:text-white transition-all duration-500">
-                  <Instagram size={16} />
+                <a href="#" className="text-madia-gold hover:text-white transition-colors duration-300">
+                  <Instagram size={24} />
                 </a>
-                <a href="#" className="w-10 h-10 border border-madia-gold/20 flex items-center justify-center text-madia-gold hover:bg-madia-gold hover:text-white transition-all duration-500">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <a href="#" className="text-madia-gold hover:text-white transition-colors duration-300">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                     <path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.43 5.976 5.976 0 0 0 4.075-1.6L12 19.705l1.922-2.09a5.972 5.972 0 0 0 4.072 1.598 6 6 0 0 0 6-5.998 5.982 5.982 0 0 0-1.957-4.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM12 6.255c1.531 0 3.063.303 4.504.903C13.943 8.138 12 10.43 12 13.1c0-2.671-1.942-4.962-4.504-5.942A11.72 11.72 0 0 1 12 6.256zM6.002 9.157a4.059 4.059 0 1 1 0 8.118 4.059 4.059 0 0 1 0-8.118zm11.992.002a4.057 4.057 0 1 1 .003 8.115 4.057 4.057 0 0 1-.003-8.115zm-11.992 1.93a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256zm11.992 0a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256z"/>
                   </svg>
                 </a>
               </div>
             </div>
-            <div className="pt-4 border-t border-madia-black/5 flex items-center gap-3">
-              <p className="text-[9px] uppercase tracking-[0.3em] font-bold text-madia-black/20">Disponibile</p>
-              <div className="opacity-50">
-                <svg width="36" height="15" viewBox="0 0 48 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="48" height="20" rx="4" fill="#0072bc"/>
-                  <text x="50%" y="14" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="13" fill="white" letterSpacing="0.5">sky</text>
-                </svg>
-              </div>
+            <div className="border-t border-white/10" />
+            <div className="pt-2 flex items-center gap-6">
+              <img src="/Sky_logo_2025.svg.png" alt="Sky" className="h-8 w-auto opacity-60" />
+              <img src="/dazn5.png" alt="DAZN" className="h-10 w-auto opacity-60" />
             </div>
           </div>
 
-          <div className="lg:col-span-7 border-2 border-madia-gold p-12 relative bg-[#F8F4EC]">
-            <h3 className="text-2xl font-serif mb-10 text-madia-green">Inviaci un Messaggio</h3>
-            <form className="space-y-8">
+          <div className="lg:col-span-7 border-2 border-madia-gold p-12 relative bg-madia-green rounded-2xl">
+<form className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <input type="text" className="bg-transparent border-b border-madia-green/20 py-3 text-sm text-madia-black focus:outline-none focus:border-madia-gold transition-colors placeholder:text-madia-black/30" placeholder="Nome" />
-                <input type="text" className="bg-transparent border-b border-madia-green/20 py-3 text-sm text-madia-black focus:outline-none focus:border-madia-gold transition-colors placeholder:text-madia-black/30" placeholder="Email" />
+                <div className="space-y-2">
+                  <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-white/40">Nome Completo <span className="text-madia-gold">*</span></label>
+                  <input type="text" required className="w-full bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30" placeholder="Es. Mario Rossi" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-white/40">Email <span className="text-madia-gold">*</span></label>
+                  <input type="email" required className="w-full bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30" placeholder="mario@email.it" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-white/40">Telefono</label>
+                  <input type="tel" className="w-full bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30" placeholder="Es. +39 345 000 0000" />
+                </div>
               </div>
-              <textarea className="bg-transparent border-b border-madia-green/20 py-3 text-sm text-madia-black w-full h-32 focus:outline-none focus:border-madia-gold transition-colors placeholder:text-madia-black/30 resize-none" placeholder="Il tuo messaggio"></textarea>
-              <button type="submit" className="px-12 py-4 bg-madia-green text-madia-white uppercase tracking-[0.3em] font-bold text-[10px] hover:bg-madia-gold hover:text-madia-green transition-all duration-500">
-                Invia Richiesta
-              </button>
+              <div className="space-y-2">
+                <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-white/40">Messaggio</label>
+                <textarea className="bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white w-full h-32 focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30 resize-none" placeholder="Raccontaci come possiamo aiutarti..."></textarea>
+              </div>
+              <label className="flex items-start gap-3 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  checked={contactConsent}
+                  onChange={(e) => setContactConsent(e.target.checked)}
+                  className="mt-0.5 accent-madia-gold w-4 h-4 shrink-0 cursor-pointer"
+                />
+                <span className="text-[10px] font-sans text-white/50 leading-relaxed group-hover:text-white/70 transition-colors">
+                  Ho letto l'<a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-madia-gold transition-colors">Informativa sulla Privacy</a> e acconsento al trattamento dei miei dati personali ai sensi del GDPR (Reg. UE 2016/679). <span className="text-madia-gold">*</span>
+                </span>
+              </label>
+              <p className="text-[9px] font-sans text-white/25 text-center">
+                <span className="text-madia-gold">*</span> Campi obbligatori
+              </p>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  disabled={!contactConsent}
+                  className="px-12 py-4 bg-madia-gold text-madia-green uppercase tracking-[0.3em] font-bold text-[10px] hover:bg-madia-white hover:text-madia-green transition-all duration-500 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-madia-gold disabled:hover:text-madia-green"
+                >
+                  Invia Richiesta
+                </button>
+              </div>
             </form>
           </div>
+          </div>
+
+          <div className="mt-8 rounded-2xl overflow-hidden border-2 border-madia-gold">
+            <iframe
+              src="https://www.google.com/maps?q=Piazza+Sant%27Agostino+9%2F10%2C+Teramo+TE&output=embed&z=17"
+              width="100%"
+              height="380"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Madia Teramo - Mappa"
+            />
           </div>
         </div>
       </section>

@@ -1,6 +1,15 @@
+import { useState, useEffect } from 'react';
 import { menuData } from '../data/menu';
 import { useBooking } from '../context/BookingContext';
-import { Star } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const carouselImages = [
+  '/pizzeria/carpizza1.jpg',
+  '/pizzeria/carpizza2.jpg',
+  '/pizzeria/carpizza3.jpg',
+  '/pizzeria/carpizza4.jpg',
+  '/pizzeria/carpizza5.jpg',
+];
 
 const pizzaItems = menuData.filter(i => i.section === 'pizze');
 const subcategories = [...new Set(pizzaItems.map(i => i.subcategory))];
@@ -16,6 +25,14 @@ const padelloItems = [
 
 export function MenuPizza() {
   const { openBooking } = useBooking();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent(i => (i + 1) % carouselImages.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="min-h-screen bg-madia-white">
@@ -55,11 +72,35 @@ export function MenuPizza() {
             </div>
             <div className="lg:col-span-6 thin-border p-2 h-full">
               <div className="relative h-full min-h-[320px] overflow-hidden">
-                <img
-                  src="/carosellomenu/SnapInsta.to_670633682_18008912618850586_7096193815917506183_n.jpg"
-                  alt="Pizza Padellino Madia Teramo"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+                {carouselImages.map((src, i) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt={`Pizza Madia Teramo ${i + 1}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === current ? 'opacity-100' : 'opacity-0'}`}
+                  />
+                ))}
+                <button
+                  onClick={() => setCurrent(i => (i - 1 + carouselImages.length) % carouselImages.length)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/30 hover:bg-madia-gold text-white flex items-center justify-center transition-all duration-300"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  onClick={() => setCurrent(i => (i + 1) % carouselImages.length)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/30 hover:bg-madia-gold text-white flex items-center justify-center transition-all duration-300"
+                >
+                  <ChevronRight size={18} />
+                </button>
+                <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10">
+                  {carouselImages.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrent(i)}
+                      className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === current ? 'bg-madia-gold w-4' : 'bg-white/50'}`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
