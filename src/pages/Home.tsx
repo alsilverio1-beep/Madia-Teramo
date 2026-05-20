@@ -1,12 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin, Facebook } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useBooking } from '../context/BookingContext';
+import { QuoteModal } from '../components/QuoteModal';
 
 export function Home() {
   const { openBooking } = useBooking();
   const location = useLocation();
+  const [quoteOpen, setQuoteOpen] = useState(false);
 
   useEffect(() => {
     const scrollTo = (location.state as any)?.scrollTo;
@@ -286,9 +288,9 @@ export function Home() {
                 <p className="text-[11px] text-madia-white/50">Celebrazioni intime e feste indimenticabili.</p>
               </div>
             </div>
-            <Link to="/preventivo-eventi" className="inline-block px-12 py-4 border border-madia-white text-madia-white uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-madia-white hover:text-madia-green transition-all duration-500">
+            <button onClick={() => setQuoteOpen(true)} className="inline-block px-12 py-4 border border-madia-white text-madia-white uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-madia-white hover:text-madia-green transition-all duration-500">
                Richiedi un preventivo
-            </Link>
+            </button>
           </div>
           </div>
         </div>
@@ -369,6 +371,8 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      <QuoteModal isOpen={quoteOpen} onClose={() => setQuoteOpen(false)} />
     </div>
   );
 }
