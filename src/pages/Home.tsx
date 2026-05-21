@@ -4,40 +4,76 @@ import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin, Facebook, Clo
 
 const googleReviews = [
   {
-    name: 'Giulia Marchetti',
-    date: 'marzo 2025',
+    name: 'Roberto Lazzaro',
+    date: '8 mesi fa',
     rating: 5,
-    text: 'Un\'esperienza indimenticabile. Il padellino è semplicemente straordinario — croccante fuori, morbido dentro, con un impasto che si scioglie in bocca. Il servizio è impeccabile, il locale curato nei minimi dettagli. Torneremo sicuramente per una serata speciale.',
+    text: 'Situato nel cuore del centro storico di Teramo, la location esterna è molto suggestiva e c\'è davvero una bella atmosfera, servizio impeccabile e piatti veramente ottimi, in particolare il bao di pollo, la fresella di tonno e anche il panino americano che era di ottima qualità, tra i migliori se non il migliore di Teramo. L\'unica cosa è che le porzioni sono un po\' troppo piccole rapportata ai prezzi sicuramente non propriamente bassi. Consigliato per passare una piacevole serata con ottimi piatti.',
   },
   {
-    name: 'Marco Ferretti',
-    date: 'febbraio 2025',
+    name: 'khaleesi ms1992',
+    date: 'un anno fa',
     rating: 5,
-    text: 'La Steak House di Madia è un\'altra categoria. Ho ordinato una fiorentina frollata 45 giorni e non esagero nel dire che è la bistecca migliore che abbia mai mangiato a Teramo. Personale preparato, appassionato e professionale. Consiglio a tutti gli amanti della carne.',
+    text: 'Esperienza culinaria straordinaria! Questo ristorante sorprende con piatti innovativi e deliziosi, a partire dal loro padellino: una focaccia con lievitazione perfetta, morbida dentro, croccante fuori, farcita con ingredienti freschissimi. Gli antipasti sono spettacolari, dal baho ripieno di carne, al bombolone salato con ragù, ai ravioli cinesi rivisitati in chiave italiana, un vero viaggio di sapori. 5 stelle sono persino poche! Prezzi assolutamente giusti per la qualità offerta. Imperdibile!',
   },
   {
-    name: 'Valentina Rossi',
-    date: 'gennaio 2025',
+    name: 'Gabriele Leone',
+    date: '8 mesi fa',
     rating: 5,
-    text: 'Abbiamo organizzato qui il nostro anniversario di matrimonio. Il team ha curato ogni dettaglio — dal menù personalizzato all\'atmosfera romantica. Un locale che sa davvero come rendere speciale ogni occasione. Consigliato a chiunque cerchi qualità vera a Teramo.',
+    text: 'Pizza con bufala eccellente! Croccante e materie prime di qualità. Servizio cortese e rapido. Esperienza molto positiva.',
   },
   {
-    name: 'Luca Bianchi',
-    date: 'dicembre 2024',
+    name: 'Silvia',
+    date: '2 anni fa',
     rating: 5,
-    text: 'Pizza nel padellino di un livello eccezionale. Impasto perfetto, ingredienti freschi e di qualità superiore. Ho provato la Crudo e Stracciatella e la Funghi e Tartufo: entrambe da applauso. Ambiente elegante, accogliente e personale gentilissimo.',
+    text: 'Siamo stati per la prima volta questa sera e la cena prevedeva un menù di degustazioni fisso per San Valentino. Inutile dire che torneremo: cibo di ottima qualità, la pizza al padellino una nuvola di leggerezza (da provare assolutamente l\'impasto ai cereali con carpaccio di black angus, crema di parmigiano, air bag di patate e polvere di lampone); location molto moderna, piuttosto accogliente; camerieri gentili e molto cortesi. Unica nota "dolente", ambiente leggermente freddo, avrei gradito qualche grado in più. Per il resto, anche i dolci consigliati, è stato un vero piacere!',
   },
   {
-    name: 'Sara De Angelis',
-    date: 'novembre 2024',
-    rating: 5,
-    text: 'Abbiamo scelto Madia per una cena aziendale con trenta persone e siamo rimasti tutti piacevolmente sorpresi dalla qualità del cibo e dal servizio professionale. Il piano superiore riservato è perfetto per questo tipo di eventi. Già prenotati per la prossima occasione.',
+    name: 'Jessica D.C.',
+    date: '3 mesi fa',
+    rating: 3,
+    text: 'Siamo stati a cena con amici. Locale pulito e accogliente. La pizza purtroppo non mi è piaciuta..ma la carne era buona! Servizio veloce.',
   },
   {
-    name: 'Antonio Conti',
-    date: 'ottobre 2024',
+    name: 'Yuri Sistilli',
+    date: '3 anni fa',
+    rating: 4,
+    text: 'Locale piccolo ma elegante e ben curato. Siamo stati in occasione della festa della donna con menù fisso pensato per l\'occasione: antipasti gourmet molto buoni, ben impiattati ed eleganti accompagnati da pane appena sfornato, tre degustazioni di pizza padellino con impasti leggeri e fragranti (uno più buono dell\'altro) farcite con ingredienti di ottima qualità, dolce per mio gusto personale un po\' stucchevole. Personale gentile, servizio veloce e prezzi nella norma. Torneremo sicuramente presto.',
+  },
+  {
+    name: 'Adele Cortellessa',
+    date: '3 mesi fa',
     rating: 5,
-    text: 'Ottima cucina, ambiente raffinato e staff gentilissimo. Ho festeggiato qui il mio compleanno con tutta la famiglia — è stata una serata davvero perfetta. I dolci fatti in casa sono da non perdere assolutamente. Un posto speciale nel cuore di Teramo.',
+    text: 'Bel locale, cameriera bravissima pronta a soddisfare tutte le richieste, piatti sfiziosi e prezzi ottimi. Molta cura ed attenzione per il senza glutine. Lo consiglio vivamente!!!',
+  },
+  {
+    name: 'Fabio Cesano',
+    date: '2 anni fa',
+    rating: 5,
+    text: 'Ristorante moderno e molto curato in centro a Teramo. L\'abbiamo scoperto per caso su Google e siamo stati molto soddisfatti di averlo scelto. Nel menu potete trovare tanti piatti buoni e le pizze classiche ma anche alla pala e padellino. Noi abbiamo preso i frittini come antipasto e diverse stuzzicherie insieme ad una pala Tre pomodori. Piatti davvero molto buoni e saporiti e qualità davvero alta. I frittini sono super consigliati; davvero wow. La cameriera adorabile e molto gentile e il conto non è per niente caro.',
+  },
+  {
+    name: 'Lucia Mosca',
+    date: '7 mesi fa',
+    rating: 4,
+    text: 'Io e le mie colleghe abbiamo deciso di prenotare in questo ristorante situato nel cuore di Teramo, e l\'esperienza è stata complessivamente positiva. Il locale è accogliente e curato. Il personale si è mostrato un po\' assente in alcuni momenti, ma comunque sempre cordiale e disponibile. La pizza si è rivelata gustosa e ben presentata. L\'antipasto di fritti è stato abbondante e variegato, con delle olive ascolane davvero conquista. Un punto a favore è stato il tiramisù senza lattosio, una vera rarità. In generale, il ristorante ha ottimi piatti e un\'ottima posizione.',
+  },
+  {
+    name: 'Viviana Arcangeli',
+    date: '2 anni fa',
+    rating: 5,
+    text: 'Locale in centro a Teramo, con tavolini all\'aperto. Personale efficiente ed attento. Menù con proposte varie ed interessanti, fuori dal comune rispetto alla media e di ottima qualità. Decisamente da provare la tartare di gambero rosso. Rapporto qualità / prezzo assolutamente corretto — rispetto alla media della zona livello di prezzo medio/alto, ma assolutamente giustificato dall\'offerta sia come varietà che come qualità.',
+  },
+  {
+    name: 'Elena Matricardi',
+    date: '4 mesi fa',
+    rating: 3,
+    text: 'Per il locale molto curato le aspettative erano più alte sul menu. Le pizze discrete e buon servizio.',
+  },
+  {
+    name: 'Gabriella Cozzi',
+    date: '6 mesi fa',
+    rating: 5,
+    text: 'Posto molto più alto delle aspettative. Pizza, per una persona intollerante come me, a dir poco fantastica. Spero di tornarci presto.',
   },
 ];
 import { Link, useLocation } from 'react-router-dom';
@@ -49,10 +85,16 @@ export function Home() {
   const location = useLocation();
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [contactConsent, setContactConsent] = useState(false);
-  const [reviewCurrent, setReviewCurrent] = useState(0);
   const [reviewPaused, setReviewPaused] = useState(false);
-  const [reviewNoTransition, setReviewNoTransition] = useState(false);
   const [reviewExpanded, setReviewExpanded] = useState<Set<number>>(new Set());
+  const [reviewOverflow, setReviewOverflow] = useState<Set<number>>(new Set());
+  const reviewParaRefs = useRef<(HTMLParagraphElement | null)[]>([]);
+  const reviewTrackRef = useRef<HTMLDivElement>(null);
+  const reviewAnimRef = useRef<number>(0);
+  const reviewLastTs = useRef<number>(0);
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragScrollStart = useRef(0);
 
   const toggleReviewExpanded = (idx: number) => {
     setReviewExpanded(prev => {
@@ -62,30 +104,54 @@ export function Home() {
     });
   };
 
-  // Auto-advance carosello
   useEffect(() => {
-    if (reviewPaused) return;
-    const interval = setInterval(() => {
-      setReviewCurrent(c => c + 1);
-    }, 4000);
-    return () => clearInterval(interval);
+    const next = new Set<number>();
+    reviewParaRefs.current.forEach((el, idx) => {
+      if (el && el.scrollHeight > el.clientHeight) next.add(idx);
+    });
+    setReviewOverflow(next);
+  }, []);
+
+  useEffect(() => {
+    const track = reviewTrackRef.current;
+    if (!track || reviewPaused) return;
+    reviewLastTs.current = 0;
+    const animate = (ts: number) => {
+      if (!isDragging.current) {
+        if (reviewLastTs.current !== 0) {
+          const elapsed = ts - reviewLastTs.current;
+          track.scrollLeft += 80 * elapsed / 1000;
+          if (track.scrollLeft >= track.scrollWidth / 2) {
+            track.scrollLeft -= track.scrollWidth / 2;
+          }
+        }
+        reviewLastTs.current = ts;
+      } else {
+        reviewLastTs.current = 0;
+      }
+      reviewAnimRef.current = requestAnimationFrame(animate);
+    };
+    reviewAnimRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(reviewAnimRef.current);
   }, [reviewPaused]);
 
-  // Loop seamless: dopo la transizione, reset istantaneo senza salto
-  useEffect(() => {
-    if (reviewCurrent < googleReviews.length) return;
-    const t = setTimeout(() => {
-      setReviewNoTransition(true);
-      setReviewCurrent(c => c - googleReviews.length);
-    }, 700);
-    return () => clearTimeout(t);
-  }, [reviewCurrent]);
+  const onReviewMouseDown = (e: React.MouseEvent) => {
+    isDragging.current = true;
+    dragStartX.current = e.clientX;
+    dragScrollStart.current = reviewTrackRef.current?.scrollLeft ?? 0;
+  };
 
-  useEffect(() => {
-    if (!reviewNoTransition) return;
-    const raf = requestAnimationFrame(() => setReviewNoTransition(false));
-    return () => cancelAnimationFrame(raf);
-  }, [reviewNoTransition]);
+  const onReviewMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current || !reviewTrackRef.current) return;
+    const dx = e.clientX - dragStartX.current;
+    reviewTrackRef.current.scrollLeft = dragScrollStart.current - dx;
+    const half = reviewTrackRef.current.scrollWidth / 2;
+    if (reviewTrackRef.current.scrollLeft < 0) reviewTrackRef.current.scrollLeft += half;
+    if (reviewTrackRef.current.scrollLeft >= half) reviewTrackRef.current.scrollLeft -= half;
+  };
+
+  const onReviewMouseUp = () => { isDragging.current = false; };
+
 
   useEffect(() => {
     const scrollTo = (location.state as any)?.scrollTo;
@@ -394,114 +460,85 @@ export function Home() {
 
           {/* Header */}
           <div className="mb-12 text-center">
-            <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">Google Reviews</span>
-            <h2 className="text-5xl md:text-6xl text-madia-green font-serif lowercase italic mb-8">cosa dicono di noi</h2>
-            <div className="flex items-center justify-center gap-6">
-              {/* Google G colorata */}
-              <svg viewBox="0 0 48 48" width="44" height="44">
+            <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">Cosa Dicono di Noi</span>
+            <h2 className="text-5xl md:text-6xl text-madia-green mb-1 leading-tight font-light tracking-tight lowercase">
+              <span className="font-serif italic">Recensioni </span>
+              <span className="font-sans font-bold not-italic">Google</span>
+            </h2>
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-sm font-bold font-sans text-madia-green">4,6</span>
+              <Star size={13} fill="currentColor" className="text-madia-gold" />
+              <span className="text-[11px] tracking-[0.15em] text-madia-black/40 font-sans ml-1">Verificato su Google</span>
+              <svg viewBox="0 0 48 48" width="20" height="20" className="ml-1">
                 <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
                 <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
                 <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
                 <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
                 <path fill="none" d="M0 0h48v48H0z"/>
               </svg>
-              <div className="flex items-baseline gap-3">
-                <span className="text-5xl font-serif text-madia-green leading-none">4,6</span>
-                <div className="flex flex-col items-start gap-1.5">
-                  <div className="flex gap-1">
-                    {[1,2,3,4,5].map(s => <Star key={s} size={16} fill="currentColor" className="text-madia-gold" />)}
-                  </div>
-                  <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-madia-black/30">175 recensioni su Google</span>
-                </div>
-              </div>
             </div>
           </div>
 
-          {/* Carousel */}
-          {(() => {
-            const extended = [...googleReviews, ...googleReviews.slice(0, 3)];
-            const trackPct = (extended.length / 3) * 100; // 300%
-            const stepPct  = 100 / extended.length;       // 11.11% per step
-
-            return (
-              <div
-                className="overflow-hidden cursor-pointer select-none"
-                onClick={() => setReviewPaused(p => !p)}
-                title={reviewPaused ? 'Clicca per riprendere' : 'Clicca per mettere in pausa'}
-              >
-                <div
-                  className={reviewNoTransition ? 'flex' : 'flex transition-transform duration-700 ease-in-out'}
-                  style={{
-                    width: `${trackPct}%`,
-                    transform: `translateX(-${reviewCurrent * stepPct}%)`,
-                  }}
-                >
-                  {extended.map((review, i) => {
-                    const isExpanded = reviewExpanded.has(i % googleReviews.length);
-                    return (
-                      <div
-                        key={i}
-                        style={{ width: `${100 / extended.length}%` }}
-                        className="px-3 flex-shrink-0"
-                      >
-                        <div className="border border-madia-gold/20 p-6 space-y-4 hover:border-madia-gold/40 transition-colors flex flex-col h-full">
-                          {/* Stars */}
-                          <div className="flex gap-0.5">
-                            {Array.from({ length: review.rating }).map((_, s) => (
-                              <Star key={s} size={12} fill="currentColor" className="text-madia-gold" />
-                            ))}
-                          </div>
-
-                          {/* Testo */}
-                          <div className="flex-1">
-                            <p className={`text-sm font-sans text-madia-black/70 leading-relaxed ${!isExpanded ? 'line-clamp-3' : ''}`}>
-                              {review.text}
-                            </p>
-                            <button
-                              onClick={(e) => { e.stopPropagation(); toggleReviewExpanded(i % googleReviews.length); }}
-                              className="mt-2 text-[9px] uppercase tracking-[0.25em] font-bold text-madia-gold hover:text-madia-green transition-colors"
-                            >
-                              {isExpanded ? 'Leggi di meno' : 'Leggi di più'}
-                            </button>
-                          </div>
-
-                          {/* Autore */}
-                          <div className="pt-3 border-t border-madia-gold/10 flex items-center justify-between">
-                            <div>
-                              <p className="text-[11px] font-bold text-madia-green uppercase tracking-wide">{review.name}</p>
-                              <p className="text-[10px] text-madia-black/30 font-sans mt-0.5">{review.date}</p>
-                            </div>
-                            <svg viewBox="0 0 24 24" width="16" height="16" className="opacity-25 shrink-0">
-                              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                            </svg>
-                          </div>
-                        </div>
+          {/* Carousel — scroll continuo + drag */}
+          <div
+            ref={reviewTrackRef}
+            className="reviews-track overflow-x-scroll cursor-grab active:cursor-grabbing select-none"
+            onMouseEnter={() => setReviewPaused(true)}
+            onMouseLeave={() => { setReviewPaused(false); isDragging.current = false; }}
+            onMouseDown={onReviewMouseDown}
+            onMouseMove={onReviewMouseMove}
+            onMouseUp={onReviewMouseUp}
+          >
+            <div className="flex items-start">
+              {[...googleReviews, ...googleReviews].map((review, i) => {
+                const isExpanded = reviewExpanded.has(i);
+                const isOverflowing = reviewOverflow.has(i);
+                return (
+                  <div key={i} className="w-[360px] flex-shrink-0 px-3">
+                    <div className="border border-madia-gold/15 border-l-4 border-l-madia-gold/60 rounded-2xl p-6 space-y-4 hover:border-madia-gold/30 hover:border-l-madia-gold transition-colors flex flex-col h-full">
+                      {/* Stars */}
+                      <div className="flex gap-0.5">
+                        {Array.from({ length: review.rating }).map((_, s) => (
+                          <Star key={s} size={12} fill="currentColor" className="text-madia-gold" />
+                        ))}
                       </div>
-                    );
-                  })}
-                </div>
 
-                {reviewPaused && (
-                  <p className="mt-5 text-center text-[9px] uppercase tracking-[0.3em] font-bold text-madia-gold/50">
-                    Carosello in pausa — clicca per riprendere
-                  </p>
-                )}
-              </div>
-            );
-          })()}
+                      {/* Testo */}
+                      <div className="flex-1">
+                        <p
+                          ref={el => { reviewParaRefs.current[i] = el; }}
+                          className={`text-sm font-sans text-madia-black/70 leading-relaxed ${!isExpanded ? 'line-clamp-3' : ''}`}
+                        >
+                          {review.text}
+                        </p>
+                        {isOverflowing && (
+                          <button
+                            onClick={() => toggleReviewExpanded(i)}
+                            className="mt-2 text-[9px] uppercase tracking-[0.25em] font-bold text-madia-gold hover:text-madia-green transition-colors"
+                          >
+                            {isExpanded ? 'Leggi di meno' : 'Leggi di più'}
+                          </button>
+                        )}
+                      </div>
 
-          {/* Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {googleReviews.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => { setReviewCurrent(i); setReviewFade(true); }}
-                className={`h-1.5 rounded-full transition-all duration-300 ${i === reviewCurrent ? 'bg-madia-gold w-4' : 'bg-madia-gold/20 w-1.5'}`}
-              />
-            ))}
+                      {/* Autore */}
+                      <div className="pt-3 border-t border-madia-gold/10 flex items-center justify-between">
+                        <div>
+                          <p className="text-[11px] font-bold text-madia-green uppercase tracking-wide">{review.name}</p>
+                          <p className="text-[10px] text-madia-black/30 font-sans mt-0.5">{review.date}</p>
+                        </div>
+                        <svg viewBox="0 0 24 24" width="16" height="16" className="opacity-25 shrink-0">
+                          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
         </div>

@@ -8,7 +8,15 @@ export function Footer() {
 
         {/* Main row: logo left — nav center — social right */}
         <div className="flex justify-between items-center pb-6">
-          <img src="/mtlogo-removebg-preview.png" alt="Madia Teramo" className="h-16 w-auto object-contain" />
+          <div className="flex items-center gap-4">
+            <img src="/mtlogo-removebg-preview.png" alt="Madia Teramo" className="h-16 w-auto object-contain" />
+            <div className="w-px h-10 bg-white/20" />
+            <div className="flex flex-col gap-0.5">
+              <span className="text-[8px] uppercase tracking-[0.3em] text-madia-white/60 leading-none">Ristorante</span>
+              <span className="text-[8px] uppercase tracking-[0.3em] text-madia-white/60 leading-none">Pizzeria</span>
+              <span className="text-[8px] uppercase tracking-[0.3em] text-madia-white/60 leading-none">Drink</span>
+            </div>
+          </div>
 
           <div className="flex flex-wrap justify-center gap-6">
             {[
