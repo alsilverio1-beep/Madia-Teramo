@@ -5,6 +5,7 @@ import { useBooking } from '../context/BookingContext';
 import { menuData } from '../data/menu';
 import { cn } from '../lib/utils';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 const allImages = import.meta.glob('/src/carosellomenu/*', { eager: true, as: 'url' });
 const carouselImages = Object.values(allImages) as string[];
@@ -19,12 +20,21 @@ const sections: { id: Section; label: string; subtitle: string }[] = [
   { id: 'drink',    label: 'Drink',     subtitle: 'Cocktails, birre e vini al calice' },
 ];
 
+function getDefaultSection(): Section {
+  const now = new Date();
+  const mins = now.getHours() * 60 + now.getMinutes();
+  if (mins >= 11 * 60 && mins < 18 * 60) return 'pranzo';   // 11:00–18:00 (Pranzo + fascia Pizzeria)
+  if (mins >= 18 * 60 && mins < 20 * 60) return 'aperitivo'; // 18:00–20:00
+  if (mins >= 20 * 60) return 'cena';                        // 20:00–23:59
+  return 'aperitivo';                                        // 00:00–11:00
+}
+
 export function Menu() {
   const [searchParams] = useSearchParams();
-  const initialSection = (searchParams.get('section') as Section) ?? 'pranzo';
-  const [activeSection, setActiveSection] = useState<Section>(
-    sections.some(s => s.id === initialSection) ? initialSection : 'pranzo'
-  );
+  const urlSection = searchParams.get('section') as Section | null;
+  const initialSection: Section =
+    urlSection && sections.some(s => s.id === urlSection) ? urlSection : getDefaultSection();
+  const [activeSection, setActiveSection] = useState<Section>(initialSection);
   const { openBooking } = useBooking();
   const [currentImg, setCurrentImg] = useState(0);
 
@@ -49,6 +59,12 @@ export function Menu() {
   const activeMeta = sections.find(s => s.id === activeSection)!;
 
   return (
+    <>
+      <SEO
+        title="Menu Ristorante — Pranzo, Cena e Aperitivo"
+        description="Scopri il menu di Madia Teramo: antipasti, primi, secondi, aperitivo dalle 18:00, selezione di carni frollate alla brace e cocktails. Ingredienti freschi e di qualità."
+        canonical="/menu"
+      />
     <div className="min-h-screen bg-madia-white">
 
       {/* ── Hero ─────────────────────────────────────────────── */}
@@ -266,5 +282,6 @@ export function Menu() {
         </div>
       </div>
     </div>
+    </>
   );
 }

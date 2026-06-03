@@ -1,5 +1,7 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef, FormEvent } from 'react';
 import { ChefHat, UtensilsCrossed, Wine, Users, Upload, X, FileText } from 'lucide-react';
+import { SEO } from '../components/SEO';
+import { useFormSubmit } from '../hooks/useFormSubmit';
 
 function formatSize(bytes: number) {
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
@@ -7,11 +9,16 @@ function formatSize(bytes: number) {
 }
 
 export function LavoraConNoi() {
-  const [consent, setConsent] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
-  const [dragging, setDragging] = useState(false);
-  const [role, setRole] = useState('');
+  const [consent, setConsent]           = useState(false);
+  const [file, setFile]                 = useState<File | null>(null);
+  const [dragging, setDragging]         = useState(false);
+  const [role, setRole]                 = useState('');
+  const [nome, setNome]                 = useState('');
+  const [email, setEmail]               = useState('');
+  const [telefono, setTelefono]         = useState('');
+  const [presentazione, setPresentazione] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
+  const { status, errorMsg, submit } = useFormSubmit('/api/candidatura');
 
   const handleFile = (f: File) => setFile(f);
 
@@ -27,7 +34,28 @@ export function LavoraConNoi() {
     if (f) handleFile(f);
   };
 
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    const fd = new FormData();
+    fd.append('nome', nome);
+    fd.append('email', email);
+    fd.append('telefono', telefono);
+    fd.append('posizione', role);
+    fd.append('presentazione', presentazione);
+    if (file) fd.append('curriculum', file);
+    await submit(fd);
+  };
+
   return (
+    <>
+      <SEO
+        title="Lavora con Noi — Unisciti al Team"
+        description="Entra nel team di Madia Teramo. Cerchiamo figure appassionate per sala, cucina, pizzeria e bar. Invia la tua candidatura spontanea."
+        canonical="/lavora-con-noi"
+        noindex={true}
+      />
     <section className="pt-32 pb-20 px-6 bg-madia-green">
       <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
@@ -64,13 +92,22 @@ export function LavoraConNoi() {
 
           {/* Form box */}
           <div className="lg:col-span-7 border-2 border-madia-gold p-12 bg-madia-green rounded-2xl">
-            <form className="space-y-8">
+          {status === 'success' ? (
+            <div className="text-center space-y-4 py-16">
+              <p className="text-madia-gold text-4xl">✓</p>
+              <p className="text-madia-white font-serif text-2xl font-light">Candidatura inviata!</p>
+              <p className="text-white/50 text-sm">Abbiamo ricevuto la tua candidatura. Ti contatteremo il prima possibile.</p>
+            </div>
+          ) : (
+            <form className="space-y-8" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
                   <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-white/40">Nome Completo <span className="text-madia-gold">*</span></label>
                   <input
                     type="text"
                     required
+                    value={nome}
+                    onChange={e => setNome(e.target.value)}
                     className="w-full bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30"
                     placeholder="Es. Mario Rossi"
                   />
@@ -80,6 +117,8 @@ export function LavoraConNoi() {
                   <input
                     type="email"
                     required
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                     className="w-full bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30"
                     placeholder="mario@email.it"
                   />
@@ -88,6 +127,8 @@ export function LavoraConNoi() {
                   <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-white/40">Telefono</label>
                   <input
                     type="tel"
+                    value={telefono}
+                    onChange={e => setTelefono(e.target.value)}
                     className="w-full bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30"
                     placeholder="Es. +39 345 000 0000"
                   />
@@ -112,6 +153,8 @@ export function LavoraConNoi() {
               <div className="space-y-2">
                 <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-white/40">Presentati</label>
                 <textarea
+                  value={presentazione}
+                  onChange={e => setPresentazione(e.target.value)}
                   className="bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white w-full h-32 focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30 resize-none"
                   placeholder="Esperienze, motivazioni, disponibilità..."
                 />
@@ -189,6 +232,7 @@ export function LavoraConNoi() {
                 </span>
               </label>
 
+              {status === 'error' && <p className="text-red-400 text-xs text-center">{errorMsg}</p>}
               <p className="text-[9px] font-sans text-white/25 text-center">
                 <span className="text-madia-gold">*</span> Campi obbligatori
               </p>
@@ -196,17 +240,19 @@ export function LavoraConNoi() {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  disabled={!consent}
+                  disabled={!nome.trim() || !email.trim() || !consent || status === 'loading'}
                   className="px-12 py-4 bg-madia-gold text-madia-green uppercase tracking-[0.3em] font-bold text-[10px] hover:bg-madia-white hover:text-madia-green transition-all duration-500 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-madia-gold disabled:hover:text-madia-green"
                 >
-                  Invia Candidatura
+                  {status === 'loading' ? 'Invio in corso...' : 'Invia Candidatura'}
                 </button>
               </div>
             </form>
+          )}
           </div>
 
         </div>
       </div>
     </section>
+    </>
   );
 }

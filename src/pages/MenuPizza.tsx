@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { menuData } from '../data/menu';
 import { useBooking } from '../context/BookingContext';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 const carouselImages = [
   '/pizzeria/carpizza1.jpg',
@@ -35,6 +36,12 @@ export function MenuPizza() {
   }, []);
 
   return (
+    <>
+      <SEO
+        title="Pizzeria — Pizza Padellino e alla Pala a Teramo"
+        description="La pizzeria di Madia Teramo: pizza padellino con impasto all'85% di idratazione e biga 18 ore, farine 100% italiane macinate a pietra. Scopri tutte le proposte."
+        canonical="/menu-pizza"
+      />
     <div className="min-h-screen bg-madia-white">
 
       {/* Hero */}
@@ -225,5 +232,6 @@ export function MenuPizza() {
         </div>
       </div>
     </div>
+    </>
   );
 }

@@ -1,4 +1,5 @@
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, FormEvent } from 'react';
+import { useFormSubmit } from '../hooks/useFormSubmit';
 import { motion } from 'motion/react';
 import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin, Facebook, Clock, Star } from 'lucide-react';
 
@@ -79,12 +80,18 @@ const googleReviews = [
 import { Link, useLocation } from 'react-router-dom';
 import { useBooking } from '../context/BookingContext';
 import { QuoteModal } from '../components/QuoteModal';
+import { SEO } from '../components/SEO';
 
 export function Home() {
   const { openBooking } = useBooking();
   const location = useLocation();
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [contactConsent, setContactConsent] = useState(false);
+  const [contactNome, setContactNome] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [contactTel, setContactTel] = useState('');
+  const [contactMsg, setContactMsg] = useState('');
+  const { status: contactStatus, errorMsg: contactError, submit: submitContatto } = useFormSubmit('/api/contatto');
   const [reviewPaused, setReviewPaused] = useState(false);
   const [reviewExpanded, setReviewExpanded] = useState<Set<number>>(new Set());
   const [reviewOverflow, setReviewOverflow] = useState<Set<number>>(new Set());
@@ -163,6 +170,12 @@ export function Home() {
   }, []);
 
   return (
+    <>
+      <SEO
+        title="Ristorante e Pizzeria a Teramo — Centro Storico"
+        description="Madia è il ristorante e pizzeria in Piazza Sant'Agostino 9/10, Teramo. Cucina contemporanea, pizza padellino con biga 18 ore, steak house e aperitivo ogni giorno dalle 18:00."
+        canonical="/"
+      />
     <div className="overflow-hidden">
       {/* 1. Hero Section & Carousel */}
       <section className="relative h-screen flex items-center bg-[#062a22] overflow-hidden">
@@ -172,6 +185,7 @@ export function Home() {
             muted
             loop
             playsInline
+            preload="auto"
             className="w-full h-full object-cover"
             src="/hero1.mp4"
           />
@@ -189,6 +203,7 @@ export function Home() {
             <img
               src="/mtlogo-removebg-preview.png"
               alt="Madia Teramo"
+              fetchPriority="high"
               className="h-24 md:h-36 w-auto object-contain drop-shadow-2xl"
             />
             <div className="flex items-center gap-3 text-madia-white/50 text-[9px] uppercase tracking-[0.4em]">
@@ -221,7 +236,7 @@ export function Home() {
                   <video autoPlay muted loop playsInline className="w-full h-full object-cover" src="/chisiamo1.mp4" />
                 </div>
                 <div className="aspect-[4/5] thin-border p-2 mt-12">
-                  <img src="/chef1.jpg" className="w-full h-full object-cover" alt="Lo chef di Madia Teramo" />
+                  <img src="/chef1.jpg" loading="lazy" className="w-full h-full object-cover" alt="Lo chef di Madia Teramo" />
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -245,7 +260,7 @@ export function Home() {
                 <h2 className="text-5xl md:text-7xl text-madia-green font-serif lowercase italic">il ristorante</h2>
               </div>
               <p>
-                Madia è il ristorante in Piazza Sant'Agostino 9/10, nel cuore del centro storico di Teramo. Un luogo dove tradizione abruzzese e cucina contemporanea si incontrano, con un'offerta gastronomica completa: dal pranzo alla cena, e un menù dedicato all'aperitivo ogni giorno dalle 18 alle 20.
+                Madia è il ristorante in Piazza Sant'Agostino, 10, nel cuore del centro storico di Teramo. Un luogo dove tradizione abruzzese e cucina contemporanea si incontrano, con un'offerta gastronomica completa: dal pranzo alla cena, e un menù dedicato all'aperitivo ogni giorno dalle 18 alle 20.
               </p>
               <p>
                 Rinomata per le sue <strong style={{fontWeight:'inherit'}}>pizze artigianali</strong> e per l'eccellenza della <strong style={{fontWeight:'inherit'}}>Steak House</strong>, Madia propone carni selezionate e frollate con cura, pensate per chi cerca qualità autentica a Teramo. Ogni ingrediente proviene dal territorio, ogni piatto è un invito a scoprire il meglio dell'Abruzzo.
@@ -271,10 +286,10 @@ export function Home() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="aspect-[4/5] thin-border p-2 mt-8">
-                <img src="/chisiamo2.jpg" className="w-full h-full object-cover" alt="Ristorante Madia Teramo" />
+                <img src="/chisiamo2.jpg" loading="lazy" className="w-full h-full object-cover" alt="Ristorante Madia Teramo" />
               </div>
               <div className="aspect-[4/5] thin-border p-2">
-                <img src="/chisiamo3.jpg" className="w-full h-full object-cover" alt="Cucina Madia Teramo" />
+                <img src="/chisiamo3.jpg" loading="lazy" className="w-full h-full object-cover" alt="Cucina Madia Teramo" />
               </div>
             </div>
           </div>
@@ -360,14 +375,14 @@ export function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
            <div className="grid grid-cols-[2fr_1fr] gap-4 h-full">
              <div className="thin-border p-2  h-full">
-               <img src="/grill1.jpg" className="w-full h-full object-cover" alt="Grill" />
+               <img src="/grill1.jpg" loading="lazy" className="w-full h-full object-cover" alt="Grill Madia Teramo" />
              </div>
              <div className="flex flex-col gap-4 h-full">
                <div className="thin-border p-2  flex-1">
-                 <img src="/grill2.jpg" className="w-full h-full object-cover" alt="Grill" />
+                 <img src="/grill2.jpg" loading="lazy" className="w-full h-full object-cover" alt="Brace Madia Teramo" />
                </div>
                <div className="thin-border p-2  flex-1">
-                 <img src="/grill3.jpg" className="w-full h-full object-cover" alt="Grill" />
+                 <img src="/grill3.jpg" loading="lazy" className="w-full h-full object-cover" alt="Steak House Madia Teramo" />
                </div>
              </div>
            </div>
@@ -426,8 +441,23 @@ export function Home() {
                   <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2">Sala Principale</h4>
                   <p className="text-[11px] text-madia-white/40 leading-relaxed">Il cuore del ristorante, per gruppi e occasioni speciali.</p>
                 </div>
-                <div className="border-l border-madia-gold/40 pl-4">
+                <div className="border-l border-madia-gold/40 pl-4 relative">
                   <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2">Piano Superiore</h4>
+                  <div
+                    className="absolute -top-6 right-0 flex items-center justify-center"
+                      style={{
+                        width: 52,
+                        height: 52,
+                        transform: 'rotate(-14deg)',
+                        clipPath: 'polygon(50% 0%,61% 22%,85% 15%,74% 37%,98% 45%,74% 52%,83% 76%,59% 66%,50% 90%,41% 66%,17% 76%,26% 52%,2% 45%,26% 37%,15% 15%,39% 22%)',
+                        background: 'linear-gradient(135deg, #c9a84c, #e8c96d)',
+                      }}
+                    >
+                      <span style={{ transform: 'rotate(-14deg)' }} className="text-[6.5px] uppercase font-black text-madia-green tracking-tight text-center leading-tight flex flex-col items-center">
+                        <span>stay</span>
+                        <span>tuned</span>
+                      </span>
+                    </div>
                   <p className="text-[11px] text-madia-white/40 leading-relaxed">Sala riservata al primo piano, totalmente privata.</p>
                 </div>
                 <div className="border-l border-madia-gold/40 pl-4">
@@ -555,9 +585,9 @@ export function Home() {
           <div className="lg:col-span-5 border-2 border-madia-gold p-12 space-y-6 bg-madia-green rounded-2xl">
             <div className="space-y-8">
               {[
-                { value: "Piazza Sant'Agostino 9/10, Teramo (TE)", icon: MapPin },
+                { value: "Piazza Sant'Agostino, 10, 64100 Teramo TE", icon: MapPin },
                 { value: '+39 377 333 4838', icon: Phone },
-                { value: 'info@madiateramo.it', icon: Mail },
+                { value: 'madia.teramo@gmail.com', icon: Mail },
               ].map((item) => (
                 <div key={item.value} className="flex items-center gap-4">
                   <item.icon size={24} className="text-madia-gold shrink-0" />
@@ -584,13 +614,13 @@ export function Home() {
             <div className="pt-2">
               <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/30 mb-4">Seguici sui social</p>
               <div className="flex items-center gap-5">
-                <a href="#" className="text-madia-gold hover:text-white transition-colors duration-300">
+                <a href="https://www.facebook.com/madia.teramo/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-madia-gold hover:text-white transition-colors duration-300">
                   <Facebook size={24} />
                 </a>
-                <a href="#" className="text-madia-gold hover:text-white transition-colors duration-300">
+                <a href="https://www.instagram.com/madia_teramo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-madia-gold hover:text-white transition-colors duration-300">
                   <Instagram size={24} />
                 </a>
-                <a href="#" className="text-madia-gold hover:text-white transition-colors duration-300">
+                <a href="https://www.tripadvisor.it/Restaurant_Review-g660757-d25375490-Reviews-MADIA-Teramo_Province_of_Teramo_Abruzzo.html" target="_blank" rel="noopener noreferrer" aria-label="TripAdvisor" className="text-madia-gold hover:text-white transition-colors duration-300">
                   <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                     <path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.43 5.976 5.976 0 0 0 4.075-1.6L12 19.705l1.922-2.09a5.972 5.972 0 0 0 4.072 1.598 6 6 0 0 0 6-5.998 5.982 5.982 0 0 0-1.957-4.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM12 6.255c1.531 0 3.063.303 4.504.903C13.943 8.138 12 10.43 12 13.1c0-2.671-1.942-4.962-4.504-5.942A11.72 11.72 0 0 1 12 6.256zM6.002 9.157a4.059 4.059 0 1 1 0 8.118 4.059 4.059 0 0 1 0-8.118zm11.992.002a4.057 4.057 0 1 1 .003 8.115 4.057 4.057 0 0 1-.003-8.115zm-11.992 1.93a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256zm11.992 0a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256z"/>
                   </svg>
@@ -599,52 +629,49 @@ export function Home() {
             </div>
             <div className="border-t border-white/10" />
             <div className="pt-2 flex items-center gap-6">
-              <img src="/Sky_logo_2025.svg.png" alt="Sky" className="h-8 w-auto opacity-60" />
-              <img src="/dazn5.png" alt="DAZN" className="h-10 w-auto opacity-60" />
+              <img src="/Sky_logo_2025.svg.png" alt="Sky" loading="lazy" className="h-8 w-auto opacity-60" />
+              <img src="/dazn5.png" alt="DAZN" loading="lazy" className="h-10 w-auto opacity-60" />
             </div>
           </div>
 
           <div className="lg:col-span-7 border-2 border-madia-gold p-12 relative bg-madia-green rounded-2xl">
-<form className="space-y-8">
+<form className="space-y-8" onSubmit={async (e: FormEvent) => {
+                e.preventDefault();
+                const form = e.target as HTMLFormElement;
+                if (!form.checkValidity()) { form.reportValidity(); return; }
+                await submitContatto({ nome: contactNome, email: contactEmail, telefono: contactTel, messaggio: contactMsg });
+              }}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
                   <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-white/40">Nome Completo <span className="text-madia-gold">*</span></label>
-                  <input type="text" required className="w-full bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30" placeholder="Es. Mario Rossi" />
+                  <input type="text" required value={contactNome} onChange={e => setContactNome(e.target.value)} className="w-full bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30" placeholder="Es. Mario Rossi" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-white/40">Email <span className="text-madia-gold">*</span></label>
-                  <input type="email" required className="w-full bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30" placeholder="mario@email.it" />
+                  <input type="email" required value={contactEmail} onChange={e => setContactEmail(e.target.value)} className="w-full bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30" placeholder="mario@email.it" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-white/40">Telefono</label>
-                  <input type="tel" className="w-full bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30" placeholder="Es. +39 345 000 0000" />
+                  <input type="tel" value={contactTel} onChange={e => setContactTel(e.target.value)} className="w-full bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30" placeholder="Es. +39 345 000 0000" />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="text-[9px] uppercase font-bold tracking-[0.3em] text-white/40">Messaggio</label>
-                <textarea className="bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white w-full h-32 focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30 resize-none" placeholder="Raccontaci come possiamo aiutarti..."></textarea>
+                <textarea value={contactMsg} onChange={e => setContactMsg(e.target.value)} className="bg-transparent border-b border-white/20 pb-3 text-sm font-sans text-madia-white w-full h-32 focus:outline-none focus:border-madia-gold transition-colors placeholder:text-white/30 resize-none" placeholder="Raccontaci come possiamo aiutarti..."></textarea>
               </div>
               <label className="flex items-start gap-3 cursor-pointer group">
-                <input
-                  type="checkbox"
-                  checked={contactConsent}
-                  onChange={(e) => setContactConsent(e.target.checked)}
-                  className="mt-0.5 accent-madia-gold w-4 h-4 shrink-0 cursor-pointer"
-                />
+                <input type="checkbox" checked={contactConsent} onChange={(e) => setContactConsent(e.target.checked)} className="mt-0.5 accent-madia-gold w-4 h-4 shrink-0 cursor-pointer" />
                 <span className="text-[10px] font-sans text-white/50 leading-relaxed group-hover:text-white/70 transition-colors">
                   Ho letto l'<a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-madia-gold transition-colors">Informativa sulla Privacy</a> e acconsento al trattamento dei miei dati personali ai sensi del GDPR (Reg. UE 2016/679). <span className="text-madia-gold">*</span>
                 </span>
               </label>
-              <p className="text-[9px] font-sans text-white/25 text-center">
-                <span className="text-madia-gold">*</span> Campi obbligatori
-              </p>
+              {contactStatus === 'error' && <p className="text-red-400 text-xs text-center">{contactError}</p>}
+              {contactStatus === 'success' && <p className="text-madia-gold text-xs text-center">✓ Messaggio inviato! Ti risponderemo al più presto.</p>}
+              <p className="text-[9px] font-sans text-white/25 text-center"><span className="text-madia-gold">*</span> Campi obbligatori</p>
               <div className="flex justify-center">
-                <button
-                  type="submit"
-                  disabled={!contactConsent}
-                  className="px-12 py-4 bg-madia-gold text-madia-green uppercase tracking-[0.3em] font-bold text-[10px] hover:bg-madia-white hover:text-madia-green transition-all duration-500 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-madia-gold disabled:hover:text-madia-green"
-                >
-                  Invia Richiesta
+                <button type="submit" disabled={!contactNome.trim() || !contactEmail.trim() || !contactConsent || contactStatus === 'loading' || contactStatus === 'success'}
+                  className="px-12 py-4 bg-madia-gold text-madia-green uppercase tracking-[0.3em] font-bold text-[10px] hover:bg-madia-white hover:text-madia-green transition-all duration-500 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-madia-gold disabled:hover:text-madia-green">
+                  {contactStatus === 'loading' ? 'Invio in corso...' : 'Invia Richiesta'}
                 </button>
               </div>
             </form>
@@ -668,5 +695,6 @@ export function Home() {
 
       <QuoteModal isOpen={quoteOpen} onClose={() => setQuoteOpen(false)} />
     </div>
+    </>
   );
 }

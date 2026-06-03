@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /preventivo-eventi
+Disallow: /lavora-con-noi
+
+Sitemap: https://www.madiateramo.it/sitemap.xml

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useBooking } from '../context/BookingContext';
+import { SEO } from '../components/SEO';
 import { steakhouseData } from '../data/steakhouse';
 import { cn } from '../lib/utils';
 import { Star } from 'lucide-react';
@@ -22,6 +23,12 @@ export function Steakhouse() {
   const subcategories = [...new Set(sectionItems.map(i => i.subcategory))];
 
   return (
+    <>
+      <SEO
+        title="Steak House — Carni Frollate alla Brace a Teramo"
+        description="La Steak House di Madia Teramo: tagli frollati di Chianina, Fassona, Black Angus e Wagyu. Razze italiane e internazionali, cotti alla brace nel cuore di Teramo."
+        canonical="/steakhouse"
+      />
     <div className="min-h-screen bg-madia-white">
 
       {/* ── Hero ─────────────────────────────────────────────── */}
@@ -180,5 +187,6 @@ export function Steakhouse() {
         </div>
       </div>
     </div>
+    </>
   );
 }

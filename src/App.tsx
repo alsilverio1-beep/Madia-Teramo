@@ -3,8 +3,12 @@ import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
 import { Menu } from './pages/Menu';
 import { MenuPizza } from './pages/MenuPizza';
+import { Steakhouse } from './pages/Steakhouse';
 import { EventsQuote } from './pages/EventsQuote';
 import { LavoraConNoi } from './pages/LavoraConNoi';
+import { Privacy } from './pages/Privacy';
+import { Cookie } from './pages/Cookie';
+import { NotFound } from './pages/NotFound';
 import { ScrollToTop } from './components/ScrollToTop';
 import { BookingProvider } from './context/BookingContext';
 
@@ -18,8 +22,12 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/menu-pizza" element={<MenuPizza />} />
+            <Route path="/steakhouse" element={<Steakhouse />} />
             <Route path="/preventivo-eventi" element={<EventsQuote />} />
             <Route path="/lavora-con-noi" element={<LavoraConNoi />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/cookie" element={<Cookie />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
       </BookingProvider>
