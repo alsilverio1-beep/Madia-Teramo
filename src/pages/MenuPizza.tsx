@@ -225,11 +225,15 @@ export function MenuPizza() {
               </div>
 
               {/* Coperto */}
-              <div className="mt-12 pt-8 border-t border-madia-black/10">
-                <div className="flex justify-between items-baseline gap-4 max-w-xs">
+              <div className="mt-16">
+                <div className="flex items-center gap-6 mb-10">
+                  <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-madia-gold">Coperto</span>
+                  <div className="flex-1 h-px bg-madia-gold/20" />
+                </div>
+                <div className="flex justify-between items-baseline gap-4">
                   <div>
-                    <h3 className="font-serif text-madia-green text-lg leading-snug mb-1">Coperto</h3>
-                    <p className="text-[11px] text-madia-black/70 font-sans italic">Per persona.</p>
+                    <h3 className="font-serif text-madia-green text-lg leading-snug mb-1.5">Coperto</h3>
+                    <p className="text-[11px] text-madia-black/70 font-sans italic leading-relaxed">Per persona.</p>
                   </div>
                   <span className="font-serif text-madia-green text-base whitespace-nowrap">€ 3,00</span>
                 </div>
