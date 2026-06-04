@@ -3,7 +3,7 @@ import { Facebook, Instagram } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-madia-black text-madia-white px-12 pt-8 pb-8 border-t-2 border-madia-gold/60">
+    <footer className="bg-madia-black text-madia-white px-12 pt-8 pb-8 border-t-2 border-madia-gold/70">
       <div className="max-w-7xl mx-auto">
 
         {/* Main row: logo left — nav center — social right */}
@@ -52,14 +52,18 @@ export function Footer() {
         <div className="border-t border-madia-gold/20" />
 
         {/* Bottom bar */}
-        <div className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] text-madia-white/30">
-          <p className="uppercase tracking-[0.2em] text-[8px]">
-            © {new Date().getFullYear()} Madia Teramo S.r.l. · Tutti i diritti sono riservati · P.IVA 02199950672 · REA 216820 · PEC madiateramosrl@pec.it
+        <div className="pt-6 flex flex-col items-center gap-3 text-madia-white/30">
+          <p className="uppercase tracking-[0.15em] text-[9px] text-center">
+            © {new Date().getFullYear()} Madia Teramo S.r.l. · P.IVA 02199950672 · REA TE-216820 · Cap. Soc. € 10.000,00 i.v. · Cod. Ateco 561111 · PEC madiateramosrl@pec.it
           </p>
-          <div className="flex items-center gap-3 uppercase tracking-[0.2em] text-[8px] shrink-0">
+          <div className="flex flex-wrap justify-center items-center gap-2 uppercase tracking-[0.15em] text-[9px]">
             <Link to="/privacy" className="hover:text-madia-gold transition-colors duration-300">Privacy Policy</Link>
             <span>·</span>
             <Link to="/cookie" className="hover:text-madia-gold transition-colors duration-300">Cookie Policy</Link>
+            <span>·</span>
+            <Link to="/termini-condizioni" className="hover:text-madia-gold transition-colors duration-300">Termini e Condizioni</Link>
+            <span>·</span>
+            <Link to="/menzioni-legali" className="hover:text-madia-gold transition-colors duration-300">Menzioni Legali</Link>
           </div>
         </div>
 

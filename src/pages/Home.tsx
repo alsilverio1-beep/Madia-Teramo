@@ -632,6 +632,15 @@ export function Home() {
               <img src="/Sky_logo_2025.svg.png" alt="Sky" loading="lazy" className="h-8 w-auto opacity-60" />
               <img src="/dazn5.png" alt="DAZN" loading="lazy" className="h-10 w-auto opacity-60" />
             </div>
+            <div className="border-t border-white/10" />
+            <div className="pt-2 flex flex-col gap-3">
+              <span className="text-[9px] uppercase tracking-[0.35em] text-white/40 text-center block">Scopri anche</span>
+              <div className="flex items-center gap-6">
+                <a href="https://www.madiamare.it" target="_blank" rel="noopener noreferrer" aria-label="Madia Mare" className="opacity-60 hover:opacity-100 transition-opacity duration-300">
+                  <img src="/logo3MM.png" alt="Madia Mare" loading="lazy" className="h-16 w-auto object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+                </a>
+              </div>
+            </div>
           </div>
 
           <div className="lg:col-span-7 border-2 border-madia-gold p-12 relative bg-madia-green rounded-2xl">

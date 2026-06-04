@@ -115,7 +115,7 @@ export function Navbar() {
 
       <nav
         className={cn(
-          'bg-madia-green border-b border-white/30 transition-all duration-700',
+          'bg-madia-green border-b-2 border-madia-gold/70 transition-all duration-700',
           isScrolled || isOpen ? 'py-1' : 'py-2'
         )}
       >

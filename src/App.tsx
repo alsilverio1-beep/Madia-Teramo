@@ -8,6 +8,8 @@ import { EventsQuote } from './pages/EventsQuote';
 import { LavoraConNoi } from './pages/LavoraConNoi';
 import { Privacy } from './pages/Privacy';
 import { Cookie } from './pages/Cookie';
+import { MenzioniLegali } from './pages/MenzioniLegali';
+import { TerminiCondizioni } from './pages/TerminiCondizioni';
 import { NotFound } from './pages/NotFound';
 import { ScrollToTop } from './components/ScrollToTop';
 import { BookingProvider } from './context/BookingContext';
@@ -27,6 +29,8 @@ export default function App() {
             <Route path="/lavora-con-noi" element={<LavoraConNoi />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/cookie" element={<Cookie />} />
+            <Route path="/menzioni-legali" element={<MenzioniLegali />} />
+            <Route path="/termini-condizioni" element={<TerminiCondizioni />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
