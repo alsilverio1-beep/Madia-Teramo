@@ -165,7 +165,7 @@ export function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -6 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute top-full left-0 mt-2 bg-madia-green border border-madia-gold/20 min-w-[140px] py-2"
+                        className="absolute top-full left-0 mt-2 bg-madia-green border border-madia-gold/20 min-w-[200px] py-3"
                       >
                         {link.children.map((child) => (
                           <Link
