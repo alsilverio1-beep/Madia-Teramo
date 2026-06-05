@@ -54,7 +54,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-6 flex flex-col items-center gap-3 text-madia-white/30">
           <p className="uppercase tracking-[0.15em] text-[9px] text-center">
-            © {new Date().getFullYear()} Madia Teramo S.r.l. · P.IVA 02199950672 · REA TE-216820 · Cap. Soc. € 10.000,00 i.v. · Cod. Ateco 561111 · PEC madiateramosrl@pec.it
+            © {new Date().getFullYear()} Madia Teramo S.r.l. · Tutti i diritti riservati · P.IVA 02199950672 · REA TE-216820 · Cap. Soc. € 10.000,00 i.v. · PEC madiateramosrl@pec.it
           </p>
           <div className="flex flex-wrap justify-center items-center gap-2 uppercase tracking-[0.15em] text-[9px]">
             <Link to="/privacy" className="hover:text-madia-gold transition-colors duration-300">Privacy Policy</Link>

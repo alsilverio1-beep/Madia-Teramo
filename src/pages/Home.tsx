@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, FormEvent } from 'react';
 import { useFormSubmit } from '../hooks/useFormSubmit';
 import { motion } from 'motion/react';
-import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin, Facebook, Clock, Star } from 'lucide-react';
+import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin, Facebook, Clock, Star, CalendarDays, UtensilsCrossed } from 'lucide-react';
 
 const googleReviews = [
   {
@@ -217,9 +217,22 @@ export function Home() {
               Ci sono gesti semplici che raccontano tutto.<br />Un piatto condiviso, una risata sincera,<br />il piacere di assaporare insieme.
             </p>
             <div className="w-16 h-px bg-madia-gold opacity-70"></div>
-            <button onClick={openBooking} className="border border-madia-gold text-madia-gold bg-madia-gold/15 px-8 py-4 hover:bg-madia-gold hover:text-madia-green transition-all duration-700 font-bold uppercase tracking-[0.2em] text-[10px]">
-              Prenota il tuo tavolo
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 items-center">
+              <button
+                onClick={openBooking}
+                className="group flex items-center justify-center gap-3 border-2 border-madia-gold text-madia-white bg-madia-gold/40 w-64 py-4 hover:bg-madia-gold hover:text-madia-green transition-all duration-500 font-bold uppercase tracking-[0.2em] text-[10px] whitespace-nowrap"
+              >
+                <CalendarDays size={13} className="opacity-80 group-hover:opacity-100 transition-opacity duration-500" strokeWidth={1.5} />
+                Prenota il tuo tavolo
+              </button>
+              <a
+                href="/menu"
+                className="group flex items-center justify-center gap-3 border-2 border-madia-gold text-madia-white bg-madia-gold/40 w-64 py-4 hover:bg-madia-gold hover:text-madia-green transition-all duration-500 font-bold uppercase tracking-[0.2em] text-[10px] whitespace-nowrap"
+              >
+                <UtensilsCrossed size={13} className="opacity-80 group-hover:opacity-100 transition-opacity duration-500" strokeWidth={1.5} />
+                Consulta il menu
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -628,9 +641,12 @@ export function Home() {
               </div>
             </div>
             <div className="border-t border-white/10" />
-            <div className="pt-2 flex items-center gap-6">
-              <img src="/Sky_logo_2025.svg.png" alt="Sky" loading="lazy" className="h-8 w-auto opacity-60" />
-              <img src="/dazn5.png" alt="DAZN" loading="lazy" className="h-10 w-auto opacity-60" />
+            <div className="pt-2 flex flex-col gap-3">
+              <span className="text-[9px] uppercase tracking-[0.35em] text-white/40 text-center block">Segui lo sport dal vivo</span>
+              <div className="flex items-center justify-center gap-6">
+                <img src="/Sky_logo_2025.svg.png" alt="Sky" loading="lazy" className="h-8 w-auto opacity-60" />
+                <img src="/dazn5.png" alt="DAZN" loading="lazy" className="h-10 w-auto opacity-60" />
+              </div>
             </div>
             <div className="border-t border-white/10" />
             <div className="pt-2 flex flex-col gap-3">

@@ -6,6 +6,7 @@ export interface MenuItem {
   section: 'aperitivo' | 'pranzo' | 'cena' | 'pizze' | 'drink' | 'carne';
   subcategory: string;
   isSpecialty?: boolean;
+  note?: string;
 }
 
 export const menuData: MenuItem[] = [
@@ -98,6 +99,12 @@ export const menuData: MenuItem[] = [
   { id: 'ca-co4', section: 'carne', subcategory: 'Contorni', name: 'Spinaci all\'Aglio', description: 'Spinaci freschi ripassati in padella con aglio, olio EVO e peperoncino.', price: 6 },
 
   // ── PIZZE ──────────────────────────────────────────────────
+  { id: 'pd-1', section: 'pizze', subcategory: 'Il Padellino', name: 'Margherita Padellino', description: 'Pomodoro San Marzano, fior di latte di Agerola, basilico fresco e olio EVO.', price: 12 },
+  { id: 'pd-2', section: 'pizze', subcategory: 'Il Padellino', name: 'Crudo e Stracciatella', description: 'Base bianca, stracciatella pugliese, prosciutto crudo di Norcia, rucola e glassa di aceto balsamico.', price: 16, isSpecialty: true },
+  { id: 'pd-3', section: 'pizze', subcategory: 'Il Padellino', name: 'Diavola Croccante', description: 'Pomodoro San Marzano, fior di latte, salame piccante calabrese, nduja e miele di castagno.', price: 14 },
+  { id: 'pd-4', section: 'pizze', subcategory: 'Il Padellino', name: 'Funghi e Tartufo', description: 'Base bianca, funghi porcini trifolati, provola affumicata, scaglie di tartufo nero e olio al tartufo.', price: 18, isSpecialty: true },
+  { id: 'pd-5', section: 'pizze', subcategory: 'Il Padellino', name: 'Amatriciana Madia', description: 'Pomodoro San Marzano, guanciale croccante, pecorino Romano DOP e peperoncino.', price: 15 },
+  { id: 'pd-6', section: 'pizze', subcategory: 'Il Padellino', name: 'Zucca e Salsiccia', description: 'Base bianca, crema di zucca, salsiccia artigianale, scamorza affumicata e semi di zucca tostati.', price: 14 },
   { id: 'pz-r1', section: 'pizze', subcategory: 'Rosse', name: 'Margherita', description: 'Pomodoro San Marzano, fior di latte di Agerola, basilico fresco e olio EVO.', price: 10 },
   { id: 'pz-r2', section: 'pizze', subcategory: 'Rosse', name: 'Piazza Orsini', description: 'Pomodoro San Marzano, fior di latte, ventricina teramana e carciofini grigliati sott\'olio.', price: 13 },
   { id: 'pz-r3', section: 'pizze', subcategory: 'Rosse', name: 'Diavola', description: 'Pomodoro San Marzano, fior di latte, salame piccante e peperoncino fresco.', price: 12 },

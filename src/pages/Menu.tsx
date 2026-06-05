@@ -8,17 +8,33 @@ import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
 const allImages = import.meta.glob('/src/carosellomenu/*', { eager: true, as: 'url' });
-const carouselImages = Object.values(allImages) as string[];
+const pizzaImages = [
+  '/pizzeria/carpizza1.jpg',
+  '/pizzeria/carpizza2.jpg',
+  '/pizzeria/carpizza3.jpg',
+  '/pizzeria/carpizza4.jpg',
+  '/pizzeria/carpizza5.jpg',
+];
+const carouselImages = [...(Object.values(allImages) as string[]), ...pizzaImages];
 
-type Section = 'aperitivo' | 'pranzo' | 'cena' | 'carne' | 'drink';
+const pizzeSubcategoryMeta: Record<string, { description?: string; note?: string }> = {
+  'Il Padellino': {
+    description: 'Impasto idratato all\'85% con farine 100% italiane macinate a pietra. Lavoriamo in "biga", un pre-fermento di 18 ore a 16 gradi, per rendere il prodotto profumato e friabile contemporaneamente.',
+    note: '*Possibilità di richiedere il Padellino per intolleranti al glutine (sovrapprezzo di 3€)',
+  },
+};
+
+type Section = 'aperitivo' | 'pranzo' | 'cena' | 'carne' | 'pizze' | 'drink';
 
 const sections: { id: Section; label: string; subtitle: string }[] = [
   { id: 'aperitivo', label: 'Aperitivo', subtitle: 'Ogni giorno dalle 18:00 alle 20:00' },
   { id: 'pranzo',   label: 'Pranzo',    subtitle: 'Lunedì – Sabato, 12:00 – 15:00' },
   { id: 'cena',     label: 'Cena',      subtitle: 'Ogni sera, 19:30 – 23:00' },
   { id: 'carne',    label: 'Carne',     subtitle: 'Selezione di tagli frollati alla brace' },
+  { id: 'pizze',    label: 'Pizze',     subtitle: 'Impasto a 48h, Padellino e Pizza alla Pala' },
   { id: 'drink',    label: 'Drink',     subtitle: 'Cocktails, birre e vini al calice' },
 ];
+
 
 function getDefaultSection(): Section {
   const now = new Date();
@@ -194,7 +210,7 @@ export function Menu() {
 
           <div className="p-8 md:p-12 pt-8">
 
-        {/* Section header */}
+        {/* Section content */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
@@ -203,7 +219,7 @@ export function Menu() {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.4 }}
           >
-            <div className="mb-6" />
+            <div className="mb-3" />
 
             {/* Subcategories */}
             <div className="space-y-16">
@@ -211,16 +227,19 @@ export function Menu() {
                 const items = sectionItems.filter(i => i.subcategory === sub);
                 return (
                   <div key={sub}>
-                    {/* Subcategory title */}
                     <div className="flex items-center gap-6 mb-10">
                       <div className="flex-1 h-px bg-madia-gold/20" />
-                      <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-madia-gold">
-                        {sub}
-                      </span>
+                      <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-madia-gold">{sub}</span>
                       <div className="flex-1 h-px bg-madia-gold/20" />
                     </div>
-
-                    {/* Items */}
+                    {activeSection === 'pizze' && pizzeSubcategoryMeta[sub]?.description && (
+                      <div className="mb-10 -mt-2 text-center max-w-2xl mx-auto">
+                        <p className="text-sm text-madia-black/55 font-sans leading-relaxed font-serif italic">{pizzeSubcategoryMeta[sub].description}</p>
+                        {pizzeSubcategoryMeta[sub].note && (
+                          <p className="text-[11px] text-madia-black/35 font-sans italic mt-3">{pizzeSubcategoryMeta[sub].note}</p>
+                        )}
+                      </div>
+                    )}
                     <div className={cn('grid gap-x-12 gap-y-8', activeSection === 'drink' ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2')}>
                       {items.map((item) => (
                         <div key={item.id} className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-1 md:gap-8 group">

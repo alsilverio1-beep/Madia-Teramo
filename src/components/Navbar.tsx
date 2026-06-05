@@ -63,7 +63,7 @@ export function Navbar() {
       ],
     },
     { title: 'Steak House', href: '/#steakhouse' },
-    { title: 'Eventi', href: '/#eventi' },
+    { title: 'Eventi Privati', href: '/#eventi' },
     { title: 'Contatti', href: '/#contatti' },
   ];
 
