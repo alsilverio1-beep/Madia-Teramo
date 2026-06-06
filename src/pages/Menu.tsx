@@ -85,10 +85,10 @@ export function Menu() {
 
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="pt-28 lg:pt-28 pb-5 px-6 bg-madia-green">
-        <div className="max-w-7xl mx-auto p-8 md:p-12 bg-madia-white">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-stretch">
+        <div className="max-w-7xl mx-auto py-8 px-4 md:p-12 bg-madia-white">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
             {/* Text */}
-            <div className="lg:col-span-6 flex flex-col">
+            <div className="lg:col-span-6 flex flex-col border-l border-madia-gold/30 pl-4 lg:pl-8">
               <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">
                 Carta Gastronomica
               </span>
@@ -99,7 +99,7 @@ export function Menu() {
               <p className="text-madia-black/60 font-sans text-sm leading-relaxed mb-8">
                 Il <strong style={{fontWeight:'inherit'}}>ristorante Madia di Teramo</strong> propone una carta gastronomica che cambia con le stagioni, nel cuore del centro storico. Dalla <strong style={{fontWeight:'inherit'}}>pizza artigianale</strong> con impasto a 48 ore alle <strong style={{fontWeight:'inherit'}}>carni frollate selezionate</strong>, dai primi piatti della tradizione abruzzese ai cocktail dell'aperitivo: ogni proposta nasce dal rispetto per la materia prima e per il territorio del Gran Sasso.
               </p>
-              <div className="mt-auto pt-6 border-t border-madia-gold/20">
+              <div className="mt-auto pt-6 border-t border-madia-gold/20 flex justify-center lg:justify-start">
                 <button onClick={openBooking} className="group flex items-end gap-3">
                   <div className="text-left">
                     <span className="block text-[8px] uppercase tracking-[0.5em] text-madia-gold mb-1.5">Riserva il tuo posto</span>
@@ -183,8 +183,27 @@ export function Menu() {
           <div className="bg-madia-white">
 
           {/* ── Sticky filter inside white box ───────────────── */}
-          <div id="menu-content" className="sticky top-[88px] z-30 bg-madia-white px-8 md:px-12 pt-8 pb-0">
-            <div className="flex overflow-x-auto scrollbar-none justify-start md:justify-center gap-8 md:gap-16 lg:gap-24">
+          <div id="menu-content" className="md:sticky md:top-[88px] md:z-30 bg-madia-white px-8 md:px-12 pt-8 pb-0">
+            {/* Mobile: verticale */}
+            <div className="flex flex-col md:hidden border border-madia-gold/20 mb-4">
+              {sections.map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => setActiveSection(s.id)}
+                  className={cn(
+                    'relative px-5 py-3.5 text-left border-b border-madia-gold/15 last:border-b-0 transition-colors duration-300',
+                    activeSection === s.id ? 'bg-madia-green text-madia-white' : 'text-madia-black/40 hover:text-madia-black/70'
+                  )}
+                >
+                  <span className="text-[10px] uppercase tracking-[0.4em] font-bold">{s.label}</span>
+                  {activeSection === s.id && (
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-madia-gold" />
+                  )}
+                </button>
+              ))}
+            </div>
+            {/* Desktop: orizzontale */}
+            <div className="hidden md:flex overflow-x-auto scrollbar-none justify-start md:justify-center gap-8 md:gap-16 lg:gap-24">
               {sections.map((s) => (
                 <button
                   key={s.id}
@@ -205,7 +224,7 @@ export function Menu() {
                 </button>
               ))}
             </div>
-            <div className="h-px bg-gradient-to-r from-transparent via-madia-gold/30 to-transparent" />
+            <div className="hidden md:block h-px bg-gradient-to-r from-transparent via-madia-gold/30 to-transparent" />
           </div>
 
           <div className="p-8 md:p-12 pt-8">

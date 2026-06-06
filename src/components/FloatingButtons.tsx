@@ -28,7 +28,7 @@ export function FloatingButtons() {
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className={cn(
-          'hidden lg:flex w-11 h-11 rounded-full bg-madia-green border border-madia-gold/40 text-madia-gold items-center justify-center hover:bg-madia-gold hover:text-madia-green transition-all duration-500',
+          'flex w-11 h-11 rounded-full bg-madia-green border border-madia-gold/40 text-madia-gold items-center justify-center hover:bg-madia-gold hover:text-madia-green transition-all duration-500',
           visible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
         )}
         aria-label="Torna in cima"

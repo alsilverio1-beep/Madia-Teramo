@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, MouseEvent } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, Phone, MapPin, ChevronDown, Mail } from 'lucide-react';
+import { Menu, Phone, MapPin, ChevronDown, Mail, Facebook, Instagram } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useBooking } from '../context/BookingContext';
 
@@ -303,25 +303,35 @@ export function Navbar() {
 
               {/* Divider + info contatti */}
               <div className="border-t border-madia-gold/30 mx-8 mt-2" />
-              <div className="flex flex-col items-center gap-4 px-8 pt-16 pb-10">
-                <p className="text-[8px] uppercase tracking-[0.35em] text-madia-gold/60 font-bold">Dove siamo</p>
-                <div className="flex flex-col items-center gap-3">
-                  <span className="flex items-center gap-2 text-[10px] tracking-[0.15em] text-madia-white/70 whitespace-nowrap">
-                    <MapPin size={11} className="text-madia-gold/70 shrink-0" />
-                    Piazza Sant'Agostino, 10 — 64100 Teramo
-                  </span>
-                  <span className="flex items-center gap-2 text-[10px] tracking-[0.15em] text-madia-white/70 whitespace-nowrap">
-                    <Phone size={11} className="text-madia-gold/70 shrink-0" />
-                    +39 377 333 4838
-                  </span>
-                  <a
-                    href="mailto:madia.teramo@gmail.com"
-                    className="flex items-center gap-2 text-[10px] tracking-[0.15em] text-madia-white/70 hover:text-madia-gold transition-colors whitespace-nowrap"
-                  >
-                    <Mail size={11} className="text-madia-gold/70 shrink-0" />
-                    madia.teramo@gmail.com
-                  </a>
-                </div>
+              <div className="flex flex-col items-center gap-3 px-8 pt-8 pb-6">
+                <span className="flex items-center gap-2 text-[10px] tracking-[0.15em] text-madia-white/70 whitespace-nowrap">
+                  <MapPin size={11} className="text-madia-gold/70 shrink-0" />
+                  Piazza Sant'Agostino, 10 — 64100 Teramo
+                </span>
+                <span className="flex items-center gap-2 text-[10px] tracking-[0.15em] text-madia-white/70 whitespace-nowrap">
+                  <Phone size={11} className="text-madia-gold/70 shrink-0" />
+                  +39 377 333 4838
+                </span>
+                <a
+                  href="mailto:madia.teramo@gmail.com"
+                  className="flex items-center gap-2 text-[10px] tracking-[0.15em] text-madia-white/70 hover:text-madia-gold transition-colors whitespace-nowrap"
+                >
+                  <Mail size={11} className="text-madia-gold/70 shrink-0" />
+                  madia.teramo@gmail.com
+                </a>
+              </div>
+
+              {/* Social icons */}
+              <div className="flex items-center justify-center gap-6 pb-10">
+                <a href="https://www.facebook.com/madia.teramo/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-madia-gold/60 hover:text-madia-gold transition-colors duration-300">
+                  <Facebook size={20} />
+                </a>
+                <a href="https://www.instagram.com/madia_teramo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-madia-gold/60 hover:text-madia-gold transition-colors duration-300">
+                  <Instagram size={20} />
+                </a>
+                <a href="https://www.tripadvisor.it/Restaurant_Review-g660757-d25375490-Reviews-MADIA-Teramo_Province_of_Teramo_Abruzzo.html" target="_blank" rel="noopener noreferrer" aria-label="TripAdvisor" className="text-madia-gold/60 hover:text-madia-gold transition-colors duration-300">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.43 5.976 5.976 0 0 0 4.075-1.6L12 19.705l1.922-2.09a5.972 5.972 0 0 0 4.072 1.598 6 6 0 0 0 6-5.998 5.982 5.982 0 0 0-1.957-4.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM12 6.255c1.531 0 3.063.303 4.504.903C13.943 8.138 12 10.43 12 13.1c0-2.671-1.942-4.962-4.504-5.942A11.72 11.72 0 0 1 12 6.256zM6.002 9.157a4.059 4.059 0 1 1 0 8.118 4.059 4.059 0 0 1 0-8.118zm11.992.002a4.057 4.057 0 1 1 .003 8.115 4.057 4.057 0 0 1-.003-8.115zm-11.992 1.93a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256zm11.992 0a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256z"/></svg>
+                </a>
               </div>
             </motion.div>
           )}

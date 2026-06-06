@@ -240,7 +240,7 @@ export function Home() {
 
       {/* 2. Chi Siamo Section */}
       <section id="chi-siamo" className="pt-10 pb-20 px-6 bg-madia-green">
-        <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12 space-y-12 lg:space-y-20">
+        <div className="max-w-7xl mx-auto bg-madia-white py-8 px-4 md:p-12 space-y-12 lg:space-y-20">
 
           {/* Block 1: media sinistra — testo destra */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
@@ -268,7 +268,7 @@ export function Home() {
                 </button>
               </div>
             </div>
-            <div className="order-1 lg:order-2 space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
+            <div className="order-1 lg:order-2 space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-4 lg:pl-8">
               <div className="mb-8">
                 <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-4 block">Chi Siamo</span>
                 <h2 className="text-5xl md:text-7xl text-madia-green font-serif lowercase italic">il ristorante</h2>
@@ -287,7 +287,7 @@ export function Home() {
 
           {/* Block 2: testo sinistra — media destra */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div className="order-2 lg:order-1 space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
+            <div className="order-2 lg:order-1 space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-4 lg:pl-8">
               <p>
                 La <strong style={{fontWeight:'inherit'}}>Steak House di Madia</strong> è oggi un punto di riferimento per gli amanti della <strong style={{fontWeight:'inherit'}}>carne a Teramo</strong> e in tutto l'Abruzzo. Le nostre frollature, curate direttamente dallo chef, esaltano il sapore naturale di razze bovine pregiate, servite alla brace con contorni stagionali e salse artigianali.
               </p>
@@ -313,11 +313,11 @@ export function Home() {
 
       {/* 3. Pizzeria Section */}
       <section id="pizzeria" className="bg-madia-white pt-10 pb-20 px-6 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto bg-madia-green p-8 md:p-12">
+        <div className="max-w-7xl mx-auto bg-madia-green py-8 px-4 md:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
 
             {/* Testo sinistra */}
-            <div className="order-1 lg:order-1 flex flex-col text-madia-white/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
+            <div className="order-1 lg:order-1 flex flex-col text-madia-white/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-4 lg:pl-8">
               <div className="mb-8">
                 <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-4 block">Pizzeria</span>
                 <h2 className="text-5xl md:text-7xl text-madia-white font-serif lowercase italic">il nostro padellino</h2>
@@ -387,7 +387,7 @@ export function Home() {
 
       {/* 4. Steak House (Polished Preview) */}
       <section id="steakhouse" className="bg-madia-green pt-10 pb-20 px-6 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12">
+        <div className="max-w-7xl mx-auto bg-madia-white py-8 px-4 md:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
            <div className="order-2 lg:order-1 grid grid-cols-2 lg:grid-cols-[2fr_1fr] gap-4 h-full">
              <div className="thin-border p-2  h-full">
@@ -403,7 +403,7 @@ export function Home() {
              </div>
            </div>
            <div className="order-1 lg:order-2 flex flex-col">
-             <div className="border-l border-madia-gold/30 pl-8 flex flex-col gap-8">
+             <div className="border-l border-madia-gold/30 pl-4 lg:pl-8 flex flex-col gap-8">
                <div className="mb-2">
                  <span className="text-madia-gold text-[10px] uppercase tracking-[0.4em] font-bold block mb-4">Steak Selection</span>
                  <h2 className="text-5xl md:text-6xl text-madia-green font-serif font-light leading-tight">eccellenza in <br /> <span className="italic">frollatura</span></h2>
@@ -436,31 +436,32 @@ export function Home() {
 
       {/* 5. Eventi Section */}
       <section id="eventi" className="pt-10 pb-20 px-6 bg-madia-white">
-        <div className="max-w-7xl mx-auto bg-madia-green p-8 md:p-12">
+        <div className="max-w-7xl mx-auto bg-madia-green py-8 px-4 md:p-12">
           <div className="flex flex-col lg:flex-row gap-12 items-stretch">
-          <div className="order-1 lg:w-1/2 space-y-8 pb-0">
-            <div>
-              <span className="block text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold leading-none mb-4">Momenti Unici</span>
-              <h2 className="text-5xl text-madia-white font-serif lowercase italic">eventi privati</h2>
-            </div>
-            <p className="text-madia-white/70 font-sans text-sm leading-relaxed max-w-md">
-              <strong className="font-[inherit]">Madia</strong> è il ristorante ideale a Teramo per organizzare{' '}
-              <strong className="font-[inherit]">eventi privati</strong> su misura. Grazie ai suoi ampi spazi accoglie{' '}
-              <strong className="font-[inherit]">cene aziendali</strong>,{' '}
-              <strong className="font-[inherit]">compleanni</strong> e celebrazioni con un{' '}
-              <strong className="font-[inherit]">menù dedicato</strong> studiato insieme a voi, in un'atmosfera esclusiva e riservata.
-            </p>
-            <div className="border-t border-white/10 pt-6">
-              <p className="text-[9px] uppercase tracking-[0.4em] text-madia-white/30 mb-5 font-bold">I nostri ambienti</p>
-              <div className="grid grid-cols-3 gap-4">
-                <div className="border-l border-madia-gold/40 pl-4">
-                  <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2">Sala Principale</h4>
-                  <p className="text-[11px] text-madia-white/40 leading-relaxed">Il cuore del ristorante, per gruppi e occasioni speciali.</p>
-                </div>
-                <div className="border-l border-madia-gold/40 pl-4 relative">
-                  <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2">Piano Superiore</h4>
-                  <div
-                    className="absolute -top-6 right-0 flex items-center justify-center"
+          <div className="order-1 lg:w-1/2">
+            <div className="inline-flex flex-col gap-8 border-l border-madia-gold/30 pl-4 lg:pl-8 w-full">
+              <div>
+                <span className="block text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold leading-none mb-4">Momenti Unici</span>
+                <h2 className="text-5xl text-madia-white font-serif lowercase italic">eventi privati</h2>
+              </div>
+              <p className="text-madia-white/70 font-sans text-sm leading-relaxed max-w-md">
+                <strong className="font-[inherit]">Madia</strong> è il ristorante ideale a Teramo per organizzare{' '}
+                <strong className="font-[inherit]">eventi privati</strong> su misura. Grazie ai suoi ampi spazi accoglie{' '}
+                <strong className="font-[inherit]">cene aziendali</strong>,{' '}
+                <strong className="font-[inherit]">compleanni</strong> e celebrazioni con un{' '}
+                <strong className="font-[inherit]">menù dedicato</strong> studiato insieme a voi, in un'atmosfera esclusiva e riservata.
+              </p>
+              <div className="border-t border-white/10 pt-6">
+                <p className="text-[9px] uppercase tracking-[0.4em] text-madia-white/30 mb-5 font-bold">I nostri ambienti</p>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="border-l border-madia-gold/40 pl-4">
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2">Sala Principale</h4>
+                    <p className="text-[11px] text-madia-white/40 leading-relaxed">Il cuore del ristorante, per gruppi e occasioni speciali.</p>
+                  </div>
+                  <div className="border-l border-madia-gold/40 pl-4 relative">
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2">Piano Superiore</h4>
+                    <div
+                      className="absolute -top-6 right-0 flex items-center justify-center"
                       style={{
                         width: 52,
                         height: 52,
@@ -474,13 +475,18 @@ export function Home() {
                         <span>tuned</span>
                       </span>
                     </div>
-                  <p className="text-[11px] text-madia-white/40 leading-relaxed">Sala riservata al primo piano, totalmente privata.</p>
-                </div>
-                <div className="border-l border-madia-gold/40 pl-4">
-                  <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2">Dehors Esterno</h4>
-                  <p className="text-[11px] text-madia-white/40 leading-relaxed">Dehors su Piazza Sant'Agostino, aperto in stagione.</p>
+                    <p className="text-[11px] text-madia-white/40 leading-relaxed">Sala riservata al primo piano, totalmente privata.</p>
+                  </div>
+                  <div className="border-l border-madia-gold/40 pl-4">
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold text-madia-white mb-2">Dehors Esterno</h4>
+                    <p className="text-[11px] text-madia-white/40 leading-relaxed">Dehors su Piazza Sant'Agostino, aperto in stagione.</p>
+                  </div>
                 </div>
               </div>
+              {/* Desktop only */}
+              <button onClick={() => setQuoteOpen(true)} className="hidden lg:block border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center">
+                📋 Richiedi un preventivo
+              </button>
             </div>
           </div>
           <div className="order-2 lg:w-1/2 thin-border p-2">
@@ -492,6 +498,7 @@ export function Home() {
               />
             </div>
           </div>
+          {/* Mobile only — dopo la foto */}
           <button onClick={() => setQuoteOpen(true)} className="order-3 lg:hidden border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center">
             📋 Richiedi un preventivo
           </button>
@@ -592,7 +599,7 @@ export function Home() {
 
       {/* 7. Contatti Section */}
       <section id="contatti" className="pt-10 pb-20 px-6 bg-madia-green">
-        <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12">
+        <div className="max-w-7xl mx-auto bg-madia-white py-8 px-4 md:p-12">
           <div className="mb-10 text-center">
             <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">Vieni a trovarci</span>
             <h2 className="text-5xl md:text-6xl text-madia-green font-serif lowercase italic">siamo qui per te</h2>
@@ -614,15 +621,14 @@ export function Home() {
               <div className="flex items-start gap-3 pt-1">
                 <Clock size={18} className="text-madia-gold shrink-0 mt-0.5" />
                 <div className="text-xs lg:text-sm font-sans text-madia-white space-y-1">
-                  {[
-                    { day: 'Lun – Sab', hours: '12:30–14:30, 18:00–23:00' },
-                    { day: 'Domenica', hours: '18:00–23:00' },
-                  ].map(({ day, hours }) => (
-                    <div key={day} className="flex gap-2">
-                      <span className="text-white/40 w-20 shrink-0">{day}</span>
-                      <span>{hours}</span>
-                    </div>
-                  ))}
+                  <div className="flex gap-2">
+                    <span className="text-white/40 w-20 shrink-0">Lun – Sab</span>
+                    <span className="flex flex-col"><span>12:30–14:30</span><span>18:00–23:00</span></span>
+                  </div>
+                  <div className="flex gap-2">
+                    <span className="text-white/40 w-20 shrink-0">Domenica</span>
+                    <span>18:00–23:00</span>
+                  </div>
                 </div>
               </div>
             </div>

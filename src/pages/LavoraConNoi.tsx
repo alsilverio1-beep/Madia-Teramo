@@ -56,12 +56,12 @@ export function LavoraConNoi() {
         canonical="/lavora-con-noi"
         noindex={true}
       />
-    <section className="pt-24 lg:pt-28 pb-20 px-6 bg-madia-green">
-      <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12">
+    <section className="pt-24 lg:pt-28 pb-10 lg:pb-20 px-6 bg-madia-green">
+      <div className="max-w-7xl mx-auto bg-madia-white py-8 px-4 md:p-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
 
           {/* Info — stile sezione ristorante */}
-          <div className="lg:col-span-5 space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
+          <div className="lg:col-span-5 space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-4 lg:pl-8">
             <div className="mb-8">
               <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-4 block">Carriera</span>
               <h1 className="text-5xl md:text-7xl text-madia-green font-serif lowercase italic">lavora con noi</h1>
@@ -175,7 +175,7 @@ export function LavoraConNoi() {
                   onDragEnter={() => setDragging(true)}
                   onDragLeave={() => setDragging(false)}
                   onDrop={onDrop}
-                  className={`flex items-center gap-4 px-5 py-4 border border-dashed rounded transition-all duration-300 ${
+                  className={`flex flex-col sm:flex-row items-center gap-3 sm:gap-4 px-5 py-5 border border-dashed rounded transition-all duration-300 ${
                     dragging
                       ? 'border-madia-gold bg-white/5 cursor-copy'
                       : file
@@ -190,7 +190,7 @@ export function LavoraConNoi() {
 
                   {file ? (
                     <>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 text-center sm:text-left">
                         <p className="text-sm font-sans text-madia-white truncate leading-none">{file.name}</p>
                         <p className="text-[10px] font-sans text-white/35 mt-1">{formatSize(file.size)}</p>
                       </div>
@@ -204,15 +204,11 @@ export function LavoraConNoi() {
                     </>
                   ) : (
                     <>
-                      <div className="flex-1">
-                        <p className="text-sm font-sans text-white/35 leading-none">
-                          Allega curriculum
-                        </p>
-                        <p className="text-[9px] uppercase tracking-[0.25em] font-bold text-white/15 mt-1.5">
-                          PDF · DOC · DOCX · ODT
-                        </p>
+                      <div className="text-center sm:text-left sm:flex-1">
+                        <p className="text-sm font-sans text-white/35 leading-none">Allega curriculum</p>
+                        <p className="text-[9px] uppercase tracking-[0.25em] font-bold text-white/15 mt-1.5">PDF · DOC · DOCX · ODT</p>
                       </div>
-                      <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-madia-gold/40 shrink-0 border border-madia-gold/20 px-3 py-1.5">
+                      <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-madia-gold/40 border border-madia-gold/20 px-3 py-1.5 whitespace-nowrap">
                         Sfoglia
                       </span>
                     </>
