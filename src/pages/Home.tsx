@@ -336,6 +336,21 @@ export function Home() {
                 *Possibilità di richiedere il Padellino per <strong style={{fontWeight:'inherit'}}>intolleranti al glutine</strong> (sovrapprezzo di 3€)
               </p>
               </div>
+              {/* Pulsanti — dentro la colonna testo, spinti in fondo */}
+              <div className="mt-auto pt-8 flex flex-col sm:flex-row gap-4">
+                <Link
+                  to="/menu-pizza"
+                  className="border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center"
+                >
+                  🍽️ Consulta il menù pizza
+                </Link>
+                <button
+                  onClick={openBooking}
+                  className="border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center"
+                >
+                  🗓️ Prenota un tavolo
+                </button>
+              </div>
             </div>
 
             {/* Media destra */}
@@ -365,21 +380,6 @@ export function Home() {
               </div>
             </div>
 
-            {/* Pulsanti */}
-            <div className="order-3 flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/menu-pizza"
-                className="border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center"
-              >
-                🍽️ Consulta il menù pizza
-              </Link>
-              <button
-                onClick={openBooking}
-                className="border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center"
-              >
-                🗓️ Prenota un tavolo
-              </button>
-            </div>
 
           </div>
         </div>
