@@ -39,10 +39,10 @@ const sections: { id: Section; label: string; subtitle: string }[] = [
 function getDefaultSection(): Section {
   const now = new Date();
   const mins = now.getHours() * 60 + now.getMinutes();
-  if (mins >= 11 * 60 && mins < 18 * 60) return 'pranzo';   // 11:00–18:00 (Pranzo + fascia Pizzeria)
+  if (mins >= 11 * 60 && mins < 18 * 60) return 'pranzo';   // 11:00–18:00
   if (mins >= 18 * 60 && mins < 20 * 60) return 'aperitivo'; // 18:00–20:00
   if (mins >= 20 * 60) return 'cena';                        // 20:00–23:59
-  return 'aperitivo';                                        // 00:00–11:00
+  return 'pranzo';                                           // 00:00–11:00 (notte/mattina)
 }
 
 export function Menu() {
