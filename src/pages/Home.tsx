@@ -669,7 +669,7 @@ export function Home() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 border-2 border-madia-gold p-12 relative bg-madia-green rounded-2xl">
+          <div className="lg:col-span-7 border-2 border-madia-gold p-6 md:p-12 relative bg-madia-green rounded-2xl">
 <form className="space-y-8" onSubmit={async (e: FormEvent) => {
                 e.preventDefault();
                 const form = e.target as HTMLFormElement;

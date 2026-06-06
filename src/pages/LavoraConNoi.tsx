@@ -91,7 +91,7 @@ export function LavoraConNoi() {
           </div>
 
           {/* Form box */}
-          <div className="lg:col-span-7 border-2 border-madia-gold p-12 bg-madia-green rounded-2xl">
+          <div className="lg:col-span-7 border-2 border-madia-gold p-6 md:p-12 bg-madia-green rounded-2xl">
           {status === 'success' ? (
             <div className="text-center space-y-4 py-16">
               <p className="text-madia-gold text-4xl">✓</p>
