@@ -226,13 +226,13 @@ export function Home() {
                 <CalendarDays size={13} className="opacity-80 group-hover:opacity-100 transition-opacity duration-500" strokeWidth={1.5} />
                 Prenota il tuo tavolo
               </button>
-              <a
-                href="/menu"
+              <Link
+                to="/menu"
                 className="group flex items-center justify-center gap-3 border-2 border-madia-gold text-madia-white bg-madia-gold/40 w-64 py-4 hover:bg-madia-gold hover:text-madia-green transition-all duration-500 font-bold uppercase tracking-[0.2em] text-[10px] whitespace-nowrap"
               >
                 <UtensilsCrossed size={13} className="opacity-80 group-hover:opacity-100 transition-opacity duration-500" strokeWidth={1.5} />
                 Consulta il menu
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>
