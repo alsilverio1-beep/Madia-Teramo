@@ -84,7 +84,7 @@ export function Menu() {
     <div className="min-h-screen bg-madia-white">
 
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="pt-32 pb-5 px-6 bg-madia-green">
+      <section className="pt-28 lg:pt-28 pb-5 px-6 bg-madia-green">
         <div className="max-w-7xl mx-auto p-8 md:p-12 bg-madia-white">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-stretch">
             {/* Text */}
@@ -183,8 +183,8 @@ export function Menu() {
           <div className="bg-madia-white">
 
           {/* ── Sticky filter inside white box ───────────────── */}
-          <div id="menu-content" className="sticky top-[76px] z-30 bg-madia-white px-8 md:px-12 pt-8 pb-0">
-            <div className="flex justify-center gap-16 md:gap-24">
+          <div id="menu-content" className="sticky top-[88px] z-30 bg-madia-white px-8 md:px-12 pt-8 pb-0">
+            <div className="flex overflow-x-auto scrollbar-none justify-start md:justify-center gap-8 md:gap-16 lg:gap-24">
               {sections.map((s) => (
                 <button
                   key={s.id}

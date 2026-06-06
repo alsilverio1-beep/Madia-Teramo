@@ -58,3 +58,22 @@
   @apply py-24 px-6 md:px-12;
 }
 
+/* Navbar mobile/desktop visibility */
+.mobile-only {
+  display: flex !important;
+}
+@media (min-width: 1024px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+.desktop-only {
+  display: none !important;
+}
+@media (min-width: 1024px) {
+  .desktop-only {
+    display: flex !important;
+  }
+}
+

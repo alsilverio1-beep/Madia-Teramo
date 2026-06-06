@@ -189,8 +189,9 @@ export function Home() {
             className="w-full h-full object-cover"
             src="/hero1.mp4"
           />
-          <div className="absolute inset-0 0"></div>
+          <div className="absolute inset-0 bg-black/40"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#062a22] via-transparent to-transparent opacity-80"></div>
+          <div className="absolute inset-0" style={{background: 'radial-gradient(ellipse 70% 60% at 50% 45%, rgba(6,42,34,0.55) 0%, transparent 100%)'}}></div>
         </div>
 
         <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6">
@@ -206,7 +207,7 @@ export function Home() {
               fetchPriority="high"
               className="h-24 md:h-36 w-auto object-contain drop-shadow-2xl"
             />
-            <div className="flex items-center gap-3 text-madia-white/50 text-[9px] uppercase tracking-[0.4em]">
+            <div className="flex items-center gap-3 text-madia-white/80 text-[9px] uppercase tracking-[0.4em]">
               <span>Ristorante</span>
               <span className="text-madia-gold">·</span>
               <span>Pizzeria</span>
@@ -239,16 +240,16 @@ export function Home() {
 
       {/* 2. Chi Siamo Section */}
       <section id="chi-siamo" className="pt-10 pb-20 px-6 bg-madia-green">
-        <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12 space-y-20">
+        <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12 space-y-12 lg:space-y-20">
 
           {/* Block 1: media sinistra — testo destra */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
-            <div className="flex flex-col justify-between gap-6">
+            <div className="order-2 lg:order-1 flex flex-col justify-between gap-6">
               <div className="grid grid-cols-2 gap-4">
-                <div className="aspect-[4/5] thin-border p-2">
+                <div className="aspect-[2/3] thin-border p-2">
                   <video autoPlay muted loop playsInline className="w-full h-full object-cover" src="/chisiamo1.mp4" />
                 </div>
-                <div className="aspect-[4/5] thin-border p-2 mt-12">
+                <div className="aspect-[2/3] thin-border p-2 mt-6">
                   <img src="/chef1.jpg" loading="lazy" className="w-full h-full object-cover" alt="Lo chef di Madia Teramo" />
                 </div>
               </div>
@@ -267,7 +268,7 @@ export function Home() {
                 </button>
               </div>
             </div>
-            <div className="space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
+            <div className="order-1 lg:order-2 space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
               <div className="mb-8">
                 <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-4 block">Chi Siamo</span>
                 <h2 className="text-5xl md:text-7xl text-madia-green font-serif lowercase italic">il ristorante</h2>
@@ -286,7 +287,7 @@ export function Home() {
 
           {/* Block 2: testo sinistra — media destra */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div className="space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
+            <div className="order-2 lg:order-1 space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
               <p>
                 La <strong style={{fontWeight:'inherit'}}>Steak House di Madia</strong> è oggi un punto di riferimento per gli amanti della <strong style={{fontWeight:'inherit'}}>carne a Teramo</strong> e in tutto l'Abruzzo. Le nostre frollature, curate direttamente dallo chef, esaltano il sapore naturale di razze bovine pregiate, servite alla brace con contorni stagionali e salse artigianali.
               </p>
@@ -297,11 +298,11 @@ export function Home() {
                 Cerchi un <strong style={{fontWeight:'inherit'}}>ristorante a Teramo</strong> per una cena romantica, un pranzo di lavoro o una serata con amici? Da Madia trovi un ambiente curato, un servizio attento e una cucina che non delude. Prenota il tuo tavolo e lasciati sorprendere.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="aspect-[4/5] thin-border p-2 mt-8">
+            <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">
+              <div className="aspect-[2/3] thin-border p-2">
                 <img src="/chisiamo2.jpg" loading="lazy" className="w-full h-full object-cover" alt="Ristorante Madia Teramo" />
               </div>
-              <div className="aspect-[4/5] thin-border p-2">
+              <div className="aspect-[2/3] thin-border p-2 mt-6">
                 <img src="/chisiamo3.jpg" loading="lazy" className="w-full h-full object-cover" alt="Cucina Madia Teramo" />
               </div>
             </div>
@@ -313,10 +314,10 @@ export function Home() {
       {/* 3. Pizzeria Section */}
       <section id="pizzeria" className="bg-madia-white pt-10 pb-20 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto bg-madia-green p-8 md:p-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
 
             {/* Testo sinistra */}
-            <div className="flex flex-col text-madia-white/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
+            <div className="order-1 lg:order-1 flex flex-col text-madia-white/70 font-sans text-sm leading-relaxed border-l border-madia-gold/30 pl-8">
               <div className="mb-8">
                 <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-4 block">Pizzeria</span>
                 <h2 className="text-5xl md:text-7xl text-madia-white font-serif lowercase italic">il nostro padellino</h2>
@@ -335,33 +336,19 @@ export function Home() {
                 *Possibilità di richiedere il Padellino per <strong style={{fontWeight:'inherit'}}>intolleranti al glutine</strong> (sovrapprezzo di 3€)
               </p>
               </div>
-              <div className="mt-auto pt-6 flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="/menu-pizza"
-                  className="border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center"
-                >
-                  🍽️ Consulta il menù pizza
-                </Link>
-                <button
-                  onClick={openBooking}
-                  className="border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center"
-                >
-                  🗓️ Prenota un tavolo
-                </button>
-              </div>
             </div>
 
             {/* Media destra */}
-            <div className="grid grid-cols-[1fr_2fr] gap-4 h-full">
+            <div className="order-2 lg:order-2 grid grid-cols-2 lg:grid-cols-[1fr_2fr] gap-4 h-full">
               <div className="flex flex-col gap-4 h-full">
-                <div className="thin-border p-2 flex-1 overflow-hidden">
+                <div className="aspect-[2/3] thin-border p-2 overflow-hidden">
                   <video
                     src="/pizzeria/videopizza1.mp4"
                     autoPlay muted loop playsInline
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="thin-border p-2 flex-1 overflow-hidden">
+                <div className="aspect-[2/3] thin-border p-2 overflow-hidden">
                   <video
                     src="/pizzeria/videopizza2.mp4"
                     autoPlay muted loop playsInline
@@ -378,6 +365,22 @@ export function Home() {
               </div>
             </div>
 
+            {/* Pulsanti */}
+            <div className="order-3 flex flex-col sm:flex-row gap-4">
+              <Link
+                to="/menu-pizza"
+                className="border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center"
+              >
+                🍽️ Consulta il menù pizza
+              </Link>
+              <button
+                onClick={openBooking}
+                className="border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center"
+              >
+                🗓️ Prenota un tavolo
+              </button>
+            </div>
+
           </div>
         </div>
       </section>
@@ -385,21 +388,21 @@ export function Home() {
       {/* 4. Steak House (Polished Preview) */}
       <section id="steakhouse" className="bg-madia-green pt-10 pb-20 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
-           <div className="grid grid-cols-[2fr_1fr] gap-4 h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+           <div className="order-2 lg:order-1 grid grid-cols-2 lg:grid-cols-[2fr_1fr] gap-4 h-full">
              <div className="thin-border p-2  h-full">
                <img src="/grill1.jpg" loading="lazy" className="w-full h-full object-cover" alt="Grill Madia Teramo" />
              </div>
              <div className="flex flex-col gap-4 h-full">
-               <div className="thin-border p-2  flex-1">
+               <div className="aspect-[2/3] thin-border p-2">
                  <img src="/grill2.jpg" loading="lazy" className="w-full h-full object-cover" alt="Brace Madia Teramo" />
                </div>
-               <div className="thin-border p-2  flex-1">
+               <div className="aspect-[2/3] thin-border p-2">
                  <img src="/grill3.jpg" loading="lazy" className="w-full h-full object-cover" alt="Steak House Madia Teramo" />
                </div>
              </div>
            </div>
-           <div className="flex flex-col">
+           <div className="order-1 lg:order-2 flex flex-col">
              <div className="border-l border-madia-gold/30 pl-8 flex flex-col gap-8">
                <div className="mb-2">
                  <span className="text-madia-gold text-[10px] uppercase tracking-[0.4em] font-bold block mb-4">Steak Selection</span>
@@ -434,8 +437,8 @@ export function Home() {
       {/* 5. Eventi Section */}
       <section id="eventi" className="pt-10 pb-20 px-6 bg-madia-white">
         <div className="max-w-7xl mx-auto bg-madia-green p-8 md:p-12">
-          <div className="flex flex-col lg:flex-row gap-16 items-stretch">
-          <div className="lg:w-1/2 space-y-8">
+          <div className="flex flex-col lg:flex-row gap-12 items-stretch">
+          <div className="order-1 lg:w-1/2 space-y-8 pb-0">
             <div>
               <span className="block text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold leading-none mb-4">Momenti Unici</span>
               <h2 className="text-5xl text-madia-white font-serif lowercase italic">eventi privati</h2>
@@ -479,11 +482,8 @@ export function Home() {
                 </div>
               </div>
             </div>
-            <button onClick={() => setQuoteOpen(true)} className="border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center">
-              📋 Richiedi un preventivo
-            </button>
           </div>
-          <div className="lg:w-1/2 thin-border p-2">
+          <div className="order-2 lg:w-1/2 thin-border p-2">
             <div className="relative overflow-hidden min-h-[300px] h-full">
               <img
                 src="/eventi1.jpg"
@@ -492,6 +492,9 @@ export function Home() {
               />
             </div>
           </div>
+          <button onClick={() => setQuoteOpen(true)} className="order-3 lg:hidden border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center">
+            📋 Richiedi un preventivo
+          </button>
           </div>
         </div>
       </section>
@@ -595,28 +598,28 @@ export function Home() {
             <h2 className="text-5xl md:text-6xl text-madia-green font-serif lowercase italic">siamo qui per te</h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          <div className="lg:col-span-5 border-2 border-madia-gold p-12 space-y-6 bg-madia-green rounded-2xl">
-            <div className="space-y-8">
+          <div className="lg:col-span-5 border-2 border-madia-gold p-6 lg:p-12 space-y-6 bg-madia-green rounded-2xl">
+            <div className="space-y-6">
               {[
                 { value: "Piazza Sant'Agostino, 10, 64100 Teramo TE", icon: MapPin },
                 { value: '+39 377 333 4838', icon: Phone },
                 { value: 'madia.teramo@gmail.com', icon: Mail },
               ].map((item) => (
-                <div key={item.value} className="flex items-center gap-4">
-                  <item.icon size={24} className="text-madia-gold shrink-0" />
-                  <p className="text-sm font-sans text-madia-white">{item.value}</p>
+                <div key={item.value} className="flex items-center gap-3">
+                  <item.icon size={18} className="text-madia-gold shrink-0" />
+                  <p className="text-xs lg:text-sm font-sans text-madia-white">{item.value}</p>
                 </div>
               ))}
 
-              <div className="flex items-start gap-4 pt-2">
-                <Clock size={24} className="text-madia-gold shrink-0 mt-0.5" />
-                <div className="text-sm font-sans text-madia-white space-y-1">
+              <div className="flex items-start gap-3 pt-1">
+                <Clock size={18} className="text-madia-gold shrink-0 mt-0.5" />
+                <div className="text-xs lg:text-sm font-sans text-madia-white space-y-1">
                   {[
                     { day: 'Lun – Sab', hours: '12:30–14:30, 18:00–23:00' },
                     { day: 'Domenica', hours: '18:00–23:00' },
                   ].map(({ day, hours }) => (
-                    <div key={day} className="flex gap-3">
-                      <span className="text-white/40 w-24 shrink-0">{day}</span>
+                    <div key={day} className="flex gap-2">
+                      <span className="text-white/40 w-20 shrink-0">{day}</span>
                       <span>{hours}</span>
                     </div>
                   ))}
@@ -625,8 +628,8 @@ export function Home() {
             </div>
 
             <div className="pt-2">
-              <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/30 mb-4">Seguici sui social</p>
-              <div className="flex items-center gap-5">
+              <p className="text-[9px] uppercase tracking-[0.35em] text-white/40 text-center block mb-4">Social Network</p>
+              <div className="flex items-center justify-center gap-5">
                 <a href="https://www.facebook.com/madia.teramo/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-madia-gold hover:text-white transition-colors duration-300">
                   <Facebook size={24} />
                 </a>
