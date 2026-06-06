@@ -24,11 +24,11 @@ export function FloatingButtons() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-0.5">
-      {/* Scroll to top */}
+      {/* Scroll to top — solo desktop */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className={cn(
-          'w-11 h-11 rounded-full bg-madia-green border border-madia-gold/40 text-madia-gold flex items-center justify-center hover:bg-madia-gold hover:text-madia-green transition-all duration-500',
+          'hidden lg:flex w-11 h-11 rounded-full bg-madia-green border border-madia-gold/40 text-madia-gold items-center justify-center hover:bg-madia-gold hover:text-madia-green transition-all duration-500',
           visible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
         )}
         aria-label="Torna in cima"

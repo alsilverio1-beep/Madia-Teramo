@@ -9,7 +9,7 @@ export function TerminiCondizioni() {
         canonical="/termini-condizioni"
         noindex={true}
       />
-      <div className="min-h-screen bg-madia-white pt-32 pb-20 px-6">
+      <div className="min-h-screen bg-madia-white pt-24 lg:pt-28 pb-20 px-6">
         <div className="max-w-3xl mx-auto space-y-10">
 
           <div className="space-y-3">

@@ -56,7 +56,7 @@ export function LavoraConNoi() {
         canonical="/lavora-con-noi"
         noindex={true}
       />
-    <section className="pt-32 pb-20 px-6 bg-madia-green">
+    <section className="pt-24 lg:pt-28 pb-20 px-6 bg-madia-green">
       <div className="max-w-7xl mx-auto bg-madia-white p-8 md:p-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
 
