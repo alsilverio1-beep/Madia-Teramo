@@ -660,10 +660,11 @@ export function Home() {
             <div className="border-t border-white/10" />
             <div className="pt-2 flex flex-col gap-3">
               <span className="text-[9px] uppercase tracking-[0.35em] text-white/40 text-center block">Scopri anche</span>
-              <div className="flex items-center gap-6">
-                <a href="https://www.madiamare.it" target="_blank" rel="noopener noreferrer" aria-label="Madia Mare" className="opacity-60 hover:opacity-100 transition-opacity duration-300">
-                  <img src="/logo3MM.png" alt="Madia Mare" loading="lazy" className="h-16 w-auto object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+              <div className="flex items-center justify-center gap-6">
+                <a href="https://www.madiamare.it" target="_blank" rel="noopener noreferrer" aria-label="Madia Mare" className="opacity-80 hover:opacity-100 transition-opacity duration-300">
+                  <img src="/logo3MM.png" alt="Madia Mare" loading="lazy" className="h-16 w-24 object-contain" style={{ filter: 'brightness(0) saturate(100%) invert(62%) sepia(80%) saturate(350%) hue-rotate(358deg) brightness(88%)' }} />
                 </a>
+                <img src="/logojerry-removebg-preview.png" alt="Jerry" loading="lazy" className="h-16 w-24 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300" style={{ filter: 'brightness(0) saturate(100%) invert(62%) sepia(80%) saturate(350%) hue-rotate(358deg) brightness(88%)' }} />
               </div>
             </div>
           </div>
