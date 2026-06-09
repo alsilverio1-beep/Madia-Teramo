@@ -356,14 +356,14 @@ export function Home() {
             {/* Media destra */}
             <div className="order-2 lg:order-2 grid grid-cols-2 lg:grid-cols-[1fr_2fr] gap-4 h-full">
               <div className="flex flex-col gap-4 h-full">
-                <div className="aspect-[2/3] thin-border p-2 overflow-hidden">
+                <div className="flex-1 thin-border p-2 overflow-hidden">
                   <video
                     src="/pizzeria/videopizza1.mp4"
                     autoPlay muted loop playsInline
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="aspect-[2/3] thin-border p-2 overflow-hidden">
+                <div className="flex-1 thin-border p-2 overflow-hidden">
                   <video
                     src="/pizzeria/videopizza2.mp4"
                     autoPlay muted loop playsInline
@@ -394,10 +394,10 @@ export function Home() {
                <img src="/grill1.jpg" loading="lazy" className="w-full h-full object-cover" alt="Grill Madia Teramo" />
              </div>
              <div className="flex flex-col gap-4 h-full">
-               <div className="aspect-[2/3] thin-border p-2">
+               <div className="flex-1 thin-border p-2">
                  <img src="/grill2.jpg" loading="lazy" className="w-full h-full object-cover" alt="Brace Madia Teramo" />
                </div>
-               <div className="aspect-[2/3] thin-border p-2">
+               <div className="flex-1 thin-border p-2">
                  <img src="/grill3.jpg" loading="lazy" className="w-full h-full object-cover" alt="Steak House Madia Teramo" />
                </div>
              </div>
@@ -542,13 +542,13 @@ export function Home() {
             onMouseMove={onReviewMouseMove}
             onMouseUp={onReviewMouseUp}
           >
-            <div className="flex items-start">
+            <div className="flex items-stretch">
               {[...googleReviews, ...googleReviews].map((review, i) => {
                 const isExpanded = reviewExpanded.has(i);
                 const isOverflowing = reviewOverflow.has(i);
                 return (
                   <div key={i} className="w-[360px] flex-shrink-0 px-3">
-                    <div className="border border-madia-gold/15 border-l-4 border-l-madia-gold/60 rounded-2xl p-6 space-y-4 hover:border-madia-gold/30 hover:border-l-madia-gold transition-colors flex flex-col h-full">
+                    <div className={`border border-madia-gold/15 border-l-4 border-l-madia-gold/60 rounded-2xl p-6 space-y-4 hover:border-madia-gold/30 hover:border-l-madia-gold transition-colors flex flex-col ${isExpanded ? 'h-auto' : 'h-[260px]'}`}>
                       {/* Stars */}
                       <div className="flex gap-0.5">
                         {Array.from({ length: review.rating }).map((_, s) => (
@@ -604,61 +604,67 @@ export function Home() {
             <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">Vieni a trovarci</span>
             <h2 className="text-5xl md:text-6xl text-madia-green font-serif lowercase italic">siamo qui per te</h2>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          <div className="lg:col-span-5 border-2 border-madia-gold p-6 lg:p-12 space-y-6 bg-madia-green rounded-2xl">
-            <div className="space-y-6">
-              {[
-                { value: "Piazza Sant'Agostino, 10, 64100 Teramo TE", icon: MapPin },
-                { value: '+39 377 333 4838', icon: Phone },
-                { value: 'madia.teramo@gmail.com', icon: Mail },
-              ].map((item) => (
-                <div key={item.value} className="flex items-center gap-3">
-                  <item.icon size={18} className="text-madia-gold shrink-0" />
-                  <p className="text-xs lg:text-sm font-sans text-madia-white">{item.value}</p>
-                </div>
-              ))}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+          <div className="lg:col-span-5 flex flex-col gap-1">
 
-              <div className="flex items-start gap-3 pt-1">
-                <Clock size={18} className="text-madia-gold shrink-0 mt-0.5" />
-                <div className="text-xs lg:text-sm font-sans text-madia-white space-y-1">
-                  <div className="flex gap-2">
-                    <span className="text-white/40 w-20 shrink-0">Lun – Sab</span>
-                    <span className="flex flex-col"><span>12:30–14:30</span><span>18:00–23:00</span></span>
+            {/* Box 1 — Indirizzi e social */}
+            <div className="border-2 border-madia-gold p-6 lg:p-10 space-y-6 bg-madia-green rounded-2xl">
+              <div className="space-y-6">
+                {[
+                  { value: "Piazza Sant'Agostino, 10, 64100 Teramo TE", icon: MapPin },
+                  { value: '+39 377 333 4838', icon: Phone },
+                  { value: 'madia.teramo@gmail.com', icon: Mail },
+                ].map((item) => (
+                  <div key={item.value} className="flex items-center gap-3">
+                    <item.icon size={18} className="text-madia-gold shrink-0" />
+                    <p className="text-xs lg:text-sm font-sans text-madia-white">{item.value}</p>
                   </div>
-                  <div className="flex gap-2">
-                    <span className="text-white/40 w-20 shrink-0">Domenica</span>
-                    <span>18:00–23:00</span>
+                ))}
+
+                <div className="flex items-start gap-3 pt-1">
+                  <Clock size={18} className="text-madia-gold shrink-0 mt-0.5" />
+                  <div className="text-xs lg:text-sm font-sans text-madia-white space-y-1">
+                    <div className="flex gap-2">
+                      <span className="text-white/40 w-20 shrink-0">Lun – Sab</span>
+                      <span className="flex flex-col"><span>12:30–14:30</span><span>18:00–23:00</span></span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-white/40 w-20 shrink-0">Domenica</span>
+                      <span>18:00–23:00</span>
+                    </div>
                   </div>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <p className="text-[9px] uppercase tracking-[0.35em] text-white/40 text-center block mb-4">Social Network</p>
+                <div className="flex items-center justify-center gap-5">
+                  <a href="https://www.facebook.com/madia.teramo/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-madia-gold hover:text-white transition-colors duration-300">
+                    <Facebook size={24} />
+                  </a>
+                  <a href="https://www.instagram.com/madia_teramo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-madia-gold hover:text-white transition-colors duration-300">
+                    <Instagram size={24} />
+                  </a>
+                  <a href="https://www.tripadvisor.it/Restaurant_Review-g660757-d25375490-Reviews-MADIA-Teramo_Province_of_Teramo_Abruzzo.html" target="_blank" rel="noopener noreferrer" aria-label="TripAdvisor" className="text-madia-gold hover:text-white transition-colors duration-300">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                      <path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.43 5.976 5.976 0 0 0 4.075-1.6L12 19.705l1.922-2.09a5.972 5.972 0 0 0 4.072 1.598 6 6 0 0 0 6-5.998 5.982 5.982 0 0 0-1.957-4.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM12 6.255c1.531 0 3.063.303 4.504.903C13.943 8.138 12 10.43 12 13.1c0-2.671-1.942-4.962-4.504-5.942A11.72 11.72 0 0 1 12 6.256zM6.002 9.157a4.059 4.059 0 1 1 0 8.118 4.059 4.059 0 0 1 0-8.118zm11.992.002a4.057 4.057 0 1 1 .003 8.115 4.057 4.057 0 0 1-.003-8.115zm-11.992 1.93a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256zm11.992 0a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256z"/>
+                    </svg>
+                  </a>
                 </div>
               </div>
             </div>
 
-            <div className="pt-2">
-              <p className="text-[9px] uppercase tracking-[0.35em] text-white/40 text-center block mb-4">Social Network</p>
-              <div className="flex items-center justify-center gap-5">
-                <a href="https://www.facebook.com/madia.teramo/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-madia-gold hover:text-white transition-colors duration-300">
-                  <Facebook size={24} />
-                </a>
-                <a href="https://www.instagram.com/madia_teramo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-madia-gold hover:text-white transition-colors duration-300">
-                  <Instagram size={24} />
-                </a>
-                <a href="https://www.tripadvisor.it/Restaurant_Review-g660757-d25375490-Reviews-MADIA-Teramo_Province_of_Teramo_Abruzzo.html" target="_blank" rel="noopener noreferrer" aria-label="TripAdvisor" className="text-madia-gold hover:text-white transition-colors duration-300">
-                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                    <path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.43 5.976 5.976 0 0 0 4.075-1.6L12 19.705l1.922-2.09a5.972 5.972 0 0 0 4.072 1.598 6 6 0 0 0 6-5.998 5.982 5.982 0 0 0-1.957-4.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM12 6.255c1.531 0 3.063.303 4.504.903C13.943 8.138 12 10.43 12 13.1c0-2.671-1.942-4.962-4.504-5.942A11.72 11.72 0 0 1 12 6.256zM6.002 9.157a4.059 4.059 0 1 1 0 8.118 4.059 4.059 0 0 1 0-8.118zm11.992.002a4.057 4.057 0 1 1 .003 8.115 4.057 4.057 0 0 1-.003-8.115zm-11.992 1.93a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256zm11.992 0a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256z"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div className="border-t border-white/10" />
-            <div className="pt-2 flex flex-col gap-3">
+            {/* Box 2 — Sport dal vivo */}
+            <div className="border-2 border-madia-gold p-6 lg:p-10 bg-madia-green rounded-2xl flex flex-col gap-3">
               <span className="text-[9px] uppercase tracking-[0.35em] text-white/40 text-center block">Segui lo sport dal vivo</span>
               <div className="flex items-center justify-center gap-6">
                 <img src="/Sky_logo_2025.svg.png" alt="Sky" loading="lazy" className="h-8 w-auto opacity-60" />
                 <img src="/dazn5.png" alt="DAZN" loading="lazy" className="h-10 w-auto opacity-60" />
               </div>
             </div>
-            <div className="border-t border-white/10" />
-            <div className="pt-2 flex flex-col gap-3">
+
+            {/* Box 3 — Scopri anche */}
+            <div className="border-2 border-madia-gold p-6 lg:p-10 bg-madia-green rounded-2xl flex flex-col gap-3">
               <span className="text-[9px] uppercase tracking-[0.35em] text-white/40 text-center block">Scopri anche</span>
               <div className="flex items-center justify-center gap-6">
                 <a href="https://www.madiamare.it" target="_blank" rel="noopener noreferrer" aria-label="Madia Mare" className="opacity-80 hover:opacity-100 transition-opacity duration-300">
@@ -667,7 +673,10 @@ export function Home() {
                 <img src="/logojerry-removebg-preview.png" alt="Jerry" loading="lazy" className="h-16 w-24 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300" style={{ filter: 'brightness(0) saturate(100%) invert(62%) sepia(80%) saturate(350%) hue-rotate(358deg) brightness(88%)' }} />
               </div>
             </div>
+
           </div>
+
+          <div className="lg:hidden border-t-2 border-madia-gold/60 mx-4" />
 
           <div className="lg:col-span-7 border-2 border-madia-gold p-6 md:p-12 relative bg-madia-green rounded-2xl">
 <form className="space-y-8" onSubmit={async (e: FormEvent) => {
