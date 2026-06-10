@@ -28,6 +28,7 @@ export function Steakhouse() {
         title="Steak House — Carni Frollate alla Brace a Teramo"
         description="La Steak House di Madia Teramo: tagli frollati di Chianina, Fassona, Black Angus e Wagyu. Razze italiane e internazionali, cotti alla brace nel cuore di Teramo."
         canonical="/steakhouse"
+        breadcrumb={[{ name: 'Steak House', url: '/steakhouse' }]}
       />
     <div className="min-h-screen bg-madia-white">
 

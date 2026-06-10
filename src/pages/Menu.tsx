@@ -80,6 +80,7 @@ export function Menu() {
         title="Menu Ristorante — Pranzo, Cena e Aperitivo"
         description="Scopri il menu di Madia Teramo: antipasti, primi, secondi, aperitivo dalle 18:00, selezione di carni frollate alla brace e cocktails. Ingredienti freschi e di qualità."
         canonical="/menu"
+        breadcrumb={[{ name: 'Menu', url: '/menu' }]}
       />
     <div className="min-h-screen bg-madia-white">
 
