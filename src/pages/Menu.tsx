@@ -28,7 +28,7 @@ type Section = 'aperitivo' | 'pranzo' | 'cena' | 'carne' | 'pizze' | 'drink';
 
 const sections: { id: Section; label: string; subtitle: string }[] = [
   { id: 'aperitivo', label: 'Aperitivo', subtitle: 'Ogni giorno dalle 18:00 alle 20:00' },
-  { id: 'pranzo',   label: 'Pranzo',    subtitle: 'Lunedì – Sabato, 12:00 – 15:00' },
+  { id: 'pranzo',   label: 'Pranzo',    subtitle: 'Lunedì – Venerdì, 12:00 – 15:00' },
   { id: 'cena',     label: 'Cena',      subtitle: 'Ogni sera, 19:30 – 23:00' },
   { id: 'carne',    label: 'Carne',     subtitle: 'Selezione di tagli frollati alla brace' },
   { id: 'pizze',    label: 'Pizze',     subtitle: 'Impasto a 48h, Padellino e Pizza alla Pala' },

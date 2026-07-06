@@ -625,11 +625,11 @@ export function Home() {
                   <Clock size={18} className="text-madia-gold shrink-0 mt-0.5" />
                   <div className="text-xs lg:text-sm font-sans text-madia-white space-y-1">
                     <div className="flex gap-2">
-                      <span className="text-white/40 w-20 shrink-0">Lun – Sab</span>
+                      <span className="text-white/40 w-20 shrink-0">Lun – Ven</span>
                       <span className="flex flex-col"><span>12:30–14:30</span><span>18:00–23:00</span></span>
                     </div>
                     <div className="flex gap-2">
-                      <span className="text-white/40 w-20 shrink-0">Domenica</span>
+                      <span className="text-white/40 w-20 shrink-0">Sab – Dom</span>
                       <span>18:00–23:00</span>
                     </div>
                   </div>
