@@ -56,8 +56,8 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                 <div className="text-center space-y-4 py-8">
                   <p className="text-madia-gold text-4xl">✓</p>
                   <p className="text-madia-green font-serif text-2xl font-light">Richiesta inviata!</p>
-                  <p className="text-madia-black/50 text-sm">Ti contatteremo entro 24 ore.</p>
-                  <button onClick={onClose} className="mt-4 border border-madia-gold text-madia-gold px-8 py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-madia-gold hover:text-madia-green transition-all duration-300">
+                  <p className="text-madia-black/50 text-sm">La contatteremo entro 24 ore.</p>
+                  <button onClick={onClose} className="mt-4 border-2 border-madia-gold bg-madia-green text-madia-white px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-green/80 transition-all duration-500 text-center">
                     Chiudi
                   </button>
                 </div>

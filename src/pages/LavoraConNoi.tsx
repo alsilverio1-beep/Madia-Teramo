@@ -96,7 +96,7 @@ export function LavoraConNoi() {
             <div className="text-center space-y-4 py-16">
               <p className="text-madia-gold text-4xl">✓</p>
               <p className="text-madia-white font-serif text-2xl font-light">Candidatura inviata!</p>
-              <p className="text-white/50 text-sm">Abbiamo ricevuto la tua candidatura. Ti contatteremo il prima possibile.</p>
+              <p className="text-white/50 text-sm">Abbiamo ricevuto la Sua candidatura. La contatteremo il prima possibile.</p>
             </div>
           ) : (
             <form className="space-y-8" onSubmit={handleSubmit}>

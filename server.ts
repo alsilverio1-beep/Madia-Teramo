@@ -12,8 +12,7 @@ app.use(express.json());
 
 // ── Brevo ────────────────────────────────────────────────────────────────────
 const BREVO_URL  = 'https://api.brevo.com/v3/smtp/email';
-const ADMIN      = { email: 'al.silverio1@gmail.com', name: 'Madia Teramo' };
-const TEST_EMAIL = 'madia.teramo@gmail.com'; // ← rimuovi per produzione
+const ADMIN      = { email: 'madia.teramo@gmail.com', name: 'Madia Teramo' };
 const MITTENTE   = { email: 'madia.teramo@gmail.com', name: 'Madia Teramo' };
 const NOREPLY    = { email: 'noreply@madiateramo.it', name: 'Madia Teramo' };
 
@@ -134,7 +133,7 @@ app.post('/api/contatto', async (req, res) => {
       // 2. Conferma al cliente
       brevoSend({
         sender: NOREPLY,
-        to: [{ email: TEST_EMAIL, name: nome }],
+        to: [{ email, name: nome }],
         subject: 'Abbiamo ricevuto il Suo messaggio — Madia Teramo',
         htmlContent: emailCliente(nome,
           'Abbiamo ricevuto il Suo messaggio e Le risponderemo entro <strong style="color:#062a22">24 ore</strong>.<br>Nel frattempo, se avesse necessità di assistenza immediata può contattarci direttamente.'
@@ -174,7 +173,7 @@ app.post('/api/preventivo', async (req, res) => {
       // 2. Conferma al cliente
       brevoSend({
         sender: NOREPLY,
-        to: [{ email: TEST_EMAIL, name: nome }],
+        to: [{ email, name: nome }],
         subject: 'Richiesta preventivo ricevuta — Madia Teramo',
         htmlContent: emailCliente(nome,
           'Abbiamo ricevuto la Sua richiesta di preventivo per l\'evento.<br>La contatteremo entro <strong style="color:#062a22">24 ore</strong> per definire insieme ogni dettaglio e rendere il Suo evento indimenticabile.'
@@ -218,10 +217,10 @@ app.post('/api/candidatura', upload.single('curriculum'), async (req, res) => {
       // 2. Conferma al cliente
       brevoSend({
         sender: NOREPLY,
-        to: [{ email: TEST_EMAIL, name: nome }],
+        to: [{ email, name: nome }],
         subject: 'Candidatura ricevuta — Madia Teramo',
         htmlContent: emailCliente(nome,
-          'Abbiamo ricevuto la Sua candidatura e la esamineremo con attenzione.<br>La contatteremo il prima possibile se il Suo profilo corrisponde alle nostre esigenze.'
+          'La ringraziamo di cuore per l\'interesse dimostrato verso il nostro team.<br>Abbiamo ricevuto con piacere la Sua candidatura e la leggeremo con la massima attenzione: se il Suo profilo sarà in linea con le nostre ricerche, saremo lieti di ricontattarLa al più presto.'
         ),
       }),
     ]);

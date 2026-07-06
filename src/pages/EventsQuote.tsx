@@ -71,7 +71,7 @@ export function EventsQuote() {
             <div className="relative z-10 text-center space-y-4 py-16">
               <p className="text-madia-gold text-4xl">✓</p>
               <p className="text-madia-white font-serif text-2xl font-light">Richiesta inviata!</p>
-              <p className="text-madia-white/50 text-sm">Ti contatteremo entro 24 ore per definire ogni dettaglio del tuo evento.</p>
+              <p className="text-madia-white/50 text-sm">La contatteremo entro 24 ore per definire ogni dettaglio del Suo evento.</p>
             </div>
           ) : (
           <form className="space-y-10 relative z-10 text-white" onSubmit={handleSubmit}>
