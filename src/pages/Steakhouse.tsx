@@ -39,7 +39,7 @@ export function Steakhouse() {
             {/* Text */}
             <div className="lg:col-span-5">
               <span className="text-madia-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">
-                Steak Selection
+                Selezione Carni
               </span>
               <h1 className="text-5xl md:text-7xl text-madia-green font-serif italic mb-6">
                 steak house

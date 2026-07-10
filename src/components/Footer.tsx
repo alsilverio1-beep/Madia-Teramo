@@ -89,7 +89,7 @@ export function Footer() {
                 { label: 'Home', to: '/' },
                 { label: 'Ristorante', to: '/#chi-siamo' },
                 { label: 'Pizzeria', to: '/#pizzeria' },
-                { label: 'Steak House', to: '/steakhouse' },
+                { label: 'Carni', to: '/steakhouse' },
                 { label: 'Eventi', to: '/#eventi' },
                 { label: 'Lavora con Noi', to: '/lavora-con-noi' },
               ].map(({ label, to }) => (

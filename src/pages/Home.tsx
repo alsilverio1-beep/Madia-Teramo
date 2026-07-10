@@ -247,10 +247,10 @@ export function Home() {
             <div className="order-2 lg:order-1 flex flex-col justify-between gap-6">
               <div className="grid grid-cols-2 gap-4">
                 <div className="aspect-[2/3] thin-border p-2">
-                  <video autoPlay muted loop playsInline className="w-full h-full object-cover" src="/chisiamo1.mp4" />
+                  <img src="/MTrist/1.jpg" loading="lazy" className="w-full h-full object-cover" alt="Ristorante Madia Teramo" />
                 </div>
                 <div className="aspect-[2/3] thin-border p-2 mt-6">
-                  <img src="/chef1.jpg" loading="lazy" className="w-full h-full object-cover" alt="Lo chef di Madia Teramo" />
+                  <img src="/MTrist/2.jpg" loading="lazy" className="w-full h-full object-cover" alt="Lo chef di Madia Teramo" />
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -300,10 +300,10 @@ export function Home() {
             </div>
             <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">
               <div className="aspect-[2/3] thin-border p-2">
-                <img src="/chisiamo2.jpg" loading="lazy" className="w-full h-full object-cover" alt="Ristorante Madia Teramo" />
+                <img src="/MTrist/FOTO-44.jpg" loading="lazy" className="w-full h-full object-cover" alt="Ristorante Madia Teramo" />
               </div>
               <div className="aspect-[2/3] thin-border p-2 mt-6">
-                <img src="/chisiamo3.jpg" loading="lazy" className="w-full h-full object-cover" alt="Cucina Madia Teramo" />
+                <img src="/MTrist/FOTO-60.jpg" loading="lazy" className="w-full h-full object-cover" alt="Cucina Madia Teramo" />
               </div>
             </div>
           </div>
@@ -357,25 +357,28 @@ export function Home() {
             <div className="order-2 lg:order-2 grid grid-cols-2 lg:grid-cols-[1fr_2fr] gap-4 h-full">
               <div className="flex flex-col gap-4 h-full">
                 <div className="flex-1 thin-border p-2 overflow-hidden">
-                  <video
-                    src="/pizzeria/videopizza1.mp4"
-                    autoPlay muted loop playsInline
+                  <img
+                    src="/MTpizzeria/FOTO-4.jpg"
+                    loading="lazy"
                     className="w-full h-full object-cover"
+                    alt="Pizzeria Madia Teramo"
                   />
                 </div>
                 <div className="flex-1 thin-border p-2 overflow-hidden">
-                  <video
-                    src="/pizzeria/videopizza2.mp4"
-                    autoPlay muted loop playsInline
+                  <img
+                    src="/MTpizzeria/FOTO-45.jpg"
+                    loading="lazy"
                     className="w-full h-full object-cover"
+                    alt="Pizzeria Madia Teramo"
                   />
                 </div>
               </div>
               <div className="thin-border p-2 h-full overflow-hidden">
-                <video
-                  src="/pizzeria/videopizza3.mp4"
-                  autoPlay muted loop playsInline
+                <img
+                  src="/MTpizzeria/FOTO-53.jpg"
+                  loading="lazy"
                   className="w-full h-full object-cover"
+                  alt="Pizzeria Madia Teramo"
                 />
               </div>
             </div>
@@ -405,12 +408,12 @@ export function Home() {
            <div className="order-1 lg:order-2 flex flex-col">
              <div className="border-l border-madia-gold/30 pl-4 lg:pl-8 flex flex-col gap-8">
                <div className="mb-2">
-                 <span className="text-madia-gold text-[10px] uppercase tracking-[0.4em] font-bold block mb-4">Steak Selection</span>
+                 <span className="text-madia-gold text-[10px] uppercase tracking-[0.4em] font-bold block mb-4">Selezione Carni</span>
                  <h2 className="text-5xl md:text-6xl text-madia-green font-serif font-light leading-tight">eccellenza in <br /> <span className="italic">frollatura</span></h2>
                </div>
                <div className="space-y-6 text-madia-black/70 font-sans text-sm leading-relaxed">
                  <p>
-                   La <strong style={{fontWeight:'inherit'}}><a href="/steakhouse" style={{fontWeight:'inherit'}}>Steak House di Madia</a></strong> è un viaggio nella cultura della carne di qualità. Selezioniamo razze bovine pregiate, dalle Marchigiane alle Chianine, fino ai tagli internazionali di Angus e Wagyu, per garantire ad ogni ospite un'esperienza autentica e memorabile.
+                   La <strong style={{fontWeight:'inherit'}}><a href="/steakhouse" style={{fontWeight:'inherit'}}>Steak House di Madia</a></strong> è un viaggio nella cultura della carne di qualità. Selezioniamo razze bovine pregiate, italiane e internazionali, per garantire ad ogni ospite un'esperienza autentica e memorabile.
                  </p>
                  <p>
                    Il cuore della nostra cucina è la <strong style={{fontWeight:'inherit'}}>frollatura dry-aging</strong>: un processo lento e controllato che intensifica i sapori, ammorbidisce le fibre e trasforma ogni taglio in qualcosa di straordinario. Le nostre celle di frollatura sono monitorate quotidianamente dallo chef per assicurare la perfezione ad ogni stadio.
@@ -419,7 +422,7 @@ export function Home() {
                    Alla brace lavoriamo con legna selezionata, a temperature precise, per ottenere quella crosticina esterna e quella morbidezza interna che rendono una <strong style={{fontWeight:'inherit'}}>bistecca a Teramo</strong> un momento indimenticabile. Ogni taglio è servito con contorni stagionali e salse artigianali preparate in cucina.
                  </p>
                  <p>
-                   Che tu scelga una <strong style={{fontWeight:'inherit'}}>fiorentina</strong>, una costata o un taglio del giorno consigliato dallo chef, da Madia trovi sempre qualità certificata, filiera corta e passione per il dettaglio.
+                   Che tu scelga il <strong style={{fontWeight:'inherit'}}>taglio del giorno</strong> consigliato dallo chef o una delle nostre proposte alla brace, da Madia trovi sempre qualità certificata, filiera corta e passione per il dettaglio.
                  </p>
                </div>
                <Link to="/menu?section=carne" className="inline-flex items-center gap-4 group">

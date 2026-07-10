@@ -67,7 +67,7 @@ export function Navbar() {
       href: '/#pizzeria',
       children: [{ title: 'Menù Pizza', href: '/menu-pizza' }],
     },
-    { title: 'Steak House', href: '/#steakhouse' },
+    { title: 'Carni', href: '/#steakhouse' },
     { title: 'Eventi Privati', href: '/#eventi' },
     { title: 'Contatti', href: '/#contatti' },
   ];

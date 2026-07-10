@@ -6,22 +6,49 @@ import { menuData } from '../data/menu';
 import { cn } from '../lib/utils';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SEO } from '../components/SEO';
+import { Flag } from '../components/Flag';
 
-const allImages = import.meta.glob('/src/carosellomenu/*', { eager: true, as: 'url' });
-const pizzaImages = [
-  '/pizzeria/carpizza1.jpg',
-  '/pizzeria/carpizza2.jpg',
-  '/pizzeria/carpizza3.jpg',
-  '/pizzeria/carpizza4.jpg',
-  '/pizzeria/carpizza5.jpg',
+const carouselImages = [
+  '/MTcarrist/FOTO-20.jpg',
+  '/MTcarrist/FOTO-24.jpg',
+  '/MTcarrist/FOTO-29.jpg',
+  '/MTcarrist/FOTO-31.jpg',
+  '/MTcarrist/FOTO-32.jpg',
+  '/MTcarrist/FOTO-36.jpg',
+  '/MTcarrist/FOTO-45.jpg',
+  '/MTcarrist/FOTO-47.jpg',
+  '/MTcarrist/FOTO-76.jpg',
+  '/MTcarrist/FOTO-85.jpg',
+  '/MTcarrist/FOTO-90.jpg',
+  '/MTcarrist/FOTO-94.jpg',
+  '/MTcarrist/FOTO-96.jpg',
+  '/MTcarrist/FOTO-98.jpg',
+  '/MTcarrist/FOTO-101.jpg',
+  '/MTcarrist/FOTO-106.jpg',
 ];
-const carouselImages = [...(Object.values(allImages) as string[]), ...pizzaImages];
 
 const pizzeSubcategoryMeta: Record<string, { description?: string; note?: string }> = {
-  'Il Padellino': {
-    description: 'Impasto idratato all\'85% con farine 100% italiane macinate a pietra. Lavoriamo in "biga", un pre-fermento di 18 ore a 16 gradi, per rendere il prodotto profumato e friabile contemporaneamente.',
-    note: '*Possibilità di richiedere il Padellino per intolleranti al glutine (sovrapprezzo di 3€)',
+  'Padellino': {
+    description: 'Percorso evolutivo per la pizza. Impasto idratato all\'85% usando farine 100% italiane macinate a pietra. Lavoriamo in "biga", un pre-fermento di 18 ore a 16 gradi, per rendere il prodotto profumato e friabile contemporaneamente.',
+    note: '*Possibilità di richiedere il Padellino per intolleranti al glutine (sovrapprezzo di 2€)',
   },
+  'Mini Pala': {
+    description: 'Impasto idratato al 90% usando farine 100% italiane macinate a pietra. Lavoriamo in "biga". Per la realizzazione di questo prodotto utilizziamo apposite celle di lievitazione a temperatura controllata che permettono al prodotto finale di essere soffice, croccante e leggero.',
+    note: '*Possibilità di scegliere 2 gusti',
+  },
+  'Pizze al Piatto - Le Nostre Proposte': {
+    description: 'Utilizziamo farine 100% italiane macinate a pietra con l\'aggiunta di germe di grano. Impasto maturato 48 ore che rende il prodotto super digeribile.',
+  },
+};
+
+const aperitivoSubcategoryFootnotes: Record<string, string> = {
+  'Signature': 'I drink classici sono disponibili, rivolgersi al barman.',
+  'Gintoneria': 'Tutti i nostri gin sono serviti e preparati con tonica Fentimans.',
+};
+
+const carneSubcategoryMeta: Record<string, { note?: string }> = {
+  'Costate': { note: 'Taglio minimo 1kg' },
+  'Entrecote': { note: 'Taglio a scelta' },
 };
 
 type Section = 'aperitivo' | 'pranzo' | 'cena' | 'carne' | 'pizze' | 'drink';
@@ -241,12 +268,56 @@ export function Menu() {
           >
             <div className="mb-3" />
 
+            {activeSection === 'pranzo' && (
+              <div className="relative mb-16 max-w-xl mx-auto border border-madia-gold/30 px-8 py-10 md:px-12">
+                <span className="absolute -top-px -left-px w-4 h-4 border-t border-l border-madia-gold" />
+                <span className="absolute -top-px -right-px w-4 h-4 border-t border-r border-madia-gold" />
+                <span className="absolute -bottom-px -left-px w-4 h-4 border-b border-l border-madia-gold" />
+                <span className="absolute -bottom-px -right-px w-4 h-4 border-b border-r border-madia-gold" />
+
+                <div className="flex items-center gap-4 mb-6 justify-center">
+                  <span className="w-8 h-px bg-madia-gold/40" />
+                  <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-madia-gold whitespace-nowrap">Formula Pranzo</span>
+                  <span className="w-8 h-px bg-madia-gold/40" />
+                </div>
+
+                <p className="text-center text-sm text-madia-black/55 font-sans leading-relaxed font-serif italic">
+                  Scegli tra i nostri menù fissi oppure scegli i nostri fuori menù.<br />
+                  Acqua 0,5 e Coperto li offriamo noi!!!
+                </p>
+
+                <div className="flex items-center justify-center gap-2 my-6">
+                  <span className="block w-10 h-px bg-madia-gold/40" />
+                  <span className="block w-1.5 h-1.5 rotate-45 border-t border-r border-madia-gold" />
+                  <span className="block w-10 h-px bg-madia-gold/40" />
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-xs uppercase tracking-[0.15em] text-madia-green font-serif whitespace-nowrap">Antipasto + Primo o Secondo</span>
+                    <span className="flex-1 border-b border-dotted border-madia-gold/40 translate-y-[-3px]" />
+                    <span className="font-serif text-madia-green text-base whitespace-nowrap">15 €</span>
+                  </div>
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-xs uppercase tracking-[0.15em] text-madia-green font-serif whitespace-nowrap">Primo + Secondo</span>
+                    <span className="flex-1 border-b border-dotted border-madia-gold/40 translate-y-[-3px]" />
+                    <span className="font-serif text-madia-green text-base whitespace-nowrap">20 €</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Subcategories */}
             <div className="space-y-16">
               {subcategories.map((sub) => {
                 const items = sectionItems.filter(i => i.subcategory === sub);
                 return (
                   <div key={sub}>
+                    {sub === 'Birre alla Spina' && activeSection !== 'aperitivo' && activeSection !== 'drink' && (
+                      <div className="text-center mb-12">
+                        <h2 className="text-4xl md:text-5xl text-madia-green font-serif italic lowercase">bevande</h2>
+                      </div>
+                    )}
                     <div className="flex items-center gap-6 mb-10">
                       <div className="flex-1 h-px bg-madia-gold/20" />
                       <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-madia-gold">{sub}</span>
@@ -260,13 +331,19 @@ export function Menu() {
                         )}
                       </div>
                     )}
+                    {activeSection === 'carne' && carneSubcategoryMeta[sub]?.note && (
+                      <div className="mb-10 -mt-2 text-center">
+                        <p className="text-[11px] uppercase tracking-[0.3em] text-madia-black/35 font-sans">{carneSubcategoryMeta[sub].note}</p>
+                      </div>
+                    )}
                     <div className={cn('grid gap-x-12 gap-y-8', activeSection === 'drink' ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2')}>
                       {items.map((item) => (
                         <div key={item.id} className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-1 md:gap-8 group">
                           <div>
                             <div className="flex items-center gap-3 mb-1.5">
-                              <h3 className="font-serif text-madia-green text-lg leading-snug group-hover:text-madia-gold transition-colors duration-300">
+                              <h3 className="font-serif text-madia-green text-lg leading-snug group-hover:text-madia-gold transition-colors duration-300 flex items-center gap-2">
                                 {item.name}
+                                {item.flag && <Flag code={item.flag} />}
                               </h3>
                               {item.isSpecialty && (
                                 <span className="flex items-center gap-1 text-[8px] uppercase tracking-widest font-black text-madia-gold border border-madia-gold/40 px-2 py-0.5">
@@ -277,15 +354,33 @@ export function Menu() {
                             <p className="text-[11px] text-madia-black/70 font-sans italic leading-relaxed max-w-xl">
                               {item.description}
                             </p>
+                            {item.note && (
+                              <p className="text-[10px] text-madia-gold/80 font-sans uppercase tracking-widest mt-1">
+                                {item.note}
+                              </p>
+                            )}
                           </div>
-                          <div className="flex md:justify-end items-start pt-0.5">
-                            <span className="font-serif text-madia-green text-base whitespace-nowrap">
-                              € {item.price}
-                            </span>
+                          <div className="flex md:justify-end items-start pt-0.5 gap-4">
+                            {item.prices ? (
+                              item.prices.map((p, idx) => (
+                                <span key={idx} className="font-serif text-madia-green text-base whitespace-nowrap">
+                                  € {p}
+                                </span>
+                              ))
+                            ) : item.price !== undefined ? (
+                              <span className="font-serif text-madia-green text-base whitespace-nowrap">
+                                {typeof item.price === 'number' || /^[0-9]/.test(String(item.price)) ? `€ ${item.price}` : item.price}
+                              </span>
+                            ) : null}
                           </div>
                         </div>
                       ))}
                     </div>
+                    {(activeSection === 'aperitivo' || activeSection === 'drink') && aperitivoSubcategoryFootnotes[sub] && (
+                      <p className="text-[11px] text-madia-black/35 font-sans italic text-center mt-10">
+                        {aperitivoSubcategoryFootnotes[sub]}
+                      </p>
+                    )}
                   </div>
                 );
               })}
@@ -302,7 +397,7 @@ export function Menu() {
                   <h3 className="font-serif text-madia-green text-lg leading-snug mb-1.5">Coperto</h3>
                   <p className="text-[11px] text-madia-black/70 font-sans italic leading-relaxed">Per persona.</p>
                 </div>
-                <span className="font-serif text-madia-green text-base whitespace-nowrap">€ 3,00</span>
+                <span className="font-serif text-madia-green text-base whitespace-nowrap">€ 2,50</span>
               </div>
             </div>
 
@@ -313,6 +408,9 @@ export function Menu() {
         <div className="mt-16 pt-8 border-t border-black/5 text-center space-y-4">
           <p className="text-[10px] uppercase tracking-[0.4em] text-madia-black/30 max-w-2xl mx-auto leading-loose">
             In caso di allergie o intolleranze alimentari, vi invitiamo a consultare il nostro personale di sala.
+          </p>
+          <p className="text-[11px] text-madia-black/40 font-sans italic">
+            *Richiedi la carta vini al personale
           </p>
         </div>
 
