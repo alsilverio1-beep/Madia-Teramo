@@ -128,7 +128,7 @@ export function Navbar() {
         {/* ── MOBILE: logo centrato assoluto + burger destra ── */}
         {isMobile && (
         <div className="relative px-4 flex items-center h-14">
-          <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex items-center group">
+          <Link to="/" onClick={(e) => handleNavClick(e, '/')} className="absolute left-1/2 -translate-x-1/2 flex items-center group">
             <img src="/mtlogo-removebg-preview.png" alt="Madia Teramo" className="h-10 w-auto object-contain group-hover:opacity-80 transition-opacity" />
           </Link>
           <button
@@ -144,7 +144,7 @@ export function Navbar() {
         {/* ── DESKTOP: logo sinistra + links destra ── */}
         {!isMobile && <div className="max-w-7xl mx-auto px-12 flex items-center justify-between h-11">
           <div className="flex items-center gap-4">
-            <Link to="/" className="flex items-center group">
+            <Link to="/" onClick={(e) => handleNavClick(e, '/')} className="flex items-center group">
               <img src="/mtlogo-removebg-preview.png" alt="Madia Teramo" className="h-11 w-auto object-contain group-hover:opacity-80 transition-opacity" />
             </Link>
             <div className="w-px h-8 bg-white/30" />
