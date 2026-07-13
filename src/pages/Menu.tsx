@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'motion/react';
 import { useBooking } from '../context/BookingContext';
 import { menuData } from '../data/menu';
@@ -7,6 +8,7 @@ import { cn } from '../lib/utils';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { Flag } from '../components/Flag';
+import { buildMenuJsonLd } from '../lib/menuSchema';
 
 const carouselImages = [
   '/MTcarrist/FOTO-20.jpg',
@@ -101,6 +103,11 @@ export function Menu() {
   const subcategories = [...new Set(sectionItems.map(i => i.subcategory))];
   const activeMeta = sections.find(s => s.id === activeSection)!;
 
+  const menuJsonLd = buildMenuJsonLd(
+    menuData,
+    Object.fromEntries(sections.map(s => [s.id, s.label])),
+  );
+
   return (
     <>
       <SEO
@@ -109,6 +116,9 @@ export function Menu() {
         canonical="/menu"
         breadcrumb={[{ name: 'Menu', url: '/menu' }]}
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(menuJsonLd)}</script>
+      </Helmet>
     <div className="min-h-screen bg-madia-white">
 
       {/* ── Hero ─────────────────────────────────────────────── */}
@@ -403,6 +413,42 @@ export function Menu() {
 
           </motion.div>
         </AnimatePresence>
+
+        {/* Contenuto delle altre 5 sezioni, sempre presente nel markup ma nascosto via CSS.
+            Nessun impatto visivo (identico a display:none): serve solo perché Google veda
+            sempre tutti i piatti/prezzi del menu, non solo quelli della scheda aperta al
+            momento della visita (che varia in base all'ora del giorno). */}
+        <div className="hidden">
+          {sections
+            .filter((s) => s.id !== activeSection)
+            .map((s) => {
+              const items = menuData.filter((item) => item.section === s.id);
+              const subs = [...new Set(items.map((i) => i.subcategory))];
+              return (
+                <div key={s.id}>
+                  <h2>{s.label}</h2>
+                  {subs.map((sub) => (
+                    <div key={sub}>
+                      <h3>{sub}</h3>
+                      {items
+                        .filter((i) => i.subcategory === sub)
+                        .map((item) => (
+                          <div key={item.id}>
+                            <span>{item.name}</span>
+                            <p>{item.description}</p>
+                            {item.prices ? (
+                              item.prices.map((p, idx) => <span key={idx}>€ {p}</span>)
+                            ) : item.price !== undefined ? (
+                              <span>{typeof item.price === 'number' ? `€ ${item.price}` : item.price}</span>
+                            ) : null}
+                          </div>
+                        ))}
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
+        </div>
 
         {/* Footer note */}
         <div className="mt-16 pt-8 border-t border-black/5 text-center space-y-4">

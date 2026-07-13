@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'motion/react';
 import { useBooking } from '../context/BookingContext';
 import { SEO } from '../components/SEO';
 import { steakhouseData } from '../data/steakhouse';
 import { cn } from '../lib/utils';
 import { Star } from 'lucide-react';
+import { buildMenuJsonLd } from '../lib/menuSchema';
 
 type Section = 'italiane' | 'internazionali' | 'territorio' | 'contorni';
 
@@ -22,6 +24,11 @@ export function Steakhouse() {
   const sectionItems = steakhouseData.filter(item => item.section === activeSection);
   const subcategories = [...new Set(sectionItems.map(i => i.subcategory))];
 
+  const menuJsonLd = buildMenuJsonLd(
+    steakhouseData,
+    Object.fromEntries(sections.map(s => [s.id, s.label])),
+  );
+
   return (
     <>
       <SEO
@@ -30,6 +37,9 @@ export function Steakhouse() {
         canonical="/steakhouse"
         breadcrumb={[{ name: 'Steak House', url: '/steakhouse' }]}
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(menuJsonLd)}</script>
+      </Helmet>
     <div className="min-h-screen bg-madia-white">
 
       {/* ── Hero ─────────────────────────────────────────────── */}

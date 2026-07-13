@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import compression from 'compression';
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
@@ -8,6 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 10 * 1024 * 1024 } });
 
+app.use(compression());
 app.use(express.json());
 
 // ── Brevo ────────────────────────────────────────────────────────────────────
@@ -231,9 +233,18 @@ app.post('/api/candidatura', upload.single('curriculum'), async (req, res) => {
   }
 });
 
+// ── Redirect 301: vecchia URL /menu-pizza confluita in /menu ─────────────────
+app.get('/menu-pizza', (_req, res) => res.redirect(301, '/menu?section=pizze'));
+
 // ── Serve frontend in produzione ─────────────────────────────────────────────
 if (process.env.NODE_ENV === 'production') {
   const distPath = path.join(__dirname, 'dist');
+
+  // Pagine pre-renderizzate in fase di build (scripts/prerender.js): HTML già
+  // pieno di contenuto per crawler/social, stessa app React idrata sopra.
+  app.get('/menu', (_req, res) => res.sendFile(path.join(distPath, 'menu.html')));
+  app.get('/steakhouse', (_req, res) => res.sendFile(path.join(distPath, 'steakhouse.html')));
+
   app.use(express.static(distPath));
   app.get('*', (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
 }

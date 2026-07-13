@@ -186,6 +186,9 @@ export function Home() {
             loop
             playsInline
             preload="auto"
+            poster="/hero1-poster.jpg"
+            width={540}
+            height={960}
             className="w-full h-full object-cover"
             src="/hero1.mp4"
           />
@@ -339,7 +342,7 @@ export function Home() {
               {/* Pulsanti — dentro la colonna testo, spinti in fondo */}
               <div className="mt-auto pt-8 flex flex-col sm:flex-row gap-4">
                 <Link
-                  to="/menu-pizza"
+                  to="/menu?section=pizze"
                   className="border-2 border-madia-gold bg-madia-white text-madia-green px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-madia-white/80 transition-all duration-500 text-center"
                 >
                   🍽️ Consulta il menù pizza
