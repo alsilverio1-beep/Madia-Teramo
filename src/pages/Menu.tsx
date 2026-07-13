@@ -304,12 +304,12 @@ export function Menu() {
 
                 <div className="space-y-3">
                   <div className="flex items-baseline gap-3">
-                    <span className="text-xs uppercase tracking-[0.15em] text-madia-green font-serif whitespace-nowrap">Antipasto + Primo o Secondo</span>
+                    <span className="text-xs uppercase tracking-[0.15em] text-madia-green font-serif md:whitespace-nowrap">Antipasto + Primo o Secondo</span>
                     <span className="flex-1 border-b border-dotted border-madia-gold/40 translate-y-[-3px]" />
                     <span className="font-serif text-madia-green text-base whitespace-nowrap">15 €</span>
                   </div>
                   <div className="flex items-baseline gap-3">
-                    <span className="text-xs uppercase tracking-[0.15em] text-madia-green font-serif whitespace-nowrap">Primo + Secondo</span>
+                    <span className="text-xs uppercase tracking-[0.15em] text-madia-green font-serif md:whitespace-nowrap">Primo + Secondo</span>
                     <span className="flex-1 border-b border-dotted border-madia-gold/40 translate-y-[-3px]" />
                     <span className="font-serif text-madia-green text-base whitespace-nowrap">20 €</span>
                   </div>
@@ -348,7 +348,7 @@ export function Menu() {
                     )}
                     <div className={cn('grid gap-x-12 gap-y-8', activeSection === 'drink' ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2')}>
                       {items.map((item) => (
-                        <div key={item.id} className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-1 md:gap-8 group">
+                        <div key={item.id} className="grid grid-cols-[1fr_auto] gap-3 md:gap-8 group">
                           <div>
                             <div className="flex items-center gap-3 mb-1.5">
                               <h3 className="font-serif text-madia-green text-lg leading-snug group-hover:text-madia-gold transition-colors duration-300 flex items-center gap-2">
@@ -370,7 +370,7 @@ export function Menu() {
                               </p>
                             )}
                           </div>
-                          <div className="flex md:justify-end items-start pt-0.5 gap-4">
+                          <div className="flex justify-end items-start pt-0.5 gap-4">
                             {item.prices ? (
                               item.prices.map((p, idx) => (
                                 <span key={idx} className="font-serif text-madia-green text-base whitespace-nowrap">
