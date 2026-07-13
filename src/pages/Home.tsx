@@ -676,7 +676,24 @@ export function Home() {
                 <a href="https://www.madiamare.it" target="_blank" rel="noopener noreferrer" aria-label="Madia Mare" className="opacity-80 hover:opacity-100 transition-opacity duration-300">
                   <img src="/logo3MM.png" alt="Madia Mare" loading="lazy" className="h-16 w-24 object-contain" style={{ filter: 'brightness(0) saturate(100%) invert(62%) sepia(80%) saturate(350%) hue-rotate(358deg) brightness(88%)' }} />
                 </a>
-                <img src="/logojerry-removebg-preview.png" alt="Jerry" loading="lazy" className="h-16 w-24 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300" style={{ filter: 'brightness(0) saturate(100%) invert(62%) sepia(80%) saturate(350%) hue-rotate(358deg) brightness(88%)' }} />
+                <div className="relative">
+                  <img src="/logojerry-removebg-preview.png" alt="Jerry" loading="lazy" className="h-16 w-24 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300" style={{ filter: 'brightness(0) saturate(100%) invert(62%) sepia(80%) saturate(350%) hue-rotate(358deg) brightness(88%)' }} />
+                  <div
+                    className="absolute -top-4 -right-3 flex items-center justify-center"
+                    style={{
+                      width: 44,
+                      height: 44,
+                      transform: 'rotate(-14deg)',
+                      clipPath: 'polygon(50% 0%,61% 22%,85% 15%,74% 37%,98% 45%,74% 52%,83% 76%,59% 66%,50% 90%,41% 66%,17% 76%,26% 52%,2% 45%,26% 37%,15% 15%,39% 22%)',
+                      background: 'linear-gradient(135deg, #c9a84c, #e8c96d)',
+                    }}
+                  >
+                    <span style={{ transform: 'rotate(-14deg)' }} className="text-[5.5px] uppercase font-black text-madia-green tracking-tight text-center leading-tight flex flex-col items-center">
+                      <span>stay</span>
+                      <span>tuned</span>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
 
