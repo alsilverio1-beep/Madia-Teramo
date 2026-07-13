@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "concurrently \"vite --port=3000 --host=0.0.0.0\" \"tsx watch server.ts\"",
     "dev:api": "tsx watch server.ts",
-    "build": "vite build && node scripts/prerender.js",
-    "start": "NODE_ENV=production tsx server.ts",
+    "build": "vite build && node scripts/prerender.js && npm run build:server",
+    "build:server": "esbuild server.ts --platform=node --format=esm --outfile=server.js --packages=external --target=node18",
+    "start": "NODE_ENV=production node server.js",
     "preview": "vite preview",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
@@ -37,6 +38,7 @@
     "@vitejs/plugin-react": "^5.0.4",
     "autoprefixer": "^10.4.21",
     "dotenv": "^17.2.3",
+    "esbuild": "^0.28.1",
     "puppeteer-core": "^25.3.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.1.14",
