@@ -4,17 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Google Consent Mode: stato di default "negato" impostato PRIMA di qualunque script
+         di consenso o di tracciamento — CookieYes aggiornerà questi segnali con
+         gtag('consent','update',...) quando l'utente farà una scelta nel banner. -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'wait_for_update': 500
+      });
+    </script>
+
     <!-- Start cookieyes banner -->
     <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/1d255c1bda1d1020139f7094d3b73966/script.js"></script>
     <!-- End cookieyes banner -->
 
-    <!-- Google tag (gtag.js) — bloccato da CookieYes finché l'utente non acconsente alla
-         categoria "Analitica" (type="text/plain" + data-cookieyes è la convenzione che
-         CookieYes usa per riattivare lo script solo dopo il consenso). -->
-    <script type="text/plain" data-cookieyes="cookieyes-analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-LE2TQ9GFN5"></script>
-    <script type="text/plain" data-cookieyes="cookieyes-analytics">
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+    <!-- Google tag (gtag.js) — si carica sempre (Google Consent Mode gestisce il consenso
+         tramite i segnali sopra, non bloccando il caricamento dello script). -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LE2TQ9GFN5"></script>
+    <script>
       gtag('js', new Date());
       gtag('config', 'G-LE2TQ9GFN5');
     </script>
