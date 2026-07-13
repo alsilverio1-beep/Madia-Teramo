@@ -37,7 +37,7 @@ export function Privacy() {
               <ul className="list-disc pl-5 space-y-1">
                 <li><strong>Dati di navigazione</strong> — indirizzo IP, tipo di browser, pagine visitate, orari di accesso. Raccolti automaticamente dai sistemi informatici del sito per finalità tecniche.</li>
                 <li><strong>Dati forniti volontariamente</strong> — nome, cognome, indirizzo email, numero di telefono, curriculum vitae e ogni altro dato inserito nei moduli di contatto, prenotazione, candidatura o richiesta preventivo.</li>
-                <li><strong>Dati di localizzazione aggregata</strong> — tramite strumenti di analisi aggregata per comprendere le aree geografiche di provenienza degli utenti (senza identificazione personale).</li>
+                <li><strong>Dati statistici aggregati</strong> — tramite Google Analytics, per comprendere in forma aggregata e anonima come gli utenti navigano il sito (pagine visitate, provenienza geografica, dispositivo). Attivo solo previo consenso alla categoria "Analitica" tramite il banner cookie; consultare la <a href="/cookie" className="text-madia-gold hover:underline">Cookie Policy</a> per i dettagli.</li>
               </ul>
             </section>
 
@@ -56,6 +56,7 @@ export function Privacy() {
                     <tr><td className="py-2 pr-4">Gestione candidature di lavoro</td><td className="py-2">Consenso dell'interessato (art. 6.1.a GDPR)</td></tr>
                     <tr><td className="py-2 pr-4">Gestione preventivi per eventi</td><td className="py-2">Esecuzione di misure precontrattuali (art. 6.1.b GDPR)</td></tr>
                     <tr><td className="py-2 pr-4">Funzionamento tecnico del sito</td><td className="py-2">Legittimo interesse del titolare (art. 6.1.f GDPR)</td></tr>
+                    <tr><td className="py-2 pr-4">Statistiche di navigazione (Google Analytics)</td><td className="py-2">Consenso dell'interessato (art. 6.1.a GDPR)</td></tr>
                     <tr><td className="py-2 pr-4">Adempimento di obblighi di legge</td><td className="py-2">Obbligo legale (art. 6.1.c GDPR)</td></tr>
                   </tbody>
                 </table>
@@ -116,7 +117,7 @@ export function Privacy() {
               <p>
                 La presente informativa può essere aggiornata in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina con indicazione della data di ultimo aggiornamento.
               </p>
-              <p className="text-madia-black/40 text-xs">Ultimo aggiornamento: maggio 2025</p>
+              <p className="text-madia-black/40 text-xs">Ultimo aggiornamento: luglio 2026</p>
             </section>
 
           </div>

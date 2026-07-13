@@ -82,6 +82,12 @@ export function Cookie() {
                       <td className="py-2 pr-3">Visualizzazione mappa interattiva. Può installare cookie di profilazione se l'utente è autenticato su Google.</td>
                       <td className="py-2"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-madia-gold hover:underline">Link</a></td>
                     </tr>
+                    <tr>
+                      <td className="py-2 pr-3">Google Analytics</td>
+                      <td className="py-2 pr-3">Google LLC</td>
+                      <td className="py-2 pr-3">Statistiche aggregate e anonime sulla navigazione (pagine visitate, provenienza, dispositivo). Attivo solo previo consenso alla categoria "Analitica".</td>
+                      <td className="py-2"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-madia-gold hover:underline">Link</a></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>

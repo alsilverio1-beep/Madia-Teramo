@@ -8,6 +8,17 @@
     <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/1d255c1bda1d1020139f7094d3b73966/script.js"></script>
     <!-- End cookieyes banner -->
 
+    <!-- Google tag (gtag.js) — bloccato da CookieYes finché l'utente non acconsente alla
+         categoria "Analitica" (type="text/plain" + data-cookieyes è la convenzione che
+         CookieYes usa per riattivare lo script solo dopo il consenso). -->
+    <script type="text/plain" data-cookieyes="cookieyes-analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-LE2TQ9GFN5"></script>
+    <script type="text/plain" data-cookieyes="cookieyes-analytics">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LE2TQ9GFN5');
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=5" />
 
