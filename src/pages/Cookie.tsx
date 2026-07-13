@@ -85,7 +85,7 @@ export function Cookie() {
                     <tr>
                       <td className="py-2 pr-3">Google Analytics</td>
                       <td className="py-2 pr-3">Google LLC</td>
-                      <td className="py-2 pr-3">Statistiche aggregate e anonime sulla navigazione (pagine visitate, provenienza, dispositivo). Attivo solo previo consenso alla categoria "Analitica".</td>
+                      <td className="py-2 pr-3">Statistiche sulla navigazione (pagine visitate, provenienza, dispositivo), gestite tramite Google Consent Mode: senza consenso alla categoria "Analitica" i dati restano anonimi e aggregati, senza cookie di tracciamento individuale.</td>
                       <td className="py-2"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-madia-gold hover:underline">Link</a></td>
                     </tr>
                   </tbody>
