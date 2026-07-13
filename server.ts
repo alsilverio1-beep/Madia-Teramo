@@ -10,6 +10,18 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 10 * 1024 * 1024 } });
 
+// Dietro reverse proxy (Nginx/Plesk): fidati di X-Forwarded-Proto/Host per req.protocol
+app.set('trust proxy', true);
+
+// Un solo dominio canonico (www): madiateramo.it senza www rimanda sempre a www,
+// altrimenti Google/social vedrebbero lo stesso contenuto su due host diversi.
+app.use((req, res, next) => {
+  if (req.hostname === 'madiateramo.it') {
+    return res.redirect(301, `${req.protocol}://www.madiateramo.it${req.originalUrl}`);
+  }
+  next();
+});
+
 app.use(compression());
 app.use(express.json());
 
