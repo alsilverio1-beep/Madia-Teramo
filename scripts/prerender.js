@@ -31,8 +31,13 @@ const CHROME_CANDIDATES = [
 
 const executablePath = CHROME_CANDIDATES.find(p => existsSync(p));
 if (!executablePath) {
-  console.error('[prerender] Nessun browser Chrome/Edge trovato. Imposta CHROME_PATH.');
-  process.exit(1);
+  // Il prerendering è un miglioramento SEO accessorio, non deve mai bloccare il deploy:
+  // se sul server manca Chrome/Chromium (es. VPS senza browser installato), il sito
+  // continua a funzionare esattamente come prima (CSR puro), semplicemente senza
+  // le pagine pre-renderizzate. Per averle, installare Chromium sul server oppure
+  // impostare CHROME_PATH con il percorso di un browser esistente.
+  console.warn('[prerender] Nessun browser Chrome/Edge trovato — salto il prerendering (il sito verrà comunque servito, in modalità CSR). Imposta CHROME_PATH per abilitarlo.');
+  process.exit(0);
 }
 
 /**
@@ -121,6 +126,8 @@ async function main() {
 }
 
 main().catch(err => {
-  console.error('[prerender] Fallito:', err);
-  process.exit(1);
+  // Anche qui: il prerendering non deve mai impedire il deploy del sito.
+  // In caso di errore, dist/ contiene comunque il build CSR standard di vite build.
+  console.warn('[prerender] Fallito, il sito verrà servito senza pagine pre-renderizzate:', err.message || err);
+  process.exit(0);
 });

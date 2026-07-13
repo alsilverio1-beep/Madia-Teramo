@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import compression from 'compression';
 import express from 'express';
+import { existsSync } from 'fs';
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -242,8 +243,14 @@ if (process.env.NODE_ENV === 'production') {
 
   // Pagine pre-renderizzate in fase di build (scripts/prerender.js): HTML già
   // pieno di contenuto per crawler/social, stessa app React idrata sopra.
-  app.get('/menu', (_req, res) => res.sendFile(path.join(distPath, 'menu.html')));
-  app.get('/steakhouse', (_req, res) => res.sendFile(path.join(distPath, 'steakhouse.html')));
+  // Se il prerendering è stato saltato in build (es. server senza Chrome), il file
+  // non esiste: si serve normalmente lo shell SPA, comportamento identico a prima.
+  const servePrerendered = (fileName: string) => (_req: express.Request, res: express.Response) => {
+    const prerendered = path.join(distPath, fileName);
+    res.sendFile(existsSync(prerendered) ? prerendered : path.join(distPath, 'index.html'));
+  };
+  app.get('/menu', servePrerendered('menu.html'));
+  app.get('/steakhouse', servePrerendered('steakhouse.html'));
 
   app.use(express.static(distPath));
   app.get('*', (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
