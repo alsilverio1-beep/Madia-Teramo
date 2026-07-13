@@ -71,10 +71,10 @@ export function Cookie() {
                   </thead>
                   <tbody className="divide-y divide-madia-black/10">
                     <tr>
-                      <td className="py-2 pr-3">Google Fonts</td>
-                      <td className="py-2 pr-3">Google LLC</td>
-                      <td className="py-2 pr-3">Caricamento font tipografici. Può registrare l'indirizzo IP dell'utente.</td>
-                      <td className="py-2"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-madia-gold hover:underline">Link</a></td>
+                      <td className="py-2 pr-3">CookieYes</td>
+                      <td className="py-2 pr-3">CookieYes (RCB Media Ventures Pvt Ltd)</td>
+                      <td className="py-2 pr-3">Gestione delle preferenze di consenso ai cookie. Memorizza la scelta dell'utente per non richiederla ad ogni visita.</td>
+                      <td className="py-2"><a href="https://www.cookieyes.com/privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-madia-gold hover:underline">Link</a></td>
                     </tr>
                     <tr>
                       <td className="py-2 pr-3">Google Maps</td>
@@ -90,7 +90,7 @@ export function Cookie() {
             <section className="space-y-3">
               <h2 className="font-serif text-xl text-madia-green font-light">3. Consenso e gestione dei cookie</h2>
               <p>
-                I cookie tecnici non richiedono consenso. Per i cookie di terze parti, il consenso viene richiesto al primo accesso al sito tramite apposito banner. Il consenso può essere revocato in qualsiasi momento agendo sulle impostazioni del proprio browser o tramite i seguenti link:
+                I cookie tecnici non richiedono consenso. Per i cookie di terze parti, il consenso viene richiesto al primo accesso al sito tramite il banner gestito da CookieYes, che permette di accettare, rifiutare o personalizzare le preferenze per categoria. La scelta può essere modificata in qualsiasi momento riaprendo il pannello delle preferenze cookie (icona dedicata visibile sul sito) oppure agendo sulle impostazioni del proprio browser o tramite i seguenti link:
               </p>
               <ul className="list-disc pl-5 space-y-1">
                 <li><strong>Google Chrome</strong>: Impostazioni → Privacy e sicurezza → Cookie</li>
@@ -120,7 +120,7 @@ export function Cookie() {
               <p>
                 La presente Cookie Policy può essere aggiornata in relazione all'introduzione di nuovi servizi o a variazioni normative. Le modifiche saranno pubblicate su questa pagina.
               </p>
-              <p className="text-madia-black/40 text-xs">Ultimo aggiornamento: maggio 2025</p>
+              <p className="text-madia-black/40 text-xs">Ultimo aggiornamento: luglio 2026</p>
             </section>
 
           </div>
