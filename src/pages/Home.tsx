@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, FormEvent } from 'react';
 import { useFormSubmit } from '../hooks/useFormSubmit';
 import { motion } from 'motion/react';
-import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin, Facebook, Clock, Star, CalendarDays, UtensilsCrossed, Volume2, VolumeX } from 'lucide-react';
+import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin, Facebook, Clock, Star, CalendarDays, UtensilsCrossed } from 'lucide-react';
 
 const googleReviews = [
   {
@@ -102,15 +102,6 @@ export function Home() {
   const isDragging = useRef(false);
   const dragStartX = useRef(0);
   const dragScrollStart = useRef(0);
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
-  const [heroMuted, setHeroMuted] = useState(true);
-
-  const toggleHeroAudio = () => {
-    const video = heroVideoRef.current;
-    if (!video) return;
-    video.muted = !video.muted;
-    setHeroMuted(video.muted);
-  };
 
   const toggleReviewExpanded = (idx: number) => {
     setReviewExpanded(prev => {
@@ -185,19 +176,12 @@ export function Home() {
         description="Madia è il ristorante e pizzeria in Piazza Sant'Agostino 9/10, Teramo. Cucina contemporanea, pizza padellino con biga 18 ore, steak house e aperitivo ogni giorno dalle 18:00."
         canonical="/"
       />
-    <button
-      onClick={toggleHeroAudio}
-      className="fixed bottom-6 left-6 z-50 w-11 h-11 rounded-full bg-madia-green border border-madia-gold/40 text-madia-gold flex items-center justify-center hover:bg-madia-gold hover:text-madia-green transition-all duration-500"
-      aria-label={heroMuted ? 'Attiva audio video' : 'Disattiva audio video'}
-    >
-      {heroMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-    </button>
     <div className="overflow-hidden">
       {/* 1. Hero Section & Carousel */}
       <section className="relative h-screen flex items-center bg-[#062a22] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
-            ref={heroVideoRef}
+            id="hero-video"
             autoPlay
             muted
             loop
@@ -227,28 +211,28 @@ export function Home() {
               fetchPriority="high"
               className="h-24 md:h-36 w-auto object-contain drop-shadow-2xl"
             />
-            <div className="flex items-center gap-3 text-madia-white/80 text-[9px] uppercase tracking-[0.4em]">
+            <div className="flex items-center gap-3 text-madia-white text-[9px] uppercase tracking-[0.4em]" style={{textShadow: '0 2px 10px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.9)'}}>
               <span>Ristorante</span>
               <span className="text-madia-gold">·</span>
               <span>Pizzeria</span>
               <span className="text-madia-gold">·</span>
               <span>Drink</span>
             </div>
-            <p className="text-madia-white/85 text-xs md:text-sm font-serif italic leading-loose tracking-widest text-center max-w-xs">
+            <p className="text-madia-white text-xs md:text-sm font-serif italic leading-loose tracking-widest text-center max-w-xs" style={{textShadow: '0 2px 10px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.9)'}}>
               Ci sono gesti semplici che raccontano tutto.<br />Un piatto condiviso, una risata sincera,<br />il piacere di assaporare insieme.
             </p>
             <div className="w-16 h-px bg-madia-gold opacity-70"></div>
             <div className="flex flex-col sm:flex-row gap-4 items-center">
               <button
                 onClick={openBooking}
-                className="group flex items-center justify-center gap-3 border-2 border-madia-gold text-madia-white bg-madia-gold/40 w-64 py-4 hover:bg-madia-gold hover:text-madia-green transition-all duration-500 font-bold uppercase tracking-[0.2em] text-[10px] whitespace-nowrap"
+                className="group flex items-center justify-center gap-3 border-2 border-madia-gold text-madia-white bg-madia-gold/80 w-64 py-4 hover:bg-madia-gold hover:text-madia-green transition-all duration-500 font-bold uppercase tracking-[0.2em] text-[10px] whitespace-nowrap"
               >
                 <CalendarDays size={13} className="opacity-80 group-hover:opacity-100 transition-opacity duration-500" strokeWidth={1.5} />
                 Prenota il tuo tavolo
               </button>
               <Link
                 to="/menu"
-                className="group flex items-center justify-center gap-3 border-2 border-madia-gold text-madia-white bg-madia-gold/40 w-64 py-4 hover:bg-madia-gold hover:text-madia-green transition-all duration-500 font-bold uppercase tracking-[0.2em] text-[10px] whitespace-nowrap"
+                className="group flex items-center justify-center gap-3 border-2 border-madia-gold text-madia-white bg-madia-gold/80 w-64 py-4 hover:bg-madia-gold hover:text-madia-green transition-all duration-500 font-bold uppercase tracking-[0.2em] text-[10px] whitespace-nowrap"
               >
                 <UtensilsCrossed size={13} className="opacity-80 group-hover:opacity-100 transition-opacity duration-500" strokeWidth={1.5} />
                 Consulta il menu
