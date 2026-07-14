@@ -187,7 +187,7 @@ export function Home() {
             loop
             playsInline
             preload="auto"
-            poster="/hero1-poster.jpg"
+            poster="/hero0714-poster.jpg"
             width={540}
             height={960}
             className="w-full h-full object-cover"
