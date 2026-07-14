@@ -207,7 +207,7 @@ export function Home() {
             width={540}
             height={960}
             className="w-full h-full object-cover"
-            src="/0714.mp4"
+            src="/0714-v2.mp4"
           />
           <div className="absolute inset-0 bg-black/15"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#062a22] via-transparent to-transparent opacity-45"></div>
