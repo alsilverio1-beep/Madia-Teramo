@@ -198,7 +198,7 @@ export function Home() {
           <div className="absolute inset-0" style={{background: 'radial-gradient(ellipse 70% 60% at 50% 45%, rgba(6,42,34,0.3) 0%, transparent 100%)'}}></div>
         </div>
 
-        <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6">
+        <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6 pb-24 sm:pb-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
