@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, FormEvent } from 'react';
 import { useFormSubmit } from '../hooks/useFormSubmit';
 import { motion } from 'motion/react';
-import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin, Facebook, Clock, Star, CalendarDays, UtensilsCrossed } from 'lucide-react';
+import { ArrowRight, ChevronRight, Phone, Mail, Instagram, MapPin, Facebook, Clock, Star, CalendarDays, UtensilsCrossed, Volume2, VolumeX } from 'lucide-react';
 
 const googleReviews = [
   {
@@ -102,6 +102,15 @@ export function Home() {
   const isDragging = useRef(false);
   const dragStartX = useRef(0);
   const dragScrollStart = useRef(0);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const [heroMuted, setHeroMuted] = useState(true);
+
+  const toggleHeroAudio = () => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+    video.muted = !video.muted;
+    setHeroMuted(video.muted);
+  };
 
   const toggleReviewExpanded = (idx: number) => {
     setReviewExpanded(prev => {
@@ -176,11 +185,19 @@ export function Home() {
         description="Madia è il ristorante e pizzeria in Piazza Sant'Agostino 9/10, Teramo. Cucina contemporanea, pizza padellino con biga 18 ore, steak house e aperitivo ogni giorno dalle 18:00."
         canonical="/"
       />
+    <button
+      onClick={toggleHeroAudio}
+      className="fixed bottom-6 left-6 z-50 w-11 h-11 rounded-full bg-madia-green border border-madia-gold/40 text-madia-gold flex items-center justify-center hover:bg-madia-gold hover:text-madia-green transition-all duration-500"
+      aria-label={heroMuted ? 'Attiva audio video' : 'Disattiva audio video'}
+    >
+      {heroMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+    </button>
     <div className="overflow-hidden">
       {/* 1. Hero Section & Carousel */}
       <section className="relative h-screen flex items-center bg-[#062a22] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
+            ref={heroVideoRef}
             autoPlay
             muted
             loop
@@ -190,11 +207,11 @@ export function Home() {
             width={540}
             height={960}
             className="w-full h-full object-cover"
-            src="/hero1.mp4"
+            src="/0714.mp4"
           />
-          <div className="absolute inset-0 bg-black/40"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#062a22] via-transparent to-transparent opacity-80"></div>
-          <div className="absolute inset-0" style={{background: 'radial-gradient(ellipse 70% 60% at 50% 45%, rgba(6,42,34,0.55) 0%, transparent 100%)'}}></div>
+          <div className="absolute inset-0 bg-black/15"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#062a22] via-transparent to-transparent opacity-45"></div>
+          <div className="absolute inset-0" style={{background: 'radial-gradient(ellipse 70% 60% at 50% 45%, rgba(6,42,34,0.3) 0%, transparent 100%)'}}></div>
         </div>
 
         <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6">
