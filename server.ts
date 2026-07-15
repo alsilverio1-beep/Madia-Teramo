@@ -249,6 +249,35 @@ app.post('/api/candidatura', upload.single('curriculum'), async (req, res) => {
 // ── Redirect 301: vecchia URL /menu-pizza confluita in /menu ─────────────────
 app.get('/menu-pizza', (_req, res) => res.redirect(301, '/menu?section=pizze'));
 
+// ── Kill switch service worker ────────────────────────────────────────────
+// Fino al 14/07 il sito registrava un service worker (Workbox/vite-plugin-pwa)
+// che cachava index.html e i bundle JS, servendoli anche offline. È stato
+// rimosso, ma i browser dei visitatori che l'avevano già installato lo tengono
+// attivo finché non ricevono una risposta valida su /sw.js: se quella richiesta
+// finisce nel catch-all SPA sotto (200 con HTML invece di JS), l'aggiornamento
+// fallisce silenziosamente e il vecchio service worker resta attivo per sempre,
+// continuando a servire la cache stantia. Questa route sostituisce il vecchio
+// sw.js con uno che si autodistrugge: il browser lo installa come "nuova
+// versione", lui cancella tutte le cache e si disregistra, poi il browser torna
+// a fare richieste di rete normali. Da rimuovere quando non serve più (indicativamente
+// qualche mese dopo il deploy, quando la coda di vecchi service worker installati si sarà esaurita).
+app.get('/sw.js', (_req, res) => {
+  res.setHeader('Content-Type', 'application/javascript');
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+  res.send(`
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys()
+      .then((keys) => Promise.all(keys.map((key) => caches.delete(key))))
+      .then(() => self.registration.unregister())
+      .then(() => self.clients.matchAll({ type: 'window' }))
+      .then((clients) => clients.forEach((client) => client.navigate(client.url)))
+  );
+});
+`.trim());
+});
+
 // ── Serve frontend in produzione ─────────────────────────────────────────────
 if (process.env.NODE_ENV === 'production') {
   const distPath = path.join(__dirname, 'dist');
