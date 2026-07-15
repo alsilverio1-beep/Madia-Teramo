@@ -259,13 +259,29 @@ if (process.env.NODE_ENV === 'production') {
   // non esiste: si serve normalmente lo shell SPA, comportamento identico a prima.
   const servePrerendered = (fileName: string) => (_req: express.Request, res: express.Response) => {
     const prerendered = path.join(distPath, fileName);
+    res.setHeader('Cache-Control', 'no-cache, must-revalidate');
     res.sendFile(existsSync(prerendered) ? prerendered : path.join(distPath, 'index.html'));
   };
   app.get('/menu', servePrerendered('menu.html'));
   app.get('/steakhouse', servePrerendered('steakhouse.html'));
 
-  app.use(express.static(distPath));
-  app.get('*', (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
+  // HTML sempre revalidato (mai servito stantio dalla cache del browser);
+  // JS/CSS con hash nel nome file (Vite) cacheable a lungo perché immutabili.
+  app.use(
+    express.static(distPath, {
+      setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.html')) {
+          res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+        } else if (filePath.includes(`${path.sep}assets${path.sep}`)) {
+          res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        }
+      },
+    })
+  );
+  app.get('*', (_req, res) => {
+    res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
 }
 
 const PORT = Number(process.env.PORT) || 3001;

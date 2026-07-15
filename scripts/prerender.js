@@ -107,17 +107,28 @@ async function main() {
   try {
     for (const route of ROUTES) {
       const page = await browser.newPage();
-      await page.goto(`http://localhost:${PORT}${route.path}`, { waitUntil: 'networkidle0' });
-      await page.waitForSelector('#root > *', { timeout: 10_000 });
-      await new Promise(r => setTimeout(r, 300)); // lascia commit agli effect di react-helmet-async
+      try {
+        // 'networkidle0' non va mai bene qui: le hero con video autoPlay+loop
+        // (Home, Steakhouse) tengono connessioni di rete aperte all'infinito
+        // mentre il video ricomincia, quindi la rete non è mai "idle". Il
+        // waitForSelector sotto già garantisce che React abbia renderizzato.
+        await page.goto(`http://localhost:${PORT}${route.path}`, { waitUntil: 'domcontentloaded' });
+        await page.waitForSelector('#root > *', { timeout: 10_000 });
+        await new Promise(r => setTimeout(r, 300)); // lascia commit agli effect di react-helmet-async
 
-      const title = await page.title();
-      const html = stripDuplicateStaticTags(await page.content());
-      await page.close();
+        const title = await page.title();
+        const html = stripDuplicateStaticTags(await page.content());
 
-      const outPath = path.join(distPath, route.outFile);
-      await writeFile(outPath, html, 'utf-8');
-      console.log(`[prerender] ${route.path} → ${route.outFile}  ("${title}", ${(html.length / 1024).toFixed(1)} KB)`);
+        const outPath = path.join(distPath, route.outFile);
+        await writeFile(outPath, html, 'utf-8');
+        console.log(`[prerender] ${route.path} → ${route.outFile}  ("${title}", ${(html.length / 1024).toFixed(1)} KB)`);
+      } catch (err) {
+        // Una route che fallisce non deve bloccare le altre: dist/ tiene comunque
+        // lo shell CSR standard per quella rotta finché il prossimo build non va a buon fine.
+        console.warn(`[prerender] ${route.path} fallita, salto:`, err.message || err);
+      } finally {
+        await page.close();
+      }
     }
   } finally {
     await browser.close();
