@@ -54,7 +54,6 @@ export function LavoraConNoi() {
         title="Lavora con Noi — Unisciti al Team"
         description="Entra nel team di Madia Teramo. Cerchiamo figure appassionate per sala, cucina, pizzeria e bar. Invia la tua candidatura spontanea."
         canonical="/lavora-con-noi"
-        noindex={true}
       />
     <section className="pt-24 lg:pt-28 pb-10 lg:pb-20 px-6 bg-madia-green">
       <div className="max-w-7xl mx-auto bg-madia-white py-8 px-4 md:p-12">
