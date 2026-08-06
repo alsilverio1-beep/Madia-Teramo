@@ -637,7 +637,7 @@ export function Home() {
                   <div className="text-xs lg:text-sm font-sans text-madia-white space-y-1">
                     {soloCena ? (
                       <div className="flex gap-2">
-                        <span className="text-white/40 w-20 shrink-0">Tutti i giorni</span>
+                        <span className="text-white/40 w-20 shrink-0">Lun – Dom</span>
                         <span>18:00–24:00</span>
                       </div>
                     ) : (
