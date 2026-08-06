@@ -86,6 +86,10 @@ export function Home() {
   const { openBooking } = useBooking();
   const location = useLocation();
   const [quoteOpen, setQuoteOpen] = useState(false);
+
+  // Orari estivi: fino al 23 agosto solo cena (18:00–24:00) tutti i giorni,
+  // dal 24 agosto tornano attivi anche gli orari di pranzo.
+  const soloCena = new Date() < new Date(2026, 7, 24);
   const [contactConsent, setContactConsent] = useState(false);
   const [contactNome, setContactNome] = useState('');
   const [contactEmail, setContactEmail] = useState('');
@@ -631,14 +635,23 @@ export function Home() {
                 <div className="flex items-start gap-3 pt-1">
                   <Clock size={18} className="text-madia-gold shrink-0 mt-0.5" />
                   <div className="text-xs lg:text-sm font-sans text-madia-white space-y-1">
-                    <div className="flex gap-2">
-                      <span className="text-white/40 w-20 shrink-0">Lun – Ven</span>
-                      <span className="flex flex-col"><span>12:30–14:30</span><span>18:00–23:00</span></span>
-                    </div>
-                    <div className="flex gap-2">
-                      <span className="text-white/40 w-20 shrink-0">Sab – Dom</span>
-                      <span>18:00–23:00</span>
-                    </div>
+                    {soloCena ? (
+                      <div className="flex gap-2">
+                        <span className="text-white/40 w-20 shrink-0">Tutti i giorni</span>
+                        <span>18:00–24:00</span>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="flex gap-2">
+                          <span className="text-white/40 w-20 shrink-0">Lun – Ven</span>
+                          <span className="flex flex-col"><span>12:30–14:30</span><span>18:00–23:00</span></span>
+                        </div>
+                        <div className="flex gap-2">
+                          <span className="text-white/40 w-20 shrink-0">Sab – Dom</span>
+                          <span>18:00–23:00</span>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
