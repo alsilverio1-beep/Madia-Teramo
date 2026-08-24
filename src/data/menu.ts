@@ -7,6 +7,7 @@ export interface MenuItem {
   section: 'aperitivo' | 'pranzo' | 'cena' | 'pizze' | 'drink' | 'carne';
   subcategory: string;
   isSpecialty?: boolean;
+  outOfMenu?: boolean;
   note?: string;
   flag?: 'IE' | 'DE' | 'US' | 'PL' | 'UY' | 'AR';
 }
@@ -101,18 +102,18 @@ export const menuData: MenuItem[] = [
   { id: 'pr-a3', section: 'pranzo', subcategory: 'Antipasti', name: 'Bruschettone', description: 'Prosciutto crudo e fichi.', price: 5 },
   { id: 'pr-a4', section: 'pranzo', subcategory: 'Antipasti', name: 'Olive Ascolane', description: '', price: 5 },
   { id: 'pr-a5', section: 'pranzo', subcategory: 'Antipasti', name: 'Gyoza di Pollo e Verdure', description: '4 Pz.', price: 5 },
+  { id: 'pr-fm1', section: 'pranzo', subcategory: 'Antipasti', outOfMenu: true, name: 'Carpaccio di Black Angus', description: 'Olio e sale affumicato.', price: 12 },
   { id: 'pr-p1', section: 'pranzo', subcategory: 'Primi', name: 'Chitarra alla Teramana', description: '', price: 10 },
   { id: 'pr-p2', section: 'pranzo', subcategory: 'Primi', name: 'Fusillo', description: 'Fiori di zucca, ricotta e pinoli.', price: 10 },
   { id: 'pr-p3', section: 'pranzo', subcategory: 'Primi', name: 'Pacchero', description: 'Zucchine arrosto, parmigiano e basilico.', price: 10 },
+  { id: 'pr-fm2', section: 'pranzo', subcategory: 'Primi', outOfMenu: true, name: 'Spaghettone Aglio e Olio', description: 'Tartare di gambero e scorza di limone.', price: 15 },
   { id: 'pr-s1', section: 'pranzo', subcategory: 'Secondi', name: 'Hamburger al Piatto', description: 'Contorno a scelta.', price: 10 },
   { id: 'pr-s2', section: 'pranzo', subcategory: 'Secondi', name: 'Vitello Tonnato', description: '', price: 10 },
   { id: 'pr-s3', section: 'pranzo', subcategory: 'Secondi', name: 'Insalata di Polpo', description: 'Datterini e avocado.', price: 10 },
+  { id: 'pr-fm3', section: 'pranzo', subcategory: 'Secondi', outOfMenu: true, name: 'Tagliata di Manzo', description: 'Con contorno a scelta.', price: 25 },
+  { id: 'pr-fm4', section: 'pranzo', subcategory: 'Secondi', outOfMenu: true, name: 'Tagli in Maturatore', description: 'Per i tagli di carne in maturazione, richiedi al personale di sala.' },
   { id: 'pr-i1', section: 'pranzo', subcategory: 'Insalate', name: 'Caesar Salad', description: 'Pollo fritto, scaglie di grana, pomodorini, crostini di pane e salsa caesar.', price: 10 },
   { id: 'pr-i2', section: 'pranzo', subcategory: 'Insalate', name: 'Madia Salad', description: 'Tartare di salmone, cipolla caramellata, burrata, pomodorini confit, polvere di olive.', price: 10 },
-  { id: 'pr-fm1', section: 'pranzo', subcategory: 'Fuori Menù', name: 'Carpaccio di Black Angus', description: 'Olio e sale affumicato.', price: 12 },
-  { id: 'pr-fm2', section: 'pranzo', subcategory: 'Fuori Menù', name: 'Spaghettone Aglio e Olio', description: 'Tartare di gambero e scorza di limone.', price: 15 },
-  { id: 'pr-fm3', section: 'pranzo', subcategory: 'Fuori Menù', name: 'Tagliata di Manzo', description: 'Con contorno a scelta.', price: 25 },
-  { id: 'pr-fm4', section: 'pranzo', subcategory: 'Fuori Menù', name: 'Tagli in Maturatore', description: 'Per i tagli di carne in maturazione, richiedi al personale di sala.' },
   { id: 'pr-de1', section: 'pranzo', subcategory: 'Dessert', name: 'La Pesca', description: 'Scrigno di pesca dadolata che racchiude una confettura di pesca, accompagnata da crumble agrumato e una salsa alla ratafia dealcolata.', price: 8 },
   { id: 'pr-de2', section: 'pranzo', subcategory: 'Dessert', name: 'Bounty', description: 'La nostra mousse al cocco ricoperta da una glassa al cioccolato croccante.', price: 8 },
   { id: 'pr-de3', section: 'pranzo', subcategory: 'Dessert', name: 'Ricordo di uno Yogurt', description: 'Crema montata allo yogurt, gel al melone, croccante di riso e cioccolato bianco, meringhe svizzere, frutta fresca estiva.', price: 7, note: 'Gluten Free' },

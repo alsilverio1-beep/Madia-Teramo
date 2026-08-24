@@ -350,7 +350,7 @@ export function Menu() {
                       {items.map((item) => (
                         <div key={item.id} className="grid grid-cols-[1fr_auto] gap-3 md:gap-8 group">
                           <div>
-                            <div className="flex items-center gap-3 mb-1.5">
+                            <div className="flex items-center flex-wrap gap-x-3 gap-y-1.5 mb-1.5">
                               <h3 className="font-serif text-madia-green text-lg leading-snug group-hover:text-madia-gold transition-colors duration-300 flex items-center gap-2">
                                 {item.name}
                                 {item.flag && <Flag code={item.flag} />}
@@ -358,6 +358,11 @@ export function Menu() {
                               {item.isSpecialty && (
                                 <span className="flex items-center gap-1 text-[8px] uppercase tracking-widest font-black text-madia-gold border border-madia-gold/40 px-2 py-0.5">
                                   <Star size={8} fill="currentColor" /> Chef
+                                </span>
+                              )}
+                              {item.outOfMenu && (
+                                <span className="flex items-center gap-1.5 text-[8px] uppercase tracking-[0.2em] font-black text-madia-gold/90 border border-madia-gold/30 px-2 py-0.5 whitespace-nowrap">
+                                  <span className="block w-1 h-1 rotate-45 border-t border-r border-madia-gold" /> Fuori Menù
                                 </span>
                               )}
                             </div>
