@@ -176,13 +176,18 @@ export function Home() {
   return (
     <>
       <SEO
-        title="Ristorante e Pizzeria a Teramo — Centro Storico"
+        title="Madia — Pizzeria e Ristorante a Teramo"
+        appendSiteName={false}
         description="Madia è il ristorante e pizzeria in Piazza Sant'Agostino 9/10, Teramo. Cucina contemporanea, pizza padellino con biga 18 ore, steak house e aperitivo ogni giorno dalle 18:00."
         canonical="/"
       />
     <div className="overflow-hidden">
       {/* 1. Hero Section & Carousel */}
       <section className="relative h-screen flex items-center bg-[#062a22] overflow-hidden">
+        {/* Unico H1 della home: il "titolo" visivo e' il logo, quindi resta
+            accessibile ai soli screen reader/crawler. Senza un H1 Google non ha
+            un'alternativa al <title> e finisce per riscriverlo da se'. */}
+        <h1 className="sr-only">Madia — Pizzeria e Ristorante a Teramo, Piazza Sant'Agostino</h1>
         <div className="absolute inset-0 z-0">
           <video
             id="hero-video"

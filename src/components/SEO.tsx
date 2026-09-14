@@ -12,13 +12,19 @@ interface SEOProps {
   ogImage?: string;
   noindex?: boolean;
   breadcrumb?: BreadcrumbItem[];
+  /**
+   * Di default al title viene appeso " | Madia Teramo". La home passa false: il
+   * brand sta gia' in testa al suo title, e ripeterlo in coda lo porta oltre i
+   * ~60 caratteri, soglia oltre la quale Google tende a riscrivere lo snippet.
+   */
+  appendSiteName?: boolean;
 }
 
 const BASE_URL = 'https://www.madiateramo.it';
 const DEFAULT_IMAGE = '/og-image.jpg';
 
-export function SEO({ title, description, canonical, ogImage = DEFAULT_IMAGE, noindex = false, breadcrumb }: SEOProps) {
-  const fullTitle = `${title} | Madia Teramo`;
+export function SEO({ title, description, canonical, ogImage = DEFAULT_IMAGE, noindex = false, breadcrumb, appendSiteName = true }: SEOProps) {
+  const fullTitle = appendSiteName ? `${title} | Madia Teramo` : title;
   const fullImage = `${BASE_URL}${ogImage}`;
   const fullCanonical = canonical.startsWith('http') ? canonical : `${BASE_URL}${canonical}`;
 

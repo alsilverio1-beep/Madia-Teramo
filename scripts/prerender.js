@@ -53,7 +53,7 @@ if (!executablePath) {
  * index.html, lasciando intatto qualunque valore Helmet abbia effettivamente reso.
  */
 function stripDuplicateStaticTags(html) {
-  const TITLE = 'Madia Teramo — Ristorante, Pizzeria e Steak House';
+  const TITLE = 'Madia — Pizzeria e Ristorante a Teramo';
   const DESC = 'Madia è il ristorante e pizzeria in Piazza Sant\'Agostino 9/10, Teramo. Cucina contemporanea, pizza padellino con biga 18 ore, steak house e aperitivo ogni giorno dalle 18:00.';
   const TWITTER_DESC = 'Madia è il ristorante e pizzeria in Piazza Sant\'Agostino 9/10, Teramo. Cucina contemporanea, pizza padellino, steak house e aperitivo.';
   const CANONICAL = 'https://www.madiateramo.it/';
