@@ -10,7 +10,7 @@
  */
 import express from 'express';
 import { existsSync } from 'fs';
-import { writeFile } from 'fs/promises';
+import { readFile, writeFile } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import puppeteer from 'puppeteer-core';
@@ -30,15 +30,6 @@ const CHROME_CANDIDATES = [
 ].filter(Boolean);
 
 const executablePath = CHROME_CANDIDATES.find(p => existsSync(p));
-if (!executablePath) {
-  // Il prerendering è un miglioramento SEO accessorio, non deve mai bloccare il deploy:
-  // se sul server manca Chrome/Chromium (es. VPS senza browser installato), il sito
-  // continua a funzionare esattamente come prima (CSR puro), semplicemente senza
-  // le pagine pre-renderizzate. Per averle, installare Chromium sul server oppure
-  // impostare CHROME_PATH con il percorso di un browser esistente.
-  console.warn('[prerender] Nessun browser Chrome/Edge trovato — salto il prerendering (il sito verrà comunque servito, in modalità CSR). Imposta CHROME_PATH per abilitarlo.');
-  process.exit(0);
-}
 
 /**
  * react-helmet-async aggiunge <title>/<meta>/<link> per-pagina in testa a <head>,
@@ -89,14 +80,83 @@ function stripDuplicateStaticTags(html) {
   return html;
 }
 
-// route pubblica → file di output in dist/ (deve combaciare con i route espliciti in server.ts)
+const BASE_URL = 'https://www.madiateramo.it';
+
+// route pubblica → file di output in dist/ (deve combaciare con i route espliciti in server.ts).
+// title/description devono restare identici a quelli passati a <SEO> nelle rispettive pagine
+// (src/pages/Menu.tsx, src/pages/Steakhouse.tsx): sono usati SOLO dal fallback "lite" qui sotto.
 const ROUTES = [
   { path: '/', outFile: 'index.html' },
-  { path: '/menu', outFile: 'menu.html' },
-  { path: '/steakhouse', outFile: 'steakhouse.html' },
+  {
+    path: '/menu',
+    outFile: 'menu.html',
+    title: 'Menu Ristorante — Pranzo, Cena e Aperitivo | Madia Teramo',
+    description: 'Scopri il menu di Madia Teramo: antipasti, primi, secondi, aperitivo dalle 18:00, selezione di carni frollate alla brace e cocktails. Ingredienti freschi e di qualità.',
+  },
+  {
+    path: '/steakhouse',
+    outFile: 'steakhouse.html',
+    title: 'Steak House — Carni Frollate alla Brace a Teramo | Madia Teramo',
+    description: 'La Steak House di Madia Teramo: tagli frollati di Chianina, Fassona, Black Angus e Wagyu. Razze italiane e internazionali, cotti alla brace nel cuore di Teramo.',
+  },
 ];
 
+const escapeAttr = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+const escapeText = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+/**
+ * Fallback "lite" quando il prerendering completo non è possibile (server senza
+ * Chrome, oppure una rotta che fallisce in puppeteer): parte dallo shell SPA di
+ * index.html e sostituisce SOLO title / description / canonical / og / twitter con
+ * quelli della rotta. Il contenuto resta vuoto (CSR), ma il crawler non vede più il
+ * canonical della home su /menu e /steakhouse — che è esattamente ciò che faceva
+ * marcare quelle URL come duplicato e quindi "rilevata ma non indicizzata".
+ * Prima di questo fallback, server.ts serviva index.html tale e quale su quelle rotte.
+ */
+function buildLiteShell(indexHtml, route) {
+  const url = `${BASE_URL}${route.path}`;
+  const title = escapeText(route.title);
+  const titleAttr = escapeAttr(route.title);
+  const desc = escapeAttr(route.description);
+  const repl = [
+    [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
+    [/<meta name="description" content="[^"]*"\s*\/?>/, `<meta name="description" content="${desc}" />`],
+    [/<link rel="canonical" href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${url}" />`],
+    [/<meta property="og:title" content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${titleAttr}" />`],
+    [/<meta property="og:description" content="[^"]*"\s*\/?>/, `<meta property="og:description" content="${desc}" />`],
+    [/<meta property="og:url" content="[^"]*"\s*\/?>/, `<meta property="og:url" content="${url}" />`],
+    [/<meta name="twitter:title" content="[^"]*"\s*\/?>/, `<meta name="twitter:title" content="${titleAttr}" />`],
+    [/<meta name="twitter:description" content="[^"]*"\s*\/?>/, `<meta name="twitter:description" content="${desc}" />`],
+  ];
+  return repl.reduce((html, [re, to]) => html.replace(re, to), indexHtml);
+}
+
+// Shell SPA "pulito" prodotto da vite build. Va letto PRIMA di qualsiasi scrittura:
+// nel prerendering completo la home sovrascrive index.html con il proprio contenuto,
+// e uno shell lite costruito da quello mostrerebbe la home sotto /menu.
+const pristineShell = readFile(path.join(distPath, 'index.html'), 'utf-8');
+pristineShell.catch(() => {}); // l'errore riemerge dove viene atteso, non come unhandled rejection
+
+async function writeLiteShells(routes) {
+  const indexHtml = await pristineShell;
+  for (const route of routes) {
+    if (!route.title) continue; // la home È già index.html
+    await writeFile(path.join(distPath, route.outFile), buildLiteShell(indexHtml, route), 'utf-8');
+    console.log(`[prerender] ${route.path} → ${route.outFile}  (shell lite, solo meta per-rotta)`);
+  }
+}
+
 async function main() {
+  if (!executablePath) {
+    // Il prerendering completo è un miglioramento SEO accessorio, non deve mai bloccare
+    // il deploy: se sul server manca Chrome/Chromium (es. hosting Plesk senza browser),
+    // generiamo comunque gli shell "lite" con i meta corretti per rotta. Per il
+    // prerendering completo installare Chromium sul server o impostare CHROME_PATH.
+    console.warn('[prerender] Nessun browser Chrome/Edge trovato — prerendering completo saltato, genero gli shell lite. Imposta CHROME_PATH per abilitarlo.');
+    await writeLiteShells(ROUTES);
+    return;
+  }
+
   const app = express();
   app.use(express.static(distPath));
   app.get('*', (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
@@ -123,9 +183,10 @@ async function main() {
         await writeFile(outPath, html, 'utf-8');
         console.log(`[prerender] ${route.path} → ${route.outFile}  ("${title}", ${(html.length / 1024).toFixed(1)} KB)`);
       } catch (err) {
-        // Una route che fallisce non deve bloccare le altre: dist/ tiene comunque
-        // lo shell CSR standard per quella rotta finché il prossimo build non va a buon fine.
-        console.warn(`[prerender] ${route.path} fallita, salto:`, err.message || err);
+        // Una route che fallisce non deve bloccare le altre: per quella rotta si
+        // scrive comunque lo shell lite (meta corretti), mai lo shell della home.
+        console.warn(`[prerender] ${route.path} fallita, uso lo shell lite:`, err.message || err);
+        await writeLiteShells([route]);
       } finally {
         await page.close();
       }
@@ -136,9 +197,11 @@ async function main() {
   }
 }
 
-main().catch(err => {
+main().catch(async err => {
   // Anche qui: il prerendering non deve mai impedire il deploy del sito.
-  // In caso di errore, dist/ contiene comunque il build CSR standard di vite build.
-  console.warn('[prerender] Fallito, il sito verrà servito senza pagine pre-renderizzate:', err.message || err);
+  // Come ultima rete di sicurezza si tenta lo shell lite, così /menu e /steakhouse
+  // non escono mai con il canonical della home.
+  console.warn('[prerender] Fallito, provo gli shell lite:', err.message || err);
+  await writeLiteShells(ROUTES).catch(e => console.warn('[prerender] Anche gli shell lite sono falliti:', e.message || e));
   process.exit(0);
 });
